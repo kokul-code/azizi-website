@@ -91,7 +91,7 @@ export default function Home() {
                 {/* Fade edges */}
                 <div className="absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-black/40 to-transparent pointer-events-none" />
                 <div className="absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-black/40 to-transparent pointer-events-none" />
-                <div className="animate-ticker flex items-center whitespace-nowrap">
+                <div className="animate-ticker flex items-center whitespace-nowrap py-4">
                   {[...Array(2)].map((_, pass) => (
                     <span key={pass} className="inline-flex items-center">
                       {/* Framework */}
