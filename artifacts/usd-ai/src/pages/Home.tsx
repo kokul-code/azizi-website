@@ -98,7 +98,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="font-serif tracking-tight text-white mb-10 text-[36px]"
               >
-                Borderless capital, secured on-chain, built for the decentralized age.
+                On-chain capital for the borderless economy.
               </motion.h1>
 
               {/* Stats — static */}
