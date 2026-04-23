@@ -17,7 +17,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black flex flex-col font-sans">
       <Header />
-      
       <main className="flex-1">
         {/* HERO SECTION */}
         <section
@@ -49,7 +48,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif text-[clamp(2.6rem,6vw,5rem)] leading-[1.06] tracking-tight text-white mb-10"
+                className="font-serif tracking-tight text-white mb-10 text-[36px]"
               >
                 The dollar that builds AI, wherever it forms.
               </motion.h1>
@@ -376,7 +375,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-      
       <Footer />
     </div>
   );
