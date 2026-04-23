@@ -72,8 +72,15 @@ export default function Home() {
                 />
               );
             })}
-            {/* Overlay: gradient scrim for text readability over bright video */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/45 via-black/25 to-black/60" />
+            {/* Primary gradient scrim: top-to-bottom for readability */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
+            {/* Corner vignette: darkens top-left for logo contrast */}
+            <div
+              className="absolute inset-0 z-10 pointer-events-none"
+              style={{
+                background: "radial-gradient(ellipse 45% 35% at 0% 0%, rgba(0,0,0,0.75) 0%, transparent 100%)",
+              }}
+            />
           </div>
 
           {/* Content wrapper — fills screen, distributes content top/middle/bottom */}

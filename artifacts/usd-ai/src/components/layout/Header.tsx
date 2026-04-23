@@ -26,15 +26,14 @@ export default function Header({ dark = false }: HeaderProps) {
     >
       <div className="max-w-[1320px] mx-auto px-6 h-[72px] flex items-center justify-between relative">
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center shrink-0 px-3 py-1.5 rounded-xl bg-black/30 backdrop-blur-sm ring-1 ring-white/10"
-        >
+        <Link href="/" className="flex items-center shrink-0">
           <img
             src="/logo.png"
             alt="Azizi Global Group"
             className="h-7 w-auto object-contain"
-            style={{ filter: "drop-shadow(0 1px 6px rgba(0,0,0,0.7))" }}
+            style={{
+              filter: "drop-shadow(0 1px 8px rgba(0,0,0,0.9)) drop-shadow(0 0px 3px rgba(0,0,0,0.8)) brightness(1.15) saturate(1.4)",
+            }}
           />
         </Link>
 
