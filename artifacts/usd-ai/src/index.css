@@ -146,11 +146,30 @@
     @apply border-border;
   }
 
+  html, body {
+    background-color: #0c0d0f;
+  }
+
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal;
   }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 32s linear infinite;
+  will-change: transform;
+  display: inline-flex;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
 }

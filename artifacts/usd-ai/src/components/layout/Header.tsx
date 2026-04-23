@@ -48,7 +48,7 @@ export default function Header({ dark = false }: HeaderProps) {
             <a
               key={label}
               href="#"
-              className={`text-sm font-medium transition-colors ${
+              className={`text-[15px] font-medium transition-colors ${
                 active
                   ? "text-white font-semibold"
                   : "text-white/60 hover:text-white"

@@ -15,14 +15,14 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans">
+    <div className="min-h-screen bg-black flex flex-col font-sans">
       <Header />
       
       <main className="flex-1">
         {/* HERO SECTION */}
         <section
           ref={heroRef}
-          className="relative min-h-screen flex flex-col overflow-hidden"
+          className="relative h-screen flex flex-col overflow-hidden"
         >
           {/* Background image with parallax + dark overlay */}
           <div className="absolute inset-0 z-0">
@@ -33,11 +33,11 @@ export default function Home() {
               className="w-full h-[115%] object-cover object-center"
             />
             {/* Multi-stop gradient: darkens the whole thing, especially top & bottom */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/40 to-black/75" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70" />
           </div>
 
           {/* Content wrapper — fills screen, distributes content top/middle/bottom */}
-          <div className="relative z-10 flex flex-col flex-1 min-h-screen max-w-[1320px] mx-auto px-6 w-full">
+          <div className="relative z-10 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
 
             {/* Spacer so header clears */}
             <div className="h-[60px]" />
@@ -71,25 +71,32 @@ export default function Home() {
                 The dollar that builds AI, wherever it forms.
               </motion.h1>
 
-              {/* Stats bar */}
+              {/* Stats ticker */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-0 text-[11px] font-semibold tracking-[0.12em] uppercase text-white/55"
+                className="overflow-hidden w-full"
               >
-                {[
-                  ["CURRENT APR", "7.11%"],
-                  ["EXPECTED APR", "12.81%"],
-                  ["TOTAL DEPOSITS", "$344M"],
-                  ["USERS", "73,907"],
-                ].map(([label, value], i) => (
-                  <span key={label} className="flex items-center">
-                    {i > 0 && <span className="mx-3 text-white/25">|</span>}
-                    <span className="text-white/40 mr-1.5">{label}:</span>
-                    <span className="text-white/80">{value}</span>
-                  </span>
-                ))}
+                <div className="flex items-center animate-ticker whitespace-nowrap">
+                  {[...Array(4)].flatMap(() =>
+                    [
+                      ["CURRENT APR", "7.11%"],
+                      ["EXPECTED APR", "12.81%"],
+                      ["TOTAL DEPOSITS", "$344M"],
+                      ["USERS", "73,907"],
+                    ].map(([label, value], i) => (
+                      <span
+                        key={`${label}-${Math.random()}`}
+                        className="inline-flex items-center text-[11px] font-semibold tracking-[0.12em] uppercase shrink-0"
+                      >
+                        {i > 0 && <span className="mx-5 text-white/20">|</span>}
+                        <span className="text-white/40 mr-1.5">{label}:</span>
+                        <span className="text-white/80 mr-12">{value}</span>
+                      </span>
+                    ))
+                  )}
+                </div>
               </motion.div>
             </div>
 
