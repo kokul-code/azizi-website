@@ -48,3 +48,21 @@ id = "kNw2GmuUU1RD1Z14r0r6d"
 uri = "file://artifacts/usd-ai/public/cabin-dusk.png"
 type = "image"
 title = "Cabin at dusk"
+
+[[generated]]
+id = "8uXIAny1p2PeqLnDuzycq"
+uri = "file://attached_assets/about-mission.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "AzI8OXn62ILd3c9xZpviV"
+uri = "file://attached_assets/about-vision.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "RqfOB0SY2ZS3zyxB9ZM5h"
+uri = "file://attached_assets/about-blockchain.png"
+type = "image"
+title = "generated_image"

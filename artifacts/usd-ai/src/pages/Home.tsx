@@ -185,105 +185,116 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ABOUT US SECTION */}
-        <section className="relative overflow-hidden" style={{ background: "#0E0B08" }}>
-          {/* Subtle gold top border */}
-          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
+        {/* ABOUT US SECTION — full screen */}
+        <section
+          className="relative overflow-hidden flex flex-col"
+          style={{ background: "#0A0806", minHeight: "100vh" }}
+        >
+          {/* Gold top border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
-          {/* Decorative gold circle — far right */}
-          <div
-            className="absolute -right-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.04]"
-            style={{ background: "radial-gradient(circle, #C8922A 0%, transparent 70%)" }}
-          />
-
-          <div className="max-w-[1320px] mx-auto px-6 py-28">
-
-            {/* ── WHO WE ARE ── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-24">
-              {/* Left: label + heading */}
-              <div>
-                <span
-                  className="inline-block text-[11px] font-semibold tracking-[0.22em] uppercase mb-6"
-                  style={{ color: "#C8922A" }}
-                >
-                  About Us
-                </span>
-                <h2 className="font-serif text-4xl md:text-5xl leading-[1.15] text-white">
-                  Redefining digital finance for a borderless world.
-                </h2>
-                {/* Gold rule */}
-                <div className="mt-8 w-16 h-px" style={{ background: "#C8922A" }} />
-              </div>
-
-              {/* Right: description */}
-              <div className="lg:pt-12">
-                <p className="text-white/60 leading-relaxed text-[15px] mb-6">
-                  Azizi Global Group Inc. is a next-generation blockchain finance company building the infrastructure for decentralized capital markets. We combine AI-driven credit models with on-chain transparency to deliver institutional-grade financial products accessible to everyone.
-                </p>
-                <p className="text-white/40 leading-relaxed text-[14px]">
-                  Headquartered at the intersection of traditional finance and Web3, we operate globally — powering borrowers, lenders, and builders who believe the future of money is open, programmable, and borderless.
+          {/* ── HEADER BAND ── */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
+            <span
+              className="inline-block text-[10px] font-semibold tracking-[0.28em] uppercase mb-5"
+              style={{ color: "#C8922A" }}
+            >
+              About Us
+            </span>
+            <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-24">
+              <h2 className="font-serif text-4xl md:text-[52px] leading-[1.1] text-white lg:max-w-xl">
+                Redefining digital finance for a borderless world.
+              </h2>
+              <div className="lg:max-w-md pb-1">
+                <p className="text-white/55 leading-relaxed text-[15px]">
+                  Azizi Global Group Inc. is a next-generation blockchain finance company building infrastructure for decentralized capital markets — combining AI-driven credit models with on-chain transparency to deliver institutional-grade products accessible to everyone.
                 </p>
               </div>
             </div>
+            {/* Gold rule */}
+            <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
+          </div>
 
-            {/* ── VISION & MISSION ── */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Vision */}
-              <div
-                className="relative p-10 rounded-2xl overflow-hidden group"
-                style={{ background: "linear-gradient(135deg, rgba(200,146,42,0.08) 0%, rgba(200,146,42,0.03) 100%)", border: "1px solid rgba(200,146,42,0.18)" }}
-              >
-                {/* Large background numeral */}
+          {/* ── VISION ROW ── image left, text right */}
+          <div className="relative flex flex-col lg:flex-row flex-1 min-h-0" style={{ borderBottom: "1px solid rgba(200,146,42,0.12)" }}>
+            {/* Image */}
+            <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden">
+              <img
+                src="/about-vision.png"
+                alt="Vision"
+                className="w-full h-full object-cover"
+                style={{ filter: "brightness(0.75) saturate(1.1)" }}
+              />
+              {/* Gold overlay fade */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 60%, #0A0806 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #0A0806 0%, transparent 30%)" }} />
+            </div>
+            {/* Text */}
+            <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-12">
+              <div className="flex items-center gap-4 mb-6">
                 <span
-                  className="absolute right-8 bottom-4 text-[120px] font-serif leading-none select-none pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-[0.04]"
-                  style={{ color: "#C8922A" }}
-                >
-                  01
-                </span>
-                <span
-                  className="inline-block text-[10px] font-semibold tracking-[0.25em] uppercase mb-6"
+                  className="text-[9px] font-bold tracking-[0.3em] uppercase"
                   style={{ color: "#C8922A" }}
                 >
                   Vision
                 </span>
-                <h3 className="font-serif text-2xl text-white mb-5 leading-snug">
-                  A world where capital flows as freely as information.
-                </h3>
-                <p className="text-white/50 text-[14px] leading-relaxed">
-                  We envision a global financial system where anyone — regardless of geography, status, or access to legacy banking — can participate in wealth creation through decentralized, transparent, and programmable money.
-                </p>
+                <div className="flex-1 h-px" style={{ background: "rgba(200,146,42,0.25)" }} />
+                <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,146,42,0.12)" }}>01</span>
               </div>
-
-              {/* Mission */}
-              <div
-                className="relative p-10 rounded-2xl overflow-hidden group"
-                style={{ background: "linear-gradient(135deg, rgba(139,32,32,0.10) 0%, rgba(139,32,32,0.04) 100%)", border: "1px solid rgba(139,32,32,0.22)" }}
-              >
-                {/* Large background numeral */}
-                <span
-                  className="absolute right-8 bottom-4 text-[120px] font-serif leading-none select-none pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-[0.04]"
-                  style={{ color: "#8B2020" }}
-                >
-                  02
-                </span>
-                <span
-                  className="inline-block text-[10px] font-semibold tracking-[0.25em] uppercase mb-6"
-                  style={{ color: "#C85050" }}
-                >
-                  Mission
-                </span>
-                <h3 className="font-serif text-2xl text-white mb-5 leading-snug">
-                  Build the rails for on-chain capital markets that trust no intermediary.
-                </h3>
-                <p className="text-white/50 text-[14px] leading-relaxed">
-                  Our mission is to deploy blockchain-native financial primitives — secured by cryptographic proofs, governed by smart contracts, and powered by AI — that replace opacity with accountability and exclusion with open access.
-                </p>
+              <h3 className="font-serif text-2xl lg:text-3xl text-white mb-6 leading-snug max-w-md">
+                A world where capital flows as freely as information.
+              </h3>
+              <p className="text-white/50 text-[14px] leading-relaxed max-w-md">
+                We envision a global financial system where anyone — regardless of geography or legacy banking access — can participate in wealth creation through decentralized, transparent, and programmable money.
+              </p>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="w-8 h-px" style={{ background: "#C8922A" }} />
+                <span className="text-[11px] tracking-widest uppercase text-white/30">Azizi Global Group</span>
               </div>
             </div>
           </div>
 
-          {/* Subtle gold bottom border */}
-          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
+          {/* ── MISSION ROW ── text left, image right */}
+          <div className="relative flex flex-col-reverse lg:flex-row flex-1 min-h-0">
+            {/* Text */}
+            <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-12">
+              <div className="flex items-center gap-4 mb-6">
+                <span
+                  className="text-[9px] font-bold tracking-[0.3em] uppercase"
+                  style={{ color: "#C85050" }}
+                >
+                  Mission
+                </span>
+                <div className="flex-1 h-px" style={{ background: "rgba(200,80,80,0.25)" }} />
+                <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,80,80,0.12)" }}>02</span>
+              </div>
+              <h3 className="font-serif text-2xl lg:text-3xl text-white mb-6 leading-snug max-w-md">
+                Build the rails for on-chain capital markets that trust no intermediary.
+              </h3>
+              <p className="text-white/50 text-[14px] leading-relaxed max-w-md">
+                Our mission is to deploy blockchain-native financial primitives — secured by cryptographic proofs, governed by smart contracts, powered by AI — replacing opacity with accountability and exclusion with open access.
+              </p>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="w-8 h-px" style={{ background: "#C85050" }} />
+                <span className="text-[11px] tracking-widest uppercase text-white/30">Decentralized by design</span>
+              </div>
+            </div>
+            {/* Image */}
+            <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden">
+              <img
+                src="/about-mission.png"
+                alt="Mission"
+                className="w-full h-full object-cover"
+                style={{ filter: "brightness(0.7) saturate(1.2)" }}
+              />
+              {/* Red overlay fade */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(270deg, transparent 60%, #0A0806 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #0A0806 0%, transparent 30%)" }} />
+            </div>
+          </div>
+
+          {/* Gold bottom border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
         {/* FEATURES GRID SECTION */}
