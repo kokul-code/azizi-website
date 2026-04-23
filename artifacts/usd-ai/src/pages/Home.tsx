@@ -21,8 +21,8 @@ export default function Home() {
         {/* HERO SECTION */}
         <section
           ref={heroRef}
-          className="relative mx-3 mt-3 mb-3 rounded-2xl overflow-hidden flex flex-col"
-          style={{ height: "calc(100vh - 1.5rem)" }}
+          className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
+          style={{ height: "calc(100vh - 2rem)" }}
         >
           {/* Background image with parallax + dark overlay */}
           <div className="absolute inset-0 z-0">

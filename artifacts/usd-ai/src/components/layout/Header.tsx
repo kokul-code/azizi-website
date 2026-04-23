@@ -18,13 +18,13 @@ export default function Header({ dark = false }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-3 left-3 right-3 z-50 transition-all duration-500 rounded-t-2xl ${
+      className={`fixed top-5 left-3 right-3 z-50 transition-all duration-500 rounded-t-2xl ${
         scrolled
           ? "bg-[#0e1014]/90 backdrop-blur-md border-b border-white/10"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1320px] mx-auto px-6 h-[60px] flex items-center justify-between">
+      <div className="max-w-[1320px] mx-auto px-6 h-[60px] flex items-center justify-between relative">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="w-7 h-7 rounded-full bg-white/15 border border-white/30 flex items-center justify-center">
@@ -36,19 +36,20 @@ export default function Header({ dark = false }: HeaderProps) {
           <span className="text-white font-semibold text-base tracking-tight">USD.AI</span>
         </Link>
 
-        {/* Center Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Center Nav — absolutely centered */}
+        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {[
-            { label: "Deposit", active: true },
-            { label: "Borrow" },
-            { label: "Protocol" },
-            { label: "Insights" },
-            { label: "Resources" },
+            { label: "Home", active: true },
+            { label: "About Us" },
+            { label: "Tokenomics" },
+            { label: "Roadmap" },
+            { label: "FAQ" },
+            { label: "Whitepaper" },
           ].map(({ label, active }) => (
             <a
               key={label}
               href="#"
-              className={`text-[15px] font-medium transition-colors ${
+              className={`text-[14px] font-medium transition-colors whitespace-nowrap ${
                 active
                   ? "text-white font-semibold"
                   : "text-white/60 hover:text-white"
