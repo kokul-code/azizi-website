@@ -15,13 +15,14 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Header />
       <main className="flex-1">
         {/* HERO SECTION */}
         <section
           ref={heroRef}
-          className="relative h-screen flex flex-col overflow-hidden"
+          className="relative mx-3 mt-3 mb-3 rounded-2xl overflow-hidden flex flex-col"
+          style={{ height: "calc(100vh - 1.5rem)" }}
         >
           {/* Background image with parallax + dark overlay */}
           <div className="absolute inset-0 z-0">
