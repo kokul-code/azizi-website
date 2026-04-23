@@ -20,42 +20,118 @@ export default function Home() {
       
       <main className="flex-1">
         {/* HERO SECTION */}
-        <section ref={heroRef} className="relative pt-24 pb-32 overflow-hidden border-b border-border">
+        <section
+          ref={heroRef}
+          className="relative min-h-screen flex flex-col overflow-hidden"
+        >
+          {/* Background image with parallax + dark overlay */}
           <div className="absolute inset-0 z-0">
-            <motion.img 
+            <motion.img
               style={{ y }}
-              src="/hero-topography.png" 
-              alt="Aerial topography" 
-              className="w-full h-[120%] object-cover object-center opacity-60 mix-blend-multiply"
+              src="/hero-topography.png"
+              alt="Aerial topography"
+              className="w-full h-[115%] object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-background"></div>
+            {/* Multi-stop gradient: darkens the whole thing, especially top & bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/40 to-black/75" />
           </div>
-          
-          <div className="container mx-auto px-6 relative z-10 pt-20">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+
+          {/* Content wrapper — fills screen, distributes content top/middle/bottom */}
+          <div className="relative z-10 flex flex-col flex-1 min-h-screen max-w-[1320px] mx-auto px-6 w-full">
+
+            {/* Spacer so header clears */}
+            <div className="h-[60px]" />
+
+            {/* Main text block — upper-left */}
+            <div className="flex-1 flex flex-col justify-center pt-10 pb-6 max-w-3xl">
+              {/* Eyebrow pill */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-7"
+              >
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm text-white/75 hover:text-white transition-colors"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  $CHIP is Live
+                  <span className="ml-1 text-white/50">→</span>
+                </a>
+              </motion.div>
+
+              {/* Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="font-serif text-[clamp(2.6rem,6vw,5rem)] leading-[1.06] tracking-tight text-white mb-10"
+              >
+                The dollar that builds AI, wherever it forms.
+              </motion.h1>
+
+              {/* Stats bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="flex flex-wrap items-center gap-0 text-[11px] font-semibold tracking-[0.12em] uppercase text-white/55"
+              >
+                {[
+                  ["CURRENT APR", "7.11%"],
+                  ["EXPECTED APR", "12.81%"],
+                  ["TOTAL DEPOSITS", "$344M"],
+                  ["USERS", "73,907"],
+                ].map(([label, value], i) => (
+                  <span key={label} className="flex items-center">
+                    {i > 0 && <span className="mx-3 text-white/25">|</span>}
+                    <span className="text-white/40 mr-1.5">{label}:</span>
+                    <span className="text-white/80">{value}</span>
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Bottom logos — pinned to bottom of hero */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl"
+              transition={{ duration: 0.7, delay: 0.55 }}
+              className="pb-12 text-center"
             >
-              <div className="inline-block border border-primary/20 px-3 py-1 mb-8">
-                <span className="text-xs font-semibold tracking-widest uppercase text-primary/80">Protocol Genesis</span>
-              </div>
-              <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-primary mb-8">
-                The dollar that builds AI, wherever it serves.
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed mb-12">
-                A decentralized stablecoin backed by machine-credit and future compute yield. Institutional-grade capital for the global GPU infrastructure.
+              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-6">
+                Trusted by global institutions
               </p>
-              
-              <div className="flex items-center gap-6 pt-12 border-t border-primary/10">
-                <span className="text-xs font-semibold tracking-widest uppercase text-primary/50 mr-4">Integrated with</span>
-                <div className="flex gap-8 opacity-60 saturate-0">
-                  <span className="font-bold text-xl tracking-tighter">DCG</span>
-                  <span className="font-serif italic text-xl">Framework</span>
-                  <span className="font-medium text-xl">Variant.</span>
-                  <span className="font-mono text-xl tracking-tighter uppercase">Placeholder</span>
-                </div>
+              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
+                {/* Framework */}
+                <span className="font-serif italic text-xl text-white/70 hover:text-white/90 transition-colors cursor-default">
+                  Framework
+                </span>
+                {/* NVIDIA Inception */}
+                <span className="flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors cursor-default">
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="currentColor">
+                    <polygon points="0,14 9,0 18,14" opacity="0.9" />
+                  </svg>
+                  <span className="text-sm font-semibold uppercase tracking-wider">NVIDIA</span>
+                  <span className="text-xs text-white/45 font-medium">Inception Program</span>
+                </span>
+                {/* PayPal PYUSD */}
+                <span className="flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors cursor-default">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.067 7.301c.16-1.02.001-1.712-.553-2.34C18.828 4.178 17.42 4 15.61 4H9.893c-.392 0-.726.285-.787.672l-2.326 14.76a.472.472 0 00.466.544h3.393l-.22 1.397a.413.413 0 00.408.475h2.866c.344 0 .637-.25.69-.59l.029-.148.547-3.468.035-.19a.696.696 0 01.69-.59h.434c2.814 0 5.015-1.144 5.658-4.45.268-1.38.13-2.533-.582-3.341z" />
+                  </svg>
+                  <span className="text-sm font-semibold">PayPal</span>
+                  <span className="text-sm font-bold text-white/85">PYUSD</span>
+                </span>
+                {/* HYDRA */}
+                <span className="flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors cursor-default">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L2 5v6l6 4 6-4V5L8 1z" stroke="currentColor" strokeWidth="1.2" fill="none" />
+                    <path d="M8 4l-3 2v4l3 2 3-2V6L8 4z" fill="currentColor" opacity="0.5" />
+                  </svg>
+                  <span className="text-sm font-bold tracking-widest uppercase">HYDRA</span>
+                </span>
               </div>
             </motion.div>
           </div>

@@ -1,27 +1,78 @@
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
 
-export default function Header() {
+interface HeaderProps {
+  dark?: boolean;
+}
+
+export default function Header({ dark = false }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const isLight = !dark && !scrolled;
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-12">
-          <Link href="/" className="font-serif text-xl font-medium tracking-tight text-primary">
-            USD-AI
-          </Link>
-          
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-            <Link href="/protocol" className="hover:text-primary transition-colors">Protocol</Link>
-            <Link href="/reserves" className="hover:text-primary transition-colors">Reserves</Link>
-            <Link href="/insights" className="hover:text-primary transition-colors">Insights</Link>
-            <Link href="/docs" className="hover:text-primary transition-colors">Docs</Link>
-          </nav>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <Button variant="default" className="rounded-none bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 h-9">
-            Get Started
-          </Button>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[#0e1014]/90 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-[1320px] mx-auto px-6 h-[60px] flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <span className="w-7 h-7 rounded-full bg-white/15 border border-white/30 flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.2" />
+              <path d="M5 7h4M7 5v4" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
+            </svg>
+          </span>
+          <span className="text-white font-semibold text-base tracking-tight">USD.AI</span>
+        </Link>
+
+        {/* Center Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {[
+            { label: "Deposit", active: true },
+            { label: "Borrow" },
+            { label: "Protocol" },
+            { label: "Insights" },
+            { label: "Resources" },
+          ].map(({ label, active }) => (
+            <a
+              key={label}
+              href="#"
+              className={`text-sm font-medium transition-colors ${
+                active
+                  ? "text-white font-semibold"
+                  : "text-white/60 hover:text-white"
+              }`}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        {/* CTAs */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#"
+            className="hidden sm:inline-flex items-center justify-center h-9 px-4 rounded-md border border-white/25 text-white/85 text-sm font-medium hover:bg-white/10 transition-colors"
+          >
+            Borrower Login
+          </a>
+          <a
+            href="#"
+            className="inline-flex items-center justify-center h-9 px-4 rounded-md bg-[#c4a97a] text-[#1a1205] text-sm font-semibold hover:bg-[#d4b98a] transition-colors"
+          >
+            Get USDai
+          </a>
         </div>
       </div>
     </header>
