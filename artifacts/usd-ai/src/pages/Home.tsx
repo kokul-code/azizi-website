@@ -187,30 +187,16 @@ export default function Home() {
 
         {/* ABOUT US SECTION */}
         <section className="relative overflow-hidden" style={{ background: "#0E0B08" }}>
-          {/* Background video */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            style={{ opacity: 0.55 }}
-          >
-            <source src="/about-bg.mp4" type="video/mp4" />
-          </video>
-          {/* Dark veil — keeps it moody but video is visible */}
-          <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(14,11,8,0.45)" }} />
-
           {/* Subtle gold top border */}
-          <div className="relative z-10 h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
 
           {/* Decorative gold circle — far right */}
           <div
-            className="absolute -right-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.04] z-10"
+            className="absolute -right-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.04]"
             style={{ background: "radial-gradient(circle, #C8922A 0%, transparent 70%)" }}
           />
 
-          <div className="relative z-10 max-w-[1320px] mx-auto px-6 py-28">
+          <div className="max-w-[1320px] mx-auto px-6 py-28">
 
             {/* ── WHO WE ARE ── */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-24">
@@ -297,7 +283,7 @@ export default function Home() {
           </div>
 
           {/* Subtle gold bottom border */}
-          <div className="relative z-10 h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
         </section>
 
         {/* FEATURES GRID SECTION */}
