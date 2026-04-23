@@ -44,23 +44,6 @@ export default function Home() {
 
             {/* Main text block — upper-left */}
             <div className="flex-1 flex flex-col justify-center pt-10 pb-6 max-w-3xl">
-              {/* Eyebrow pill */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-7"
-              >
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 text-sm text-white/75 hover:text-white transition-colors"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  $CHIP is Live
-                  <span className="ml-1 text-white/50">→</span>
-                </a>
-              </motion.div>
-
               {/* Heading */}
               <motion.h1
                 initial={{ opacity: 0, y: 18 }}
