@@ -185,6 +185,107 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ABOUT US SECTION */}
+        <section className="relative overflow-hidden" style={{ background: "#0E0B08" }}>
+          {/* Subtle gold top border */}
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
+
+          {/* Decorative gold circle — far right */}
+          <div
+            className="absolute -right-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.04]"
+            style={{ background: "radial-gradient(circle, #C8922A 0%, transparent 70%)" }}
+          />
+
+          <div className="max-w-[1320px] mx-auto px-6 py-28">
+
+            {/* ── WHO WE ARE ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-24">
+              {/* Left: label + heading */}
+              <div>
+                <span
+                  className="inline-block text-[11px] font-semibold tracking-[0.22em] uppercase mb-6"
+                  style={{ color: "#C8922A" }}
+                >
+                  About Us
+                </span>
+                <h2 className="font-serif text-4xl md:text-5xl leading-[1.15] text-white">
+                  Redefining digital finance for a borderless world.
+                </h2>
+                {/* Gold rule */}
+                <div className="mt-8 w-16 h-px" style={{ background: "#C8922A" }} />
+              </div>
+
+              {/* Right: description */}
+              <div className="lg:pt-12">
+                <p className="text-white/60 leading-relaxed text-[15px] mb-6">
+                  Azizi Global Group Inc. is a next-generation blockchain finance company building the infrastructure for decentralized capital markets. We combine AI-driven credit models with on-chain transparency to deliver institutional-grade financial products accessible to everyone.
+                </p>
+                <p className="text-white/40 leading-relaxed text-[14px]">
+                  Headquartered at the intersection of traditional finance and Web3, we operate globally — powering borrowers, lenders, and builders who believe the future of money is open, programmable, and borderless.
+                </p>
+              </div>
+            </div>
+
+            {/* ── VISION & MISSION ── */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Vision */}
+              <div
+                className="relative p-10 rounded-2xl overflow-hidden group"
+                style={{ background: "linear-gradient(135deg, rgba(200,146,42,0.08) 0%, rgba(200,146,42,0.03) 100%)", border: "1px solid rgba(200,146,42,0.18)" }}
+              >
+                {/* Large background numeral */}
+                <span
+                  className="absolute right-8 bottom-4 text-[120px] font-serif leading-none select-none pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-[0.04]"
+                  style={{ color: "#C8922A" }}
+                >
+                  01
+                </span>
+                <span
+                  className="inline-block text-[10px] font-semibold tracking-[0.25em] uppercase mb-6"
+                  style={{ color: "#C8922A" }}
+                >
+                  Vision
+                </span>
+                <h3 className="font-serif text-2xl text-white mb-5 leading-snug">
+                  A world where capital flows as freely as information.
+                </h3>
+                <p className="text-white/50 text-[14px] leading-relaxed">
+                  We envision a global financial system where anyone — regardless of geography, status, or access to legacy banking — can participate in wealth creation through decentralized, transparent, and programmable money.
+                </p>
+              </div>
+
+              {/* Mission */}
+              <div
+                className="relative p-10 rounded-2xl overflow-hidden group"
+                style={{ background: "linear-gradient(135deg, rgba(139,32,32,0.10) 0%, rgba(139,32,32,0.04) 100%)", border: "1px solid rgba(139,32,32,0.22)" }}
+              >
+                {/* Large background numeral */}
+                <span
+                  className="absolute right-8 bottom-4 text-[120px] font-serif leading-none select-none pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-[0.04]"
+                  style={{ color: "#8B2020" }}
+                >
+                  02
+                </span>
+                <span
+                  className="inline-block text-[10px] font-semibold tracking-[0.25em] uppercase mb-6"
+                  style={{ color: "#C85050" }}
+                >
+                  Mission
+                </span>
+                <h3 className="font-serif text-2xl text-white mb-5 leading-snug">
+                  Build the rails for on-chain capital markets that trust no intermediary.
+                </h3>
+                <p className="text-white/50 text-[14px] leading-relaxed">
+                  Our mission is to deploy blockchain-native financial primitives — secured by cryptographic proofs, governed by smart contracts, and powered by AI — that replace opacity with accountability and exclusion with open access.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Subtle gold bottom border */}
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
+        </section>
+
         {/* FEATURES GRID SECTION */}
         <section className="py-32 bg-background">
           <div className="container mx-auto px-6">
