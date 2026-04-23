@@ -187,19 +187,19 @@ export default function Home() {
 
         {/* ABOUT US SECTION */}
         <section className="relative overflow-hidden" style={{ background: "#0E0B08" }}>
-          {/* Background video — muted, very transparent */}
+          {/* Background video */}
           <video
             autoPlay
             muted
             loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            style={{ opacity: 0.12, mixBlendMode: "lighten" }}
+            style={{ opacity: 0.55 }}
           >
             <source src="/about-bg.mp4" type="video/mp4" />
           </video>
-          {/* Extra dark veil to keep section color-accurate */}
-          <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(14,11,8,0.72)" }} />
+          {/* Dark veil — keeps it moody but video is visible */}
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(14,11,8,0.45)" }} />
 
           {/* Subtle gold top border */}
           <div className="relative z-10 h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 30%, #C8922A 70%, transparent 100%)" }} />
