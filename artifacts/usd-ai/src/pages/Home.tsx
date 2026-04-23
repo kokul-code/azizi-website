@@ -71,74 +71,85 @@ export default function Home() {
                 The dollar that builds AI, wherever it forms.
               </motion.h1>
 
-              {/* Stats ticker */}
+              {/* Stats — static */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className="overflow-hidden w-full"
+                className="flex flex-wrap items-center gap-0 text-[11px] font-semibold tracking-[0.12em] uppercase"
               >
-                <div className="flex items-center animate-ticker whitespace-nowrap">
-                  {[...Array(4)].flatMap(() =>
-                    [
-                      ["CURRENT APR", "7.11%"],
-                      ["EXPECTED APR", "12.81%"],
-                      ["TOTAL DEPOSITS", "$344M"],
-                      ["USERS", "73,907"],
-                    ].map(([label, value], i) => (
-                      <span
-                        key={`${label}-${Math.random()}`}
-                        className="inline-flex items-center text-[11px] font-semibold tracking-[0.12em] uppercase shrink-0"
-                      >
-                        {i > 0 && <span className="mx-5 text-white/20">|</span>}
-                        <span className="text-white/40 mr-1.5">{label}:</span>
-                        <span className="text-white/80 mr-12">{value}</span>
-                      </span>
-                    ))
-                  )}
-                </div>
+                {[
+                  ["CURRENT APR", "7.11%"],
+                  ["EXPECTED APR", "12.81%"],
+                  ["TOTAL DEPOSITS", "$344M"],
+                  ["USERS", "73,907"],
+                ].map(([label, value], i) => (
+                  <span key={label} className="inline-flex items-center shrink-0">
+                    {i > 0 && <span className="mx-4 text-white/20">|</span>}
+                    <span className="text-white/40 mr-1.5">{label}:</span>
+                    <span className="text-white/80">{value}</span>
+                  </span>
+                ))}
               </motion.div>
             </div>
 
-            {/* Bottom logos — pinned to bottom of hero */}
+            {/* Bottom logos — scrolling ticker */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.55 }}
-              className="pb-12 text-center"
+              className="pb-12"
             >
-              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-6">
+              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-5 text-center">
                 Trusted by global institutions
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-                {/* Framework */}
-                <span className="font-serif italic text-xl text-white/70 hover:text-white/90 transition-colors cursor-default">
-                  Framework
-                </span>
-                {/* NVIDIA Inception */}
-                <span className="flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors cursor-default">
-                  <svg width="18" height="14" viewBox="0 0 18 14" fill="currentColor">
-                    <polygon points="0,14 9,0 18,14" opacity="0.9" />
-                  </svg>
-                  <span className="text-sm font-semibold uppercase tracking-wider">NVIDIA</span>
-                  <span className="text-xs text-white/45 font-medium">Inception Program</span>
-                </span>
-                {/* PayPal PYUSD */}
-                <span className="flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors cursor-default">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.067 7.301c.16-1.02.001-1.712-.553-2.34C18.828 4.178 17.42 4 15.61 4H9.893c-.392 0-.726.285-.787.672l-2.326 14.76a.472.472 0 00.466.544h3.393l-.22 1.397a.413.413 0 00.408.475h2.866c.344 0 .637-.25.69-.59l.029-.148.547-3.468.035-.19a.696.696 0 01.69-.59h.434c2.814 0 5.015-1.144 5.658-4.45.268-1.38.13-2.533-.582-3.341z" />
-                  </svg>
-                  <span className="text-sm font-semibold">PayPal</span>
-                  <span className="text-sm font-bold text-white/85">PYUSD</span>
-                </span>
-                {/* HYDRA */}
-                <span className="flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors cursor-default">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M8 1L2 5v6l6 4 6-4V5L8 1z" stroke="currentColor" strokeWidth="1.2" fill="none" />
-                    <path d="M8 4l-3 2v4l3 2 3-2V6L8 4z" fill="currentColor" opacity="0.5" />
-                  </svg>
-                  <span className="text-sm font-bold tracking-widest uppercase">HYDRA</span>
-                </span>
+              {/* Full-width ticker strip — no padding so logos bleed edge to edge */}
+              <div className="overflow-hidden w-screen relative left-1/2 -translate-x-1/2">
+                {/* Fade edges */}
+                <div className="absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-black/60 to-transparent pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-black/60 to-transparent pointer-events-none" />
+                <div className="animate-ticker flex items-center whitespace-nowrap">
+                  {[...Array(2)].map((_, pass) => (
+                    <span key={pass} className="inline-flex items-center">
+                      {/* Framework */}
+                      <span className="inline-flex items-center mx-12 font-serif italic text-xl text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                        Framework
+                      </span>
+                      {/* NVIDIA */}
+                      <span className="inline-flex items-center gap-2 mx-12 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                        <svg width="18" height="14" viewBox="0 0 18 14" fill="currentColor">
+                          <polygon points="0,14 9,0 18,14" opacity="0.9" />
+                        </svg>
+                        <span className="text-sm font-semibold uppercase tracking-wider">NVIDIA</span>
+                        <span className="text-xs text-white/40 font-medium">Inception Program</span>
+                      </span>
+                      {/* PayPal PYUSD */}
+                      <span className="inline-flex items-center gap-2 mx-12 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20.067 7.301c.16-1.02.001-1.712-.553-2.34C18.828 4.178 17.42 4 15.61 4H9.893c-.392 0-.726.285-.787.672l-2.326 14.76a.472.472 0 00.466.544h3.393l-.22 1.397a.413.413 0 00.408.475h2.866c.344 0 .637-.25.69-.59l.029-.148.547-3.468.035-.19a.696.696 0 01.69-.59h.434c2.814 0 5.015-1.144 5.658-4.45.268-1.38.13-2.533-.582-3.341z" />
+                        </svg>
+                        <span className="text-sm font-semibold">PayPal</span>
+                        <span className="text-sm font-bold text-white/80">PYUSD</span>
+                      </span>
+                      {/* HYDRA */}
+                      <span className="inline-flex items-center gap-2 mx-12 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M8 1L2 5v6l6 4 6-4V5L8 1z" stroke="currentColor" strokeWidth="1.2" fill="none" />
+                          <path d="M8 4l-3 2v4l3 2 3-2V6L8 4z" fill="currentColor" opacity="0.5" />
+                        </svg>
+                        <span className="text-sm font-bold tracking-widest uppercase">HYDRA</span>
+                      </span>
+                      {/* Dragonfly */}
+                      <span className="inline-flex items-center mx-12 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                        <span className="text-sm font-bold tracking-widest uppercase">Dragonfly</span>
+                      </span>
+                      {/* Variant */}
+                      <span className="inline-flex items-center mx-12 font-serif text-xl text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                        Variant
+                      </span>
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
