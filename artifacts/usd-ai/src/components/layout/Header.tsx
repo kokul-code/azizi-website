@@ -68,12 +68,6 @@ export default function Header({ dark = false }: HeaderProps) {
           >
             Borrower Login
           </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center h-9 px-4 rounded-md bg-[#c4a97a] text-[#1a1205] text-sm font-semibold hover:bg-[#d4b98a] transition-colors"
-          >
-            Get USDai
-          </a>
         </div>
       </div>
     </header>
