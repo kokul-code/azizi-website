@@ -81,7 +81,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.55 }}
-              className="pb-6"
+              className="mb-20"
             >
               <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4 text-center">
                 Trusted by global institutions
