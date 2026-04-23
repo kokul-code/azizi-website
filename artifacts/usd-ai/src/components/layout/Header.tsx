@@ -24,16 +24,10 @@ export default function Header({ dark = false }: HeaderProps) {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1320px] mx-auto px-6 h-[60px] flex items-center justify-between relative">
+      <div className="max-w-[1320px] mx-auto px-6 h-[72px] flex items-center justify-between relative">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="w-7 h-7 rounded-full bg-white/15 border border-white/30 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.2" />
-              <path d="M5 7h4M7 5v4" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-          </span>
-          <span className="text-white font-semibold text-base tracking-tight">USD.AI</span>
+        <Link href="/" className="flex items-center shrink-0">
+          <img src="/logo.png" alt="Azizi Global Group" className="h-10 w-auto object-contain" />
         </Link>
 
         {/* Center Nav — absolutely centered */}
@@ -65,7 +59,7 @@ export default function Header({ dark = false }: HeaderProps) {
           <a
             href="#"
             className="hidden sm:inline-flex items-center justify-center h-9 px-4 rounded-md border border-white/25 text-white/85 text-sm font-medium hover:bg-white/10 transition-colors"
-          >Login</a>
+          >Borrower Login</a>
         </div>
       </div>
     </header>

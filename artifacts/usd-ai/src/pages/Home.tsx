@@ -40,7 +40,7 @@ export default function Home() {
           <div className="relative z-10 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
 
             {/* Spacer so header clears */}
-            <div className="h-[60px]" />
+            <div className="h-[72px]" />
 
             {/* Main text block — upper-left */}
             <div className="flex-1 flex flex-col justify-center pt-10 pb-6 max-w-3xl">
