@@ -27,7 +27,7 @@ export default function Header({ dark = false }: HeaderProps) {
       <div className="max-w-[1320px] mx-auto px-6 h-[72px] flex items-center justify-between relative">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
-          <img src="/logo.png" alt="Azizi Global Group" className="h-14 w-auto object-contain" />
+          <img src="/logo.png" alt="Azizi Global Group" className="h-7 w-auto object-contain" />
         </Link>
 
         {/* Center Nav — absolutely centered */}
