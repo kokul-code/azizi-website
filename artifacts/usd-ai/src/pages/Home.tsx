@@ -12,13 +12,21 @@ const HERO_VIDEOS = [
 ];
 
 export default function Home() {
+  // ── Hero parallax
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroVideoY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
+  const heroContentY = useTransform(heroScroll, [0, 1], ["0%", "12%"]);
 
+  // ── About section parallax
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: aboutScroll } = useScroll({ target: aboutRef, offset: ["start end", "end start"] });
+  const visionImgY = useTransform(aboutScroll, [0, 1], ["-8%", "8%"]);
+  const missionImgY = useTransform(aboutScroll, [0, 1], ["8%", "-8%"]);
+  const aboutHeadY = useTransform(aboutScroll, [0, 0.4], ["30px", "0px"]);
+  const aboutHeadO = useTransform(aboutScroll, [0, 0.3], [0, 1]);
+
+  // ── Video state
   const [currentIdx, setCurrentIdx] = useState(0);
   const [fadingOut, setFadingOut] = useState<number | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -49,8 +57,9 @@ export default function Home() {
           className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
           style={{ height: "calc(100vh - 2rem)" }}
         >
-          {/* Background video carousel with crossfade */}
+          {/* Background video carousel with crossfade + parallax */}
           <div className="absolute inset-0 z-0 overflow-hidden">
+            <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[130%] -top-[15%]">
             {HERO_VIDEOS.map((src, idx) => {
               const isActive = idx === currentIdx;
               const isFading = idx === fadingOut;
@@ -72,6 +81,7 @@ export default function Home() {
                 />
               );
             })}
+            </motion.div>
             {/* Primary gradient scrim: top-to-bottom for readability */}
             <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
             {/* Corner vignette: darkens top-left for logo contrast */}
@@ -83,8 +93,8 @@ export default function Home() {
             />
           </div>
 
-          {/* Content wrapper — fills screen, distributes content top/middle/bottom */}
-          <div className="relative z-20 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
+          {/* Content wrapper — fills screen, with subtle parallax drift */}
+          <motion.div style={{ y: heroContentY }} className="relative z-20 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
 
             {/* Spacer so header clears */}
             <div className="h-[72px]" />
@@ -182,11 +192,12 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
 
         {/* ABOUT US SECTION — full screen */}
         <section
+          ref={aboutRef}
           className="relative overflow-hidden flex flex-col"
           style={{ background: "#0A0806", minHeight: "100vh" }}
         >
@@ -194,7 +205,7 @@ export default function Home() {
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
           {/* ── HEADER BAND ── */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
+          <motion.div style={{ y: aboutHeadY, opacity: aboutHeadO }} className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
             <span
               className="inline-block text-[10px] font-semibold tracking-[0.28em] uppercase mb-5"
               style={{ color: "#C8922A" }}
@@ -213,17 +224,17 @@ export default function Home() {
             </div>
             {/* Gold rule */}
             <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
-          </div>
+          </motion.div>
 
           {/* ── VISION ROW ── image left, text right */}
           <div className="relative flex flex-col lg:flex-row flex-1 min-h-0" style={{ borderBottom: "1px solid rgba(200,146,42,0.12)" }}>
-            {/* Image */}
+            {/* Image with parallax */}
             <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden">
-              <img
+              <motion.img
+                style={{ y: visionImgY, scale: 1.12, filter: "brightness(0.75) saturate(1.1)" }}
                 src="/about-vision.png"
                 alt="Vision"
                 className="w-full h-full object-cover"
-                style={{ filter: "brightness(0.75) saturate(1.1)" }}
               />
               {/* Gold overlay fade */}
               <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 60%, #0A0806 100%)" }} />
@@ -281,11 +292,11 @@ export default function Home() {
             </div>
             {/* Image */}
             <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden">
-              <img
+              <motion.img
+                style={{ y: missionImgY, scale: 1.12, filter: "brightness(0.7) saturate(1.2)" }}
                 src="/about-mission.png"
                 alt="Mission"
                 className="w-full h-full object-cover"
-                style={{ filter: "brightness(0.7) saturate(1.2)" }}
               />
               {/* Red overlay fade */}
               <div className="absolute inset-0" style={{ background: "linear-gradient(270deg, transparent 60%, #0A0806 100%)" }} />
