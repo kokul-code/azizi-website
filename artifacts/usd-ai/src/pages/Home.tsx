@@ -83,7 +83,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.55 }}
               className="mb-20"
             >
-              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4 text-center">
+              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/65 mb-4 text-center">
                 Trusted by global institutions
               </p>
               {/* Wider ticker strip — break out of container padding */}
