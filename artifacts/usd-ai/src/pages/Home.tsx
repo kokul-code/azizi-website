@@ -98,7 +98,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="font-serif tracking-tight text-white mb-10 text-[36px]"
               >
-                The dollar that builds AI, wherever it forms.
+                Borderless capital, secured on-chain, built for the decentralized age.
               </motion.h1>
 
               {/* Stats — static */}
