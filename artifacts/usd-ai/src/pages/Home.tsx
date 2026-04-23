@@ -1,9 +1,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowUpRight, Search, FileText, LogOut } from "lucide-react";
+
+const HERO_VIDEOS = [
+  "/hero-ocean.mp4",
+  "/hero-city.mp4",
+  "/hero-lava.mp4",
+];
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -11,8 +17,27 @@ export default function Home() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [fadingOut, setFadingOut] = useState<number | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Whenever currentIdx changes, play that video
+  useEffect(() => {
+    const vid = videoRefs.current[currentIdx];
+    if (vid) {
+      vid.currentTime = 0;
+      vid.play().catch(() => {});
+    }
+  }, [currentIdx]);
+
+  const handleVideoEnd = useCallback(() => {
+    const next = (currentIdx + 1) % HERO_VIDEOS.length;
+    setFadingOut(currentIdx);
+    setCurrentIdx(next);
+    setTimeout(() => setFadingOut(null), 1200);
+  }, [currentIdx]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans">
@@ -24,20 +49,35 @@ export default function Home() {
           className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
           style={{ height: "calc(100vh - 2rem)" }}
         >
-          {/* Background image with parallax + dark overlay */}
-          <div className="absolute inset-0 z-0">
-            <motion.img
-              style={{ y }}
-              src="/hero-topography.png"
-              alt="Aerial topography"
-              className="w-full h-[115%] object-cover object-center"
-            />
-            {/* Multi-stop gradient: darkens the whole thing, especially top & bottom */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70" />
+          {/* Background video carousel with crossfade */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            {HERO_VIDEOS.map((src, idx) => {
+              const isActive = idx === currentIdx;
+              const isFading = idx === fadingOut;
+              return (
+                <video
+                  key={src}
+                  ref={(el) => { videoRefs.current[idx] = el; }}
+                  src={src}
+                  autoPlay={idx === 0}
+                  muted
+                  playsInline
+                  onEnded={isActive ? handleVideoEnd : undefined}
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1200ms]"
+                  style={{
+                    opacity: isActive ? 1 : isFading ? 0 : 0,
+                    zIndex: isActive ? 2 : isFading ? 1 : 0,
+                    pointerEvents: "none",
+                  }}
+                />
+              );
+            })}
+            {/* Overlay: gradient scrim for text readability over bright video */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/45 via-black/25 to-black/60" />
           </div>
 
           {/* Content wrapper — fills screen, distributes content top/middle/bottom */}
-          <div className="relative z-10 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
+          <div className="relative z-20 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
 
             {/* Spacer so header clears */}
             <div className="h-[72px]" />
