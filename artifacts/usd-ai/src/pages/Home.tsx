@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -11,91 +11,12 @@ const HERO_VIDEOS = [
   "/hero-lava.mp4",
 ];
 
-const FEATURES = [
-  {
-    num: "01",
-    tag: "Core Protocol",
-    tagColor: "#C8922A",
-    tagBorder: "rgba(200,146,42,0.4)",
-    tagBg: "rgba(200,146,42,0.1)",
-    accentLine: "#C8922A",
-    title: "On-Chain Transparency",
-    body: "Every transaction, position, and yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol — no trust, no intermediaries.",
-    sub: "Verifiable by anyone, always",
-    img: "/feature-transparency.png",
-    imgRight: true,
-  },
-  {
-    num: "02",
-    tag: "Security",
-    tagColor: "#C85050",
-    tagBorder: "rgba(200,80,80,0.4)",
-    tagBg: "rgba(200,80,80,0.1)",
-    accentLine: "#C85050",
-    title: "Audited Smart Contracts",
-    body: "Every contract is formally verified and independently audited by leading blockchain security firms before any deployment. Multi-sig treasury controls and timelocked upgrades ensure deep, layered protection.",
-    sub: "Zero single points of failure",
-    img: "/feature-audited.png",
-    imgRight: false,
-  },
-  {
-    num: "03",
-    tag: "Yield",
-    tagColor: "#C8922A",
-    tagBorder: "rgba(200,146,42,0.4)",
-    tagBg: "rgba(200,146,42,0.1)",
-    accentLine: "#C8922A",
-    title: "Native Staking",
-    body: "Lock capital, earn protocol yield. Staking rewards are distributed on-chain and auto-compound across vaults — no custodial risk, no intermediary skimming returns. Up to 12.81% APR.",
-    sub: "Up to 12.81% APR",
-    img: "/feature-staking.png",
-    imgRight: true,
-  },
-  {
-    num: "04",
-    tag: "Token Economics",
-    tagColor: "#C85050",
-    tagBorder: "rgba(200,80,80,0.4)",
-    tagBg: "rgba(200,80,80,0.1)",
-    accentLine: "#C85050",
-    title: "Programmable Vesting",
-    body: "Time-locked token release schedules enforced entirely on-chain. Cliff periods, linear drip, and milestone-based unlocks — all parameters are transparent and immutable from the moment of deployment.",
-    sub: "No trusted intermediary",
-    img: "/feature-vesting.png",
-    imgRight: false,
-  },
-  {
-    num: "05",
-    tag: "Compatibility",
-    tagColor: "#C8922A",
-    tagBorder: "rgba(200,146,42,0.4)",
-    tagBg: "rgba(200,146,42,0.1)",
-    accentLine: "#C8922A",
-    title: "Multi-Wallet Support",
-    body: "MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains. Designed for the broadest ecosystem reach from day one.",
-    sub: "All major chains supported",
-    img: "/feature-wallets.png",
-    imgRight: true,
-  },
-];
-
 export default function Home() {
   // ── Hero parallax
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroVideoY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
   const heroContentY = useTransform(heroScroll, [0, 1], ["0%", "12%"]);
-
-  // ── Features sticky scroll
-  const featuresRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: featuresScroll } = useScroll({
-    target: featuresRef,
-    offset: ["start start", "end end"],
-  });
-  const [activeFeature, setActiveFeature] = useState(0);
-  useMotionValueEvent(featuresScroll, "change", (v) => {
-    setActiveFeature(Math.min(FEATURES.length - 1, Math.floor(v * FEATURES.length)));
-  });
 
   // ── About section parallax
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -388,147 +309,167 @@ export default function Home() {
         </section>
 
         {/* ── KEY FEATURES SECTION ── */}
-        <section className="relative" style={{ background: "#0A0806" }}>
+        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
+          {/* Top border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
-          {/* Section header — scrolls naturally above the sticky */}
-          <div className="px-10 pt-16 pb-10" style={{ borderBottom: "1px solid rgba(200,146,42,0.15)" }}>
-            <span className="inline-block text-[11px] font-semibold tracking-[0.28em] uppercase mb-4" style={{ color: "#C8922A" }}>
+          {/* Header band */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
+            <span className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
               Why Azizi Global
             </span>
-            <div className="flex items-end justify-between gap-8">
-              <h2 className="font-serif text-3xl lg:text-4xl text-white leading-tight max-w-lg">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <h2 className="font-serif text-5xl lg:text-6xl text-white leading-tight max-w-xl">
                 Infrastructure built for the next era of capital markets.
               </h2>
-              <p className="text-white/45 text-[13px] leading-relaxed max-w-xs text-right hidden lg:block">
+              <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
                 Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
               </p>
             </div>
+            <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
           </div>
 
-          {/* Sticky scroll track */}
-          <div ref={featuresRef} style={{ height: `${FEATURES.length * 100}vh` }} className="relative">
-            <div className="sticky top-0 overflow-hidden" style={{ height: "85vh" }}>
+          {/* Feature rows — alternating image / text layout */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-24 flex-1 flex flex-col gap-0">
 
-              {/* Progress dots — always on far right edge */}
-              <div className="absolute right-5 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2">
-                {FEATURES.map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="rounded-full"
-                    animate={{
-                      height: i === activeFeature ? 32 : 8,
-                      background: i === activeFeature ? FEATURES[activeFeature].tagColor : "rgba(255,255,255,0.2)",
-                      opacity: i === activeFeature ? 1 : 0.5,
-                    }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    style={{ width: 3 }}
-                  />
-                ))}
-              </div>
-
-              {/* Entire feature row (image + content) crossfades together — no layout jump */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeFeature}
-                  className="flex h-full w-full"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.45, ease: "easeInOut" }}
-                >
-                  <div className="flex flex-1 min-h-0 w-full">
-
-                {/* Image panel */}
-                <div
-                  className="relative flex-shrink-0 overflow-hidden"
-                  style={{
-                    width: "55%",
-                    order: FEATURES[activeFeature].imgRight ? 2 : 1,
-                  }}
-                >
+            {[
+              {
+                num: "01",
+                tag: "Core Protocol",
+                tagColor: "#C8922A",
+                tagBorder: "rgba(200,146,42,0.4)",
+                tagBg: "rgba(200,146,42,0.1)",
+                accentLine: "#C8922A",
+                title: "On-Chain Transparency",
+                body: "Every transaction, position, and yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol — no trust, no intermediaries.",
+                sub: "Verifiable by anyone, always",
+                img: "/feature-transparency.png",
+                imgRight: false,
+              },
+              {
+                num: "02",
+                tag: "Security",
+                tagColor: "#C85050",
+                tagBorder: "rgba(200,80,80,0.4)",
+                tagBg: "rgba(200,80,80,0.1)",
+                accentLine: "#C85050",
+                title: "Audited Smart Contracts",
+                body: "Every contract is formally verified and independently audited by leading blockchain security firms before any deployment. Multi-sig treasury controls and timelocked upgrades ensure deep, layered protection.",
+                sub: "Zero single points of failure",
+                img: "/feature-audited.png",
+                imgRight: true,
+              },
+              {
+                num: "03",
+                tag: "Yield",
+                tagColor: "#C8922A",
+                tagBorder: "rgba(200,146,42,0.4)",
+                tagBg: "rgba(200,146,42,0.1)",
+                accentLine: "#C8922A",
+                title: "Native Staking",
+                body: "Lock capital, earn protocol yield. Staking rewards are distributed on-chain and auto-compound across vaults — no custodial risk, no intermediary skimming returns. Up to 12.81% APR.",
+                sub: "Up to 12.81% APR",
+                img: "/feature-staking.png",
+                imgRight: false,
+              },
+              {
+                num: "04",
+                tag: "Token Economics",
+                tagColor: "#C85050",
+                tagBorder: "rgba(200,80,80,0.4)",
+                tagBg: "rgba(200,80,80,0.1)",
+                accentLine: "#C85050",
+                title: "Programmable Vesting",
+                body: "Time-locked token release schedules enforced entirely on-chain. Cliff periods, linear drip, and milestone-based unlocks — all parameters are transparent and immutable from the moment of deployment.",
+                sub: "No trusted intermediary",
+                img: "/feature-vesting.png",
+                imgRight: true,
+              },
+              {
+                num: "05",
+                tag: "Compatibility",
+                tagColor: "#C8922A",
+                tagBorder: "rgba(200,146,42,0.4)",
+                tagBg: "rgba(200,146,42,0.1)",
+                accentLine: "#C8922A",
+                title: "Multi-Wallet Support",
+                body: "MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains. Designed for the broadest ecosystem reach from day one.",
+                sub: "All major chains supported",
+                img: "/feature-wallets.png",
+                imgRight: false,
+              },
+            ].map((f, i) => (
+              <div
+                key={f.num}
+                className="flex flex-col lg:flex-row items-stretch"
+                style={{ borderTop: i === 0 ? "none" : "1px solid rgba(200,146,42,0.1)" }}
+              >
+                {/* Image side */}
+                <div className={`relative overflow-hidden lg:w-[52%] ${f.imgRight ? "lg:order-2" : "lg:order-1"}`} style={{ minHeight: "420px" }}>
                   <img
-                    src={FEATURES[activeFeature].img}
-                    alt={FEATURES[activeFeature].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ filter: "brightness(0.9) saturate(1.1)" }}
+                    src={f.img}
+                    alt={f.title}
+                    className="w-full h-full object-cover"
+                    style={{ filter: "brightness(0.88) saturate(1.1)" }}
                   />
-                  {/* Edge fade toward content */}
+                  {/* Subtle edge fade toward text side only */}
                   <div
-                    className="absolute inset-0 pointer-events-none"
+                    className="absolute inset-0"
                     style={{
-                      background: FEATURES[activeFeature].imgRight
-                        ? "linear-gradient(270deg, transparent 45%, #0A0806 100%)"
-                        : "linear-gradient(90deg, transparent 45%, #0A0806 100%)",
+                      background: f.imgRight
+                        ? "linear-gradient(270deg, rgba(10,8,6,0.9) 0%, transparent 45%)"
+                        : "linear-gradient(90deg, rgba(10,8,6,0.9) 0%, transparent 45%)",
                     }}
                   />
-                  {/* Ghost number */}
+                  {/* Number watermark */}
                   <span
-                    className="absolute bottom-8 font-serif leading-none select-none pointer-events-none"
-                    style={{
-                      fontSize: "8rem",
-                      color: "rgba(255,255,255,0.07)",
-                      lineHeight: 1,
-                      left: FEATURES[activeFeature].imgRight ? "auto" : "2rem",
-                      right: FEATURES[activeFeature].imgRight ? "2rem" : "auto",
-                    }}
+                    className="absolute bottom-6 right-8 font-serif leading-none select-none"
+                    style={{ fontSize: "7rem", color: "rgba(255,255,255,0.06)" }}
                   >
-                    {FEATURES[activeFeature].num}
+                    {f.num}
                   </span>
                 </div>
 
-                {/* Content panel */}
+                {/* Text side */}
                 <div
-                  className="relative flex-1 flex flex-col justify-center px-12 xl:px-16 py-10"
-                  style={{
-                    order: FEATURES[activeFeature].imgRight ? 1 : 2,
-                  }}
+                  className={`lg:w-[48%] flex flex-col justify-center px-10 py-14 lg:py-0 lg:px-16 ${f.imgRight ? "lg:order-1" : "lg:order-2"}`}
+                  style={{ background: "rgba(255,255,255,0.018)" }}
                 >
-                  {/* Tag + rule + number */}
-                  <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-4 mb-7">
                     <span
-                      className="text-[10px] font-bold tracking-[0.25em] uppercase px-3 py-1.5 rounded-full border flex-shrink-0"
-                      style={{
-                        color: FEATURES[activeFeature].tagColor,
-                        borderColor: FEATURES[activeFeature].tagBorder,
-                        background: FEATURES[activeFeature].tagBg,
-                      }}
+                      className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
+                      style={{ color: f.tagColor, borderColor: f.tagBorder, background: f.tagBg }}
                     >
-                      {FEATURES[activeFeature].tag}
+                      {f.tag}
                     </span>
-                    <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
-                    <span
-                      className="font-serif text-3xl leading-none select-none flex-shrink-0"
-                      style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
-                    >
-                      {FEATURES[activeFeature].num}
+                    <div className="flex-1 h-px" style={{ background: `${f.tagBorder}` }} />
+                    <span className="font-serif text-5xl leading-none select-none" style={{ color: `${f.tagBg.replace("0.1", "0.35")}` }}>
+                      {f.num}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-3xl lg:text-[2.6rem] text-white mb-5 leading-snug max-w-sm">
-                    {FEATURES[activeFeature].title}
+                  <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug">
+                    {f.title}
                   </h3>
 
-                  <p className="text-white/65 text-[14px] leading-[1.88] max-w-sm">
-                    {FEATURES[activeFeature].body}
+                  <p className="text-white/65 text-[16px] leading-[1.9] max-w-lg">
+                    {f.body}
                   </p>
 
-                  <div className="mt-8 flex items-center gap-3">
-                    <div className="w-10 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
-                    <span className="text-[11px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      {FEATURES[activeFeature].sub}
+                  <div className="mt-9 flex items-center gap-3">
+                    <div className="w-10 h-px" style={{ background: f.accentLine }} />
+                    <span className="text-[13px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      {f.sub}
                     </span>
                   </div>
                 </div>
-
               </div>
-                </motion.div>
-              </AnimatePresence>
+            ))}
 
-            </div>
           </div>
 
           {/* Bottom border */}
-          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
         {/* STATS & GLOBE SECTION */}
