@@ -3,7 +3,6 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { PieChart, Pie, Cell, Sector } from "recharts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import { Shield, ArrowUpRight, Search, FileText, LogOut } from "lucide-react";
 
 const TOKENOMICS = [
@@ -1045,119 +1044,6 @@ export default function Home() {
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
-        {/* DARK BAND */}
-        <section className="bg-primary text-primary-foreground py-16">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <h3 className="font-serif text-2xl max-w-md">
-              Join the infrastructure liquidity network.
-            </h3>
-            <div className="flex gap-16 text-sm">
-              <div className="flex flex-col gap-3">
-                <a href="#" className="hover:opacity-70 transition-opacity">Protocol</a>
-                <a href="#" className="hover:opacity-70 transition-opacity">Smart Contracts</a>
-                <a href="#" className="hover:opacity-70 transition-opacity">Audits</a>
-              </div>
-              <div className="flex flex-col gap-3">
-                <a href="#" className="hover:opacity-70 transition-opacity">Treasury</a>
-                <a href="#" className="hover:opacity-70 transition-opacity">Governance</a>
-                <a href="#" className="hover:opacity-70 transition-opacity">Analytics</a>
-              </div>
-              <div className="flex flex-col gap-3">
-                <a href="#" className="hover:opacity-70 transition-opacity">Community</a>
-                <a href="#" className="hover:opacity-70 transition-opacity">Forum</a>
-                <a href="#" className="hover:opacity-70 transition-opacity">Discord</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* INSIGHTS GRID */}
-        <section className="py-32 bg-card">
-          <div className="container mx-auto px-6">
-            <h2 className="font-serif text-4xl text-primary mb-16 text-center border-b border-primary/10 pb-8">
-              Featured Insights
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Card 1 */}
-              <a href="#" className="group block">
-                <div className="aspect-[3/4] mb-6 overflow-hidden bg-background">
-                  <img src="/insight-1.png" alt="ICHF" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="flex items-center justify-between text-xs font-semibold tracking-widest uppercase text-accent mb-4">
-                  <span>Product</span>
-                  <span className="text-muted-foreground">Oct 12</span>
-                </div>
-                <h3 className="font-serif text-xl leading-snug text-primary group-hover:text-accent transition-colors">
-                  Introducing ICHF: The Infrastructure Hedged Fund
-                </h3>
-              </a>
-              
-              {/* Card 2 */}
-              <a href="#" className="group block">
-                <div className="aspect-[3/4] mb-6 overflow-hidden bg-background">
-                  <img src="/insight-2.png" alt="Typewriter" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="flex items-center justify-between text-xs font-semibold tracking-widest uppercase text-accent mb-4">
-                  <span>Editorial</span>
-                  <span className="text-muted-foreground">Sep 28</span>
-                </div>
-                <h3 className="font-serif text-xl leading-snug text-primary group-hover:text-accent transition-colors">
-                  Why Banks Can't Fund the GPU Revolution
-                </h3>
-              </a>
-              
-              {/* Card 3 */}
-              <a href="#" className="group block">
-                <div className="aspect-[3/4] mb-6 overflow-hidden bg-background">
-                  <img src="/insight-3.png" alt="GPU Rack" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="flex items-center justify-between text-xs font-semibold tracking-widest uppercase text-accent mb-4">
-                  <span>Guide</span>
-                  <span className="text-muted-foreground">Sep 15</span>
-                </div>
-                <h3 className="font-serif text-xl leading-snug text-primary group-hover:text-accent transition-colors">
-                  How to Borrow Against your GPU Cluster
-                </h3>
-              </a>
-              
-              {/* Card 4 */}
-              <a href="#" className="group block">
-                <div className="aspect-[3/4] mb-6 overflow-hidden bg-background">
-                  <img src="/insight-4.png" alt="Piano" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="flex items-center justify-between text-xs font-semibold tracking-widest uppercase text-accent mb-4">
-                  <span>Update</span>
-                  <span className="text-muted-foreground">Aug 30</span>
-                </div>
-                <h3 className="font-serif text-xl leading-snug text-primary group-hover:text-accent transition-colors">
-                  PinPad LSD Integration Now Live on Mainnet
-                </h3>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* FULL BLEED CABIN SECTION */}
-        <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="/cabin-dusk.png" 
-              alt="Cabin at dusk" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/40"></div>
-          </div>
-          
-          <div className="relative z-10 text-center max-w-4xl px-6">
-            <h2 className="font-serif text-5xl md:text-6xl text-white mb-10 leading-tight">
-              Earn from the rise of modern compute or borrow to build it.
-            </h2>
-            <Button variant="default" className="rounded-none bg-white text-black hover:bg-white/90 font-medium px-8 h-12 text-lg">
-              Enter App
-            </Button>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
