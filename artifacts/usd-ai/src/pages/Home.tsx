@@ -106,7 +106,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif tracking-tight text-white mb-10 text-[36px]"
+                className="font-serif tracking-tight text-white mb-10 text-5xl lg:text-6xl"
               >
                 On-chain capital for the borderless economy.
               </motion.h1>
@@ -116,7 +116,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-0 text-[11px] font-semibold tracking-[0.12em] uppercase"
+                className="flex flex-wrap items-center gap-0 text-[13px] font-semibold tracking-[0.12em] uppercase"
               >
                 {[
                   ["CURRENT APR", "7.11%"],
@@ -140,7 +140,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.55 }}
               className="mb-20"
             >
-              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/65 mb-4 text-center">
+              <p className="text-[13px] font-semibold tracking-[0.15em] uppercase text-white/65 mb-4 text-center">
                 Trusted by global institutions
               </p>
               {/* Wider ticker strip — break out of container padding */}
@@ -207,17 +207,17 @@ export default function Home() {
           {/* ── HEADER BAND ── */}
           <motion.div style={{ y: aboutHeadY, opacity: aboutHeadO }} className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
             <span
-              className="inline-block text-[10px] font-semibold tracking-[0.28em] uppercase mb-5"
+              className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5"
               style={{ color: "#C8922A" }}
             >
               About Us
             </span>
             <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-24">
-              <h2 className="font-serif text-4xl md:text-[52px] leading-[1.1] text-white lg:max-w-xl">
+              <h2 className="font-serif text-5xl lg:text-6xl leading-[1.1] text-white lg:max-w-xl">
                 Redefining digital finance for a borderless world.
               </h2>
               <div className="lg:max-w-md pb-1">
-                <p className="text-white/55 leading-relaxed text-[15px]">
+                <p className="text-white/55 leading-relaxed text-[16px]">
                   Azizi Global Group Inc. is a next-generation blockchain finance company building infrastructure for decentralized capital markets — combining AI-driven credit models with on-chain transparency to deliver institutional-grade products accessible to everyone.
                 </p>
               </div>
@@ -244,23 +244,23 @@ export default function Home() {
             <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-12">
               <div className="flex items-center gap-4 mb-6">
                 <span
-                  className="text-[9px] font-bold tracking-[0.3em] uppercase"
-                  style={{ color: "#C8922A" }}
+                  className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
+                  style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.4)", background: "rgba(200,146,42,0.1)" }}
                 >
                   Vision
                 </span>
                 <div className="flex-1 h-px" style={{ background: "rgba(200,146,42,0.25)" }} />
-                <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,146,42,0.12)" }}>01</span>
+                <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,146,42,0.2)" }}>01</span>
               </div>
-              <h3 className="font-serif text-2xl lg:text-3xl text-white mb-6 leading-snug max-w-md">
+              <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
                 A world where capital flows as freely as information.
               </h3>
-              <p className="text-white/50 text-[14px] leading-relaxed max-w-md">
+              <p className="text-white/60 text-[16px] leading-[1.9] max-w-lg">
                 We envision a global financial system where anyone — regardless of geography or legacy banking access — can participate in wealth creation through decentralized, transparent, and programmable money.
               </p>
-              <div className="mt-8 flex items-center gap-3">
-                <div className="w-8 h-px" style={{ background: "#C8922A" }} />
-                <span className="text-[11px] tracking-widest uppercase text-white/30">Azizi Global Group</span>
+              <div className="mt-9 flex items-center gap-3">
+                <div className="w-10 h-px" style={{ background: "#C8922A" }} />
+                <span className="text-[13px] tracking-[0.2em] uppercase text-white/35">Azizi Global Group</span>
               </div>
             </div>
           </div>
@@ -271,23 +271,23 @@ export default function Home() {
             <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-12">
               <div className="flex items-center gap-4 mb-6">
                 <span
-                  className="text-[9px] font-bold tracking-[0.3em] uppercase"
-                  style={{ color: "#C85050" }}
+                  className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
+                  style={{ color: "#C85050", borderColor: "rgba(200,80,80,0.4)", background: "rgba(200,80,80,0.1)" }}
                 >
                   Mission
                 </span>
                 <div className="flex-1 h-px" style={{ background: "rgba(200,80,80,0.25)" }} />
-                <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,80,80,0.12)" }}>02</span>
+                <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,80,80,0.2)" }}>02</span>
               </div>
-              <h3 className="font-serif text-2xl lg:text-3xl text-white mb-6 leading-snug max-w-md">
+              <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
                 Build the rails for on-chain capital markets that trust no intermediary.
               </h3>
-              <p className="text-white/50 text-[14px] leading-relaxed max-w-md">
+              <p className="text-white/60 text-[16px] leading-[1.9] max-w-lg">
                 Our mission is to deploy blockchain-native financial primitives — secured by cryptographic proofs, governed by smart contracts, powered by AI — replacing opacity with accountability and exclusion with open access.
               </p>
-              <div className="mt-8 flex items-center gap-3">
-                <div className="w-8 h-px" style={{ background: "#C85050" }} />
-                <span className="text-[11px] tracking-widest uppercase text-white/30">Decentralized by design</span>
+              <div className="mt-9 flex items-center gap-3">
+                <div className="w-10 h-px" style={{ background: "#C85050" }} />
+                <span className="text-[13px] tracking-[0.2em] uppercase text-white/35">Decentralized by design</span>
               </div>
             </div>
             {/* Image */}
