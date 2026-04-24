@@ -388,30 +388,57 @@ export default function Home() {
         </section>
 
         {/* ── KEY FEATURES SECTION ── */}
-        <section className="relative flex flex-col" style={{ background: "#0A0806" }}>
-          {/* Sticky scroll track — header + features all inside one sticky screen */}
-          <div ref={featuresRef} style={{ height: `${FEATURES.length * 100}vh` }} className="relative">
-            <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+        <section className="relative" style={{ background: "#0A0806" }}>
 
-              {/* ── Top: header band (always visible, compact) ── */}
-              <div className="flex-shrink-0 px-10 pt-8 pb-6" style={{ borderBottom: "1px solid rgba(200,146,42,0.15)" }}>
-                <span className="inline-block text-[11px] font-semibold tracking-[0.28em] uppercase mb-3" style={{ color: "#C8922A" }}>
-                  Why Azizi Global
-                </span>
-                <div className="flex items-end justify-between gap-8">
-                  <h2 className="font-serif text-3xl lg:text-4xl text-white leading-tight max-w-lg">
-                    Infrastructure built for the next era of capital markets.
-                  </h2>
-                  <p className="text-white/45 text-[13px] leading-relaxed max-w-xs text-right hidden lg:block">
-                    Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
-                  </p>
-                </div>
+          {/* Section header — scrolls naturally above the sticky */}
+          <div className="px-10 pt-16 pb-10" style={{ borderBottom: "1px solid rgba(200,146,42,0.15)" }}>
+            <span className="inline-block text-[11px] font-semibold tracking-[0.28em] uppercase mb-4" style={{ color: "#C8922A" }}>
+              Why Azizi Global
+            </span>
+            <div className="flex items-end justify-between gap-8">
+              <h2 className="font-serif text-3xl lg:text-4xl text-white leading-tight max-w-lg">
+                Infrastructure built for the next era of capital markets.
+              </h2>
+              <p className="text-white/45 text-[13px] leading-relaxed max-w-xs text-right hidden lg:block">
+                Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
+              </p>
+            </div>
+          </div>
+
+          {/* Sticky scroll track */}
+          <div ref={featuresRef} style={{ height: `${FEATURES.length * 100}vh` }} className="relative">
+            <div className="sticky top-0 overflow-hidden" style={{ height: "85vh" }}>
+
+              {/* Progress dots — always on far right edge */}
+              <div className="absolute right-5 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2">
+                {FEATURES.map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="rounded-full"
+                    animate={{
+                      height: i === activeFeature ? 32 : 8,
+                      background: i === activeFeature ? FEATURES[activeFeature].tagColor : "rgba(255,255,255,0.2)",
+                      opacity: i === activeFeature ? 1 : 0.5,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    style={{ width: 3 }}
+                  />
+                ))}
               </div>
 
-              {/* ── Bottom: image + content, alternating sides ── */}
-              <div className="flex flex-1 min-h-0">
+              {/* Entire feature row (image + content) crossfades together — no layout jump */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFeature}
+                  className="flex h-full w-full"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
+                >
+                  <div className="flex flex-1 min-h-0 w-full">
 
-                {/* Image panel — 55% width, swaps side via CSS order */}
+                {/* Image panel */}
                 <div
                   className="relative flex-shrink-0 overflow-hidden"
                   style={{
@@ -419,138 +446,89 @@ export default function Home() {
                     order: FEATURES[activeFeature].imgRight ? 2 : 1,
                   }}
                 >
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={FEATURES[activeFeature].img}
-                      src={FEATURES[activeFeature].img}
-                      alt={FEATURES[activeFeature].title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      style={{ filter: "brightness(0.9) saturate(1.1)" }}
-                      initial={{ opacity: 0, scale: 1.04 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.97 }}
-                      transition={{ duration: 0.55, ease: "easeInOut" }}
-                    />
-                  </AnimatePresence>
-                  {/* Edge fade — direction follows image side */}
+                  <img
+                    src={FEATURES[activeFeature].img}
+                    alt={FEATURES[activeFeature].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ filter: "brightness(0.9) saturate(1.1)" }}
+                  />
+                  {/* Edge fade toward content */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       background: FEATURES[activeFeature].imgRight
-                        ? "linear-gradient(270deg, transparent 50%, #0A0806 100%)"
-                        : "linear-gradient(90deg, transparent 50%, #0A0806 100%)",
+                        ? "linear-gradient(270deg, transparent 45%, #0A0806 100%)"
+                        : "linear-gradient(90deg, transparent 45%, #0A0806 100%)",
                     }}
                   />
                   {/* Ghost number */}
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={activeFeature}
-                      className="absolute bottom-8 font-serif leading-none select-none pointer-events-none"
-                      style={{
-                        fontSize: "8rem",
-                        color: "rgba(255,255,255,0.07)",
-                        lineHeight: 1,
-                        left: FEATURES[activeFeature].imgRight ? "auto" : "2rem",
-                        right: FEATURES[activeFeature].imgRight ? "2rem" : "auto",
-                      }}
-                      initial={{ opacity: 0, y: 14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.35 }}
-                    >
-                      {FEATURES[activeFeature].num}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
-
-                {/* Content panel — fills remaining space, swaps side */}
-                <div
-                  className="relative flex-1 flex flex-col justify-center py-10"
-                  style={{
-                    order: FEATURES[activeFeature].imgRight ? 1 : 2,
-                    background: "rgba(255,255,255,0.014)",
-                    paddingLeft: FEATURES[activeFeature].imgRight ? "3rem" : "3.5rem",
-                    paddingRight: FEATURES[activeFeature].imgRight ? "3.5rem" : "3rem",
-                  }}
-                >
-                  {/* Vertical progress indicator — always on the outer edge */}
-                  <div
-                    className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+                  <span
+                    className="absolute bottom-8 font-serif leading-none select-none pointer-events-none"
                     style={{
-                      left: FEATURES[activeFeature].imgRight ? "auto" : "1.25rem",
-                      right: FEATURES[activeFeature].imgRight ? "1.25rem" : "auto",
+                      fontSize: "8rem",
+                      color: "rgba(255,255,255,0.07)",
+                      lineHeight: 1,
+                      left: FEATURES[activeFeature].imgRight ? "auto" : "2rem",
+                      right: FEATURES[activeFeature].imgRight ? "2rem" : "auto",
                     }}
                   >
-                    {FEATURES.map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="rounded-full"
-                        animate={{
-                          height: i === activeFeature ? 32 : 8,
-                          background: i === activeFeature ? FEATURES[activeFeature].tagColor : "rgba(255,255,255,0.2)",
-                          opacity: i === activeFeature ? 1 : 0.45,
-                        }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        style={{ width: 3 }}
-                      />
-                    ))}
+                    {FEATURES[activeFeature].num}
+                  </span>
+                </div>
+
+                {/* Content panel */}
+                <div
+                  className="relative flex-1 flex flex-col justify-center px-12 xl:px-16 py-10"
+                  style={{
+                    order: FEATURES[activeFeature].imgRight ? 1 : 2,
+                  }}
+                >
+                  {/* Tag + rule + number */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <span
+                      className="text-[10px] font-bold tracking-[0.25em] uppercase px-3 py-1.5 rounded-full border flex-shrink-0"
+                      style={{
+                        color: FEATURES[activeFeature].tagColor,
+                        borderColor: FEATURES[activeFeature].tagBorder,
+                        background: FEATURES[activeFeature].tagBg,
+                      }}
+                    >
+                      {FEATURES[activeFeature].tag}
+                    </span>
+                    <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
+                    <span
+                      className="font-serif text-3xl leading-none select-none flex-shrink-0"
+                      style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
+                    >
+                      {FEATURES[activeFeature].num}
+                    </span>
                   </div>
 
-                  {/* Animated content */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeFeature}
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -16 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="max-w-md"
-                    >
-                      {/* Tag + rule + number */}
-                      <div className="flex items-center gap-4 mb-6">
-                        <span
-                          className="text-[10px] font-bold tracking-[0.25em] uppercase px-3 py-1.5 rounded-full border flex-shrink-0"
-                          style={{
-                            color: FEATURES[activeFeature].tagColor,
-                            borderColor: FEATURES[activeFeature].tagBorder,
-                            background: FEATURES[activeFeature].tagBg,
-                          }}
-                        >
-                          {FEATURES[activeFeature].tag}
-                        </span>
-                        <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
-                        <span
-                          className="font-serif text-3xl leading-none select-none flex-shrink-0"
-                          style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
-                        >
-                          {FEATURES[activeFeature].num}
-                        </span>
-                      </div>
+                  <h3 className="font-serif text-3xl lg:text-[2.6rem] text-white mb-5 leading-snug max-w-sm">
+                    {FEATURES[activeFeature].title}
+                  </h3>
 
-                      <h3 className="font-serif text-3xl lg:text-[2.6rem] text-white mb-5 leading-snug">
-                        {FEATURES[activeFeature].title}
-                      </h3>
+                  <p className="text-white/65 text-[14px] leading-[1.88] max-w-sm">
+                    {FEATURES[activeFeature].body}
+                  </p>
 
-                      <p className="text-white/65 text-[14px] leading-[1.88]">
-                        {FEATURES[activeFeature].body}
-                      </p>
-
-                      <div className="mt-8 flex items-center gap-3">
-                        <div className="w-10 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
-                        <span className="text-[11px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
-                          {FEATURES[activeFeature].sub}
-                        </span>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+                  <div className="mt-8 flex items-center gap-3">
+                    <div className="w-10 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
+                    <span className="text-[11px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      {FEATURES[activeFeature].sub}
+                    </span>
+                  </div>
                 </div>
 
               </div>
+                </motion.div>
+              </AnimatePresence>
 
-              {/* Bottom border inside sticky */}
-              <div className="flex-shrink-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
             </div>
           </div>
+
+          {/* Bottom border */}
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
         {/* STATS & GLOBE SECTION */}
