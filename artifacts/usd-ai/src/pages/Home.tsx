@@ -330,7 +330,7 @@ export default function Home() {
           </div>
 
           {/* Feature rows — alternating image / text layout */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-24 flex-1 flex flex-col gap-0">
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-24 flex-1 flex flex-col gap-10">
 
             {[
               {
