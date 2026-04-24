@@ -770,18 +770,18 @@ export default function Home() {
         </section>
 
         {/* ── ROADMAP SECTION ── */}
-        <section ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#0A0806" }}>
+        <section ref={roadmapRef} className="relative" style={{ background: "#0A0806", overflowX: "clip" }}>
           {/* Top border */}
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
           {/* ── GLOBE HERO with parallax ── */}
-          <div className="relative overflow-hidden" style={{ height: "72vh", minHeight: "560px" }}>
+          <div className="relative" style={{ height: "72vh", minHeight: "560px" }}>
             <motion.div
               style={{ y: globeParallaxY }}
               className="absolute inset-0 flex flex-col items-center"
             >
               {/* Globe SVG */}
-              <div className="relative flex justify-center" style={{ marginTop: "-12%" }}>
+              <div className="relative flex justify-center" style={{ marginTop: "-18%" }}>
                 <svg
                   width="1000"
                   height="1000"
@@ -864,35 +864,6 @@ export default function Home() {
                           transform={`rotate(${lon}, 500, 500)`} />
                       );
                     })}
-                  </g>
-
-                  {/* Continent blobs (simplified silhouettes) */}
-                  <g clipPath="url(#globeClip)" opacity="0.22">
-                    {/* Europe/Asia blob */}
-                    <path d="M480,340 Q540,310 600,330 Q660,350 680,390 Q700,430 660,450 Q620,470 580,460 Q540,450 510,430 Q470,410 460,380 Q450,355 480,340Z"
-                      fill="rgba(180,160,100,0.4)" />
-                    {/* Africa blob */}
-                    <path d="M490,420 Q530,400 560,420 Q590,440 590,490 Q590,540 560,570 Q530,595 500,580 Q470,565 460,530 Q450,495 460,460 Q470,430 490,420Z"
-                      fill="rgba(180,160,100,0.35)" />
-                    {/* Americas blob */}
-                    <path d="M350,350 Q380,330 400,350 Q420,370 415,410 Q410,450 390,470 Q370,490 350,470 Q330,450 330,410 Q330,370 350,350Z"
-                      fill="rgba(180,160,100,0.3)" />
-                    {/* UK/Scandinavia small shapes */}
-                    <ellipse cx="490" cy="335" rx="18" ry="12" fill="rgba(180,160,100,0.3)" />
-                    <ellipse cx="530" cy="320" rx="14" ry="9" fill="rgba(180,160,100,0.25)" />
-                  </g>
-
-                  {/* City lights scatter on continents */}
-                  <g clipPath="url(#globeClip)" opacity="0.5">
-                    {[
-                      [500,370],[520,355],[545,345],[560,360],[575,370],
-                      [510,400],[530,395],[555,388],[565,420],
-                      [490,430],[505,450],[520,460],[530,480],[515,500],
-                      [360,370],[375,360],[390,375],[380,390],
-                    ].map(([cx2, cy2], i) => (
-                      <circle key={i} cx={cx2} cy={cy2} r="1.5"
-                        fill="#FFD080" opacity={0.6 + (i % 4) * 0.1} />
-                    ))}
                   </g>
 
                   {/* Atmosphere overlay */}
