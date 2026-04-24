@@ -91,16 +91,6 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Status pill */}
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full self-start mt-1"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[11px] tracking-[0.1em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
-                All systems normal
-              </span>
-            </div>
           </div>
 
           {/* Link columns */}
