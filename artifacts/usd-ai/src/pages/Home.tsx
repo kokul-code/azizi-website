@@ -1045,18 +1045,6 @@ export default function Home() {
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
-        {/* ECOSYSTEM PIGGY BANK SECTION */}
-        <section className="py-32 bg-background text-center">
-          <div className="container mx-auto px-6">
-            <h2 className="font-serif text-5xl md:text-6xl text-primary mb-16">
-              The supercharged ecosystem
-            </h2>
-            <div className="flex justify-center mb-8">
-              <img src="/piggy-bank.png" alt="Ecosystem savings" className="w-64 h-64 object-contain mix-blend-multiply" />
-            </div>
-          </div>
-        </section>
-
         {/* DARK BAND */}
         <section className="bg-primary text-primary-foreground py-16">
           <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
