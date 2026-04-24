@@ -66,7 +66,7 @@ export default function Header({ dark = false }: HeaderProps) {
           <a
             href="#"
             className="hidden sm:inline-flex items-center justify-center h-9 px-4 rounded-md border border-white/25 text-white/85 text-sm font-medium hover:bg-white/10 transition-colors"
-          >Login</a>
+          >Buy Now</a>
         </div>
       </div>
     </header>

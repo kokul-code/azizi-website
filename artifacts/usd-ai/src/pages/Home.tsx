@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -11,12 +11,86 @@ const HERO_VIDEOS = [
   "/hero-lava.mp4",
 ];
 
+const FEATURES = [
+  {
+    num: "01",
+    tag: "Core Protocol",
+    tagColor: "#C8922A",
+    tagBorder: "rgba(200,146,42,0.4)",
+    tagBg: "rgba(200,146,42,0.1)",
+    accentLine: "#C8922A",
+    title: "On-Chain Transparency",
+    body: "Every transaction, position, and yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol — no trust, no intermediaries.",
+    sub: "Verifiable by anyone, always",
+    img: "/feature-transparency.png",
+  },
+  {
+    num: "02",
+    tag: "Security",
+    tagColor: "#C85050",
+    tagBorder: "rgba(200,80,80,0.4)",
+    tagBg: "rgba(200,80,80,0.1)",
+    accentLine: "#C85050",
+    title: "Audited Smart Contracts",
+    body: "Every contract is formally verified and independently audited by leading blockchain security firms before any deployment. Multi-sig treasury controls and timelocked upgrades ensure deep, layered protection.",
+    sub: "Zero single points of failure",
+    img: "/feature-audited.png",
+  },
+  {
+    num: "03",
+    tag: "Yield",
+    tagColor: "#C8922A",
+    tagBorder: "rgba(200,146,42,0.4)",
+    tagBg: "rgba(200,146,42,0.1)",
+    accentLine: "#C8922A",
+    title: "Native Staking",
+    body: "Lock capital, earn protocol yield. Staking rewards are distributed on-chain and auto-compound across vaults — no custodial risk, no intermediary skimming returns. Up to 12.81% APR.",
+    sub: "Up to 12.81% APR",
+    img: "/feature-staking.png",
+  },
+  {
+    num: "04",
+    tag: "Token Economics",
+    tagColor: "#C85050",
+    tagBorder: "rgba(200,80,80,0.4)",
+    tagBg: "rgba(200,80,80,0.1)",
+    accentLine: "#C85050",
+    title: "Programmable Vesting",
+    body: "Time-locked token release schedules enforced entirely on-chain. Cliff periods, linear drip, and milestone-based unlocks — all parameters are transparent and immutable from the moment of deployment.",
+    sub: "No trusted intermediary",
+    img: "/feature-vesting.png",
+  },
+  {
+    num: "05",
+    tag: "Compatibility",
+    tagColor: "#C8922A",
+    tagBorder: "rgba(200,146,42,0.4)",
+    tagBg: "rgba(200,146,42,0.1)",
+    accentLine: "#C8922A",
+    title: "Multi-Wallet Support",
+    body: "MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains. Designed for the broadest ecosystem reach from day one.",
+    sub: "All major chains supported",
+    img: "/feature-wallets.png",
+  },
+];
+
 export default function Home() {
   // ── Hero parallax
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroVideoY = useTransform(heroScroll, [0, 1], ["0%", "25%"]);
   const heroContentY = useTransform(heroScroll, [0, 1], ["0%", "12%"]);
+
+  // ── Features sticky scroll
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: featuresScroll } = useScroll({
+    target: featuresRef,
+    offset: ["start start", "end end"],
+  });
+  const [activeFeature, setActiveFeature] = useState(0);
+  useMotionValueEvent(featuresScroll, "change", (v) => {
+    setActiveFeature(Math.min(FEATURES.length - 1, Math.floor(v * FEATURES.length)));
+  });
 
   // ── About section parallax
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -309,7 +383,7 @@ export default function Home() {
         </section>
 
         {/* ── KEY FEATURES SECTION ── */}
-        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
+        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806" }}>
           {/* Top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -329,143 +403,116 @@ export default function Home() {
             <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
           </div>
 
-          {/* Feature rows — alternating image / text layout */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-24 flex-1 flex flex-col gap-0">
+          {/* Sticky scroll track — 500vh gives 100vh per feature */}
+          <div ref={featuresRef} style={{ height: `${FEATURES.length * 100}vh` }} className="relative">
+            <div className="sticky top-0 h-screen flex overflow-hidden">
 
-            {[
-              {
-                num: "01",
-                tag: "Core Protocol",
-                tagColor: "#C8922A",
-                tagBorder: "rgba(200,146,42,0.4)",
-                tagBg: "rgba(200,146,42,0.1)",
-                accentLine: "#C8922A",
-                title: "On-Chain Transparency",
-                body: "Every transaction, position, and yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol — no trust, no intermediaries.",
-                sub: "Verifiable by anyone, always",
-                img: "/feature-transparency.png",
-                imgRight: false,
-              },
-              {
-                num: "02",
-                tag: "Security",
-                tagColor: "#C85050",
-                tagBorder: "rgba(200,80,80,0.4)",
-                tagBg: "rgba(200,80,80,0.1)",
-                accentLine: "#C85050",
-                title: "Audited Smart Contracts",
-                body: "Every contract is formally verified and independently audited by leading blockchain security firms before any deployment. Multi-sig treasury controls and timelocked upgrades ensure deep, layered protection.",
-                sub: "Zero single points of failure",
-                img: "/feature-audited.png",
-                imgRight: true,
-              },
-              {
-                num: "03",
-                tag: "Yield",
-                tagColor: "#C8922A",
-                tagBorder: "rgba(200,146,42,0.4)",
-                tagBg: "rgba(200,146,42,0.1)",
-                accentLine: "#C8922A",
-                title: "Native Staking",
-                body: "Lock capital, earn protocol yield. Staking rewards are distributed on-chain and auto-compound across vaults — no custodial risk, no intermediary skimming returns. Up to 12.81% APR.",
-                sub: "Up to 12.81% APR",
-                img: "/feature-staking.png",
-                imgRight: false,
-              },
-              {
-                num: "04",
-                tag: "Token Economics",
-                tagColor: "#C85050",
-                tagBorder: "rgba(200,80,80,0.4)",
-                tagBg: "rgba(200,80,80,0.1)",
-                accentLine: "#C85050",
-                title: "Programmable Vesting",
-                body: "Time-locked token release schedules enforced entirely on-chain. Cliff periods, linear drip, and milestone-based unlocks — all parameters are transparent and immutable from the moment of deployment.",
-                sub: "No trusted intermediary",
-                img: "/feature-vesting.png",
-                imgRight: true,
-              },
-              {
-                num: "05",
-                tag: "Compatibility",
-                tagColor: "#C8922A",
-                tagBorder: "rgba(200,146,42,0.4)",
-                tagBg: "rgba(200,146,42,0.1)",
-                accentLine: "#C8922A",
-                title: "Multi-Wallet Support",
-                body: "MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains. Designed for the broadest ecosystem reach from day one.",
-                sub: "All major chains supported",
-                img: "/feature-wallets.png",
-                imgRight: false,
-              },
-            ].map((f, i) => (
-              <div
-                key={f.num}
-                className="flex flex-col lg:flex-row items-stretch"
-                style={{ borderTop: i === 0 ? "none" : "1px solid rgba(200,146,42,0.1)" }}
-              >
-                {/* Image side */}
-                <div className={`relative overflow-hidden lg:w-[52%] ${f.imgRight ? "lg:order-2" : "lg:order-1"}`} style={{ minHeight: "420px" }}>
-                  <img
-                    src={f.img}
-                    alt={f.title}
-                    className="w-full h-full object-cover"
+              {/* ── Left: image panel (crossfades) ── */}
+              <div className="relative w-[55%] h-full overflow-hidden flex-shrink-0">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={FEATURES[activeFeature].img}
+                    src={FEATURES[activeFeature].img}
+                    alt={FEATURES[activeFeature].title}
+                    className="absolute inset-0 w-full h-full object-cover"
                     style={{ filter: "brightness(0.88) saturate(1.1)" }}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{ duration: 0.55, ease: "easeInOut" }}
                   />
-                  {/* Subtle edge fade toward text side only */}
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: f.imgRight
-                        ? "linear-gradient(270deg, rgba(10,8,6,0.9) 0%, transparent 45%)"
-                        : "linear-gradient(90deg, rgba(10,8,6,0.9) 0%, transparent 45%)",
-                    }}
-                  />
-                  {/* Number watermark */}
-                  <span
-                    className="absolute bottom-6 right-8 font-serif leading-none select-none"
-                    style={{ fontSize: "7rem", color: "rgba(255,255,255,0.06)" }}
+                </AnimatePresence>
+                {/* Right-edge bleed into text panel */}
+                <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 50%, #0A0806 100%)" }} />
+                {/* Large ghost number on image */}
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={activeFeature}
+                    className="absolute bottom-10 left-10 font-serif leading-none select-none pointer-events-none"
+                    style={{ fontSize: "11rem", color: "rgba(255,255,255,0.055)", lineHeight: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4 }}
                   >
-                    {f.num}
-                  </span>
-                </div>
-
-                {/* Text side */}
-                <div
-                  className={`lg:w-[48%] flex flex-col justify-center px-10 py-14 lg:py-0 lg:px-16 ${f.imgRight ? "lg:order-1" : "lg:order-2"}`}
-                  style={{ background: "rgba(255,255,255,0.018)" }}
-                >
-                  <div className="flex items-center gap-4 mb-7">
-                    <span
-                      className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
-                      style={{ color: f.tagColor, borderColor: f.tagBorder, background: f.tagBg }}
-                    >
-                      {f.tag}
-                    </span>
-                    <div className="flex-1 h-px" style={{ background: `${f.tagBorder}` }} />
-                    <span className="font-serif text-5xl leading-none select-none" style={{ color: `${f.tagBg.replace("0.1", "0.35")}` }}>
-                      {f.num}
-                    </span>
-                  </div>
-
-                  <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug">
-                    {f.title}
-                  </h3>
-
-                  <p className="text-white/65 text-[16px] leading-[1.9] max-w-lg">
-                    {f.body}
-                  </p>
-
-                  <div className="mt-9 flex items-center gap-3">
-                    <div className="w-10 h-px" style={{ background: f.accentLine }} />
-                    <span className="text-[13px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      {f.sub}
-                    </span>
-                  </div>
-                </div>
+                    {FEATURES[activeFeature].num}
+                  </motion.span>
+                </AnimatePresence>
               </div>
-            ))}
 
+              {/* ── Right: text panel (slides in/out) ── */}
+              <div className="relative flex-1 h-full flex flex-col justify-center px-14 xl:px-20 py-16" style={{ background: "rgba(255,255,255,0.016)" }}>
+
+                {/* Vertical progress bar */}
+                <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2.5">
+                  {FEATURES.map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="rounded-full"
+                      animate={{
+                        height: i === activeFeature ? 36 : 10,
+                        background: i === activeFeature ? FEATURES[activeFeature].tagColor : "rgba(255,255,255,0.18)",
+                        opacity: i === activeFeature ? 1 : 0.5,
+                      }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      style={{ width: 3 }}
+                    />
+                  ))}
+                </div>
+
+                {/* Animated content */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeFeature}
+                    initial={{ opacity: 0, y: 32 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                    className="max-w-xl"
+                  >
+                    {/* Tag + rule + number */}
+                    <div className="flex items-center gap-5 mb-10">
+                      <span
+                        className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border flex-shrink-0"
+                        style={{
+                          color: FEATURES[activeFeature].tagColor,
+                          borderColor: FEATURES[activeFeature].tagBorder,
+                          background: FEATURES[activeFeature].tagBg,
+                        }}
+                      >
+                        {FEATURES[activeFeature].tag}
+                      </span>
+                      <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
+                      <span
+                        className="font-serif text-5xl leading-none select-none flex-shrink-0"
+                        style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
+                      >
+                        {FEATURES[activeFeature].num}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-serif text-5xl xl:text-6xl text-white mb-7 leading-[1.1]">
+                      {FEATURES[activeFeature].title}
+                    </h3>
+
+                    {/* Body */}
+                    <p className="text-white/65 text-[17px] leading-[2] max-w-md">
+                      {FEATURES[activeFeature].body}
+                    </p>
+
+                    {/* Accent rule */}
+                    <div className="mt-12 flex items-center gap-4">
+                      <div className="w-12 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
+                      <span className="text-[13px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.38)" }}>
+                        {FEATURES[activeFeature].sub}
+                      </span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+            </div>
           </div>
 
           {/* Bottom border */}
