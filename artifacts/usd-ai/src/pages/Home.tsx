@@ -145,6 +145,18 @@ export default function Home() {
 
   // ── FAQ state
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
+
+  // ── Key Features sticky header measurement
+  const featureHeadRef = useRef<HTMLDivElement>(null);
+  const [featureTop, setFeatureTop] = useState(0);
+  useEffect(() => {
+    const measure = () => {
+      if (featureHeadRef.current) setFeatureTop(featureHeadRef.current.offsetHeight);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
   const roadmapRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: roadmapScroll } = useScroll({
     target: roadmapRef,
@@ -437,23 +449,28 @@ export default function Home() {
 
         {/* ── KEY FEATURES SECTION ── */}
         <section className="relative flex flex-col" style={{ background: "#0A0806" }}>
-          {/* Top border */}
-          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+          {/* Top border — part of the sticky header so it sticks too */}
 
-          {/* Header band — normal flow, scrolls away */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
-            <span className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
-              Why Azizi Global
-            </span>
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <h2 className="font-serif text-5xl lg:text-6xl text-white leading-tight max-w-xl">
-                Infrastructure built for the next era of capital markets.
-              </h2>
-              <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
-                Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
-              </p>
+          {/* Header band — sticky layer 1: stays pinned at top while features scroll */}
+          <div
+            ref={featureHeadRef}
+            style={{ position: "sticky", top: 0, zIndex: 20, background: "#0A0806" }}
+          >
+            <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+            <div className="max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16">
+              <span className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
+                Why Azizi Global
+              </span>
+              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                <h2 className="font-serif text-5xl lg:text-6xl text-white leading-tight max-w-xl">
+                  Infrastructure built for the next era of capital markets.
+                </h2>
+                <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
+                  Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
+                </p>
+              </div>
+              <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
             </div>
-            <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
           </div>
 
           {/* Feature rows — sticky stacking scroll */}
@@ -529,9 +546,9 @@ export default function Home() {
               className="flex flex-col lg:flex-row items-stretch overflow-hidden"
               style={{
                 position: "sticky",
-                top: 0,
+                top: featureTop,
                 zIndex: i + 1,
-                height: "100vh",
+                height: featureTop > 0 ? `calc(100vh - ${featureTop}px)` : "60vh",
                 background: "#0A0806",
                 borderTop: "1px solid rgba(200,146,42,0.12)",
               }}
