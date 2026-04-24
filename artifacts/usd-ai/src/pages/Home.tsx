@@ -95,6 +95,33 @@ const HERO_VIDEOS = [
   "/hero-lava.mp4",
 ];
 
+const FAQ_ITEMS = [
+  {
+    q: "What is Azizi Global Group's USD-AI token?",
+    a: "USD-AI is a Web4.0 utility and governance token built on a decentralised DeFi infrastructure. It powers liquidity pools, staking rewards, DAO governance, and cross-chain settlement within the Azizi ecosystem.",
+  },
+  {
+    q: "How does the staking mechanism work?",
+    a: "Token holders can lock USD-AI into tiered staking vaults. Each tier unlocks progressively higher APY, early access to new product launches, and elevated governance weight. Rewards are distributed in real-time from protocol fee revenue.",
+  },
+  {
+    q: "Is the smart contract audited?",
+    a: "Yes. All core smart contracts have been independently audited by leading blockchain security firms. Audit reports are publicly available on our GitHub repository and verified on-chain.",
+  },
+  {
+    q: "What blockchain networks are supported?",
+    a: "USD-AI is natively deployed on Ethereum and BNB Chain, with cross-chain bridges to Polygon, Arbitrum, and Solana. Additional chains are included in Phase 5 of our roadmap.",
+  },
+  {
+    q: "How does DAO governance work?",
+    a: "Every USD-AI token represents one vote. Token holders can submit and ratify proposals covering treasury allocation, protocol parameter changes, and ecosystem grants. A 48-hour deliberation window applies to all major proposals.",
+  },
+  {
+    q: "Where can I purchase USD-AI?",
+    a: "USD-AI is available on decentralised exchanges via our native liquidity pools, and will be listed on Tier-1 centralised exchanges following the Public Launch phase. Always use the official contract address published on our website.",
+  },
+];
+
 export default function Home() {
   // ── Hero parallax
   const heroRef = useRef<HTMLDivElement>(null);
@@ -115,6 +142,9 @@ export default function Home() {
 
   // ── Roadmap state + parallax
   const [roadmapActive, setRoadmapActive] = useState(0);
+
+  // ── FAQ state
+  const [faqOpen, setFaqOpen] = useState<number | null>(0);
   const roadmapRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: roadmapScroll } = useScroll({
     target: roadmapRef,
@@ -1042,6 +1072,118 @@ export default function Home() {
 
           {/* Bottom border */}
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+        </section>
+
+        {/* ── FAQ SECTION ── */}
+        <section className="relative overflow-hidden" style={{ background: "#07060A" }}>
+          {/* Split layout */}
+          <div className="flex flex-col lg:flex-row min-h-[680px]">
+
+            {/* Left — premium image panel */}
+            <div className="relative hidden lg:block lg:w-[42%] flex-shrink-0 overflow-hidden">
+              <img
+                src="/hero-topography.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ filter: "brightness(0.45) saturate(0.7)" }}
+              />
+              {/* Gradient edge bleed toward right */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(to right, transparent 55%, #07060A 100%)",
+                }}
+              />
+              {/* Gradient bottom */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(to top, #07060A 0%, transparent 40%)",
+                }}
+              />
+              {/* Gold accent line on left edge */}
+              <div className="absolute left-0 top-24 bottom-24 w-px" style={{ background: "linear-gradient(180deg, transparent, #C8922A 30%, #C8922A 70%, transparent)" }} />
+              {/* Floating label */}
+              <div className="absolute bottom-14 left-10 right-10">
+                <p className="text-[11px] tracking-[0.3em] uppercase font-semibold mb-3" style={{ color: "rgba(200,146,42,0.75)" }}>
+                  Knowledge Base
+                </p>
+                <p className="font-sans font-black uppercase leading-none" style={{ fontSize: "clamp(28px, 3vw, 42px)", color: "#ffffff", letterSpacing: "0.06em" }}>
+                  Everything<br />you need<br />to know.
+                </p>
+              </div>
+            </div>
+
+            {/* Right — accordion */}
+            <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 py-24">
+              {/* Section heading */}
+              <div className="mb-14">
+                <p className="text-[11px] tracking-[0.35em] uppercase font-semibold mb-4" style={{ color: "rgba(200,146,42,0.8)" }}>
+                  FAQ
+                </p>
+                <h2
+                  className="font-sans font-black uppercase leading-none"
+                  style={{ fontSize: "clamp(36px, 4.5vw, 64px)", letterSpacing: "0.03em", color: "#ffffff" }}
+                >
+                  <span style={{ color: "#C8922A" }}>FREQUENT</span>LY<br />ASKED
+                </h2>
+              </div>
+
+              {/* Accordion items */}
+              <div className="flex flex-col">
+                {FAQ_ITEMS.map((item, i) => {
+                  const open = faqOpen === i;
+                  return (
+                    <div key={i}>
+                      <button
+                        onClick={() => setFaqOpen(open ? null : i)}
+                        className="w-full flex items-center justify-between gap-6 py-5 text-left transition-all duration-200 group"
+                        style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
+                      >
+                        <span
+                          className="font-sans font-semibold text-[15px] leading-snug transition-colors duration-200"
+                          style={{ color: open ? "#C8922A" : "rgba(255,255,255,0.88)", letterSpacing: "0.01em" }}
+                        >
+                          {item.q}
+                        </span>
+                        <span
+                          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300"
+                          style={{
+                            border: open ? "1px solid #C8922A" : "1px solid rgba(255,255,255,0.15)",
+                            background: open ? "rgba(200,146,42,0.15)" : "transparent",
+                            color: open ? "#C8922A" : "rgba(255,255,255,0.4)",
+                            transform: open ? "rotate(45deg)" : "rotate(0deg)",
+                            fontSize: "18px",
+                            lineHeight: 1,
+                          }}
+                        >
+                          +
+                        </span>
+                      </button>
+                      <div
+                        className="overflow-hidden transition-all duration-400"
+                        style={{ maxHeight: open ? "200px" : "0px", opacity: open ? 1 : 0 }}
+                      >
+                        <p
+                          className="text-[14px] leading-[1.85] pb-6 pr-10"
+                          style={{ color: "rgba(255,255,255,0.58)" }}
+                        >
+                          {item.a}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+                {/* Final border */}
+                <div className="h-px w-full" style={{ background: "rgba(255,255,255,0.07)" }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Top border */}
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+          {/* Bottom border */}
+          <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
       </main>
