@@ -329,151 +329,143 @@ export default function Home() {
             <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
           </div>
 
-          {/* Bento grid */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-20 flex-1">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Feature rows — alternating image / text layout */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-24 flex-1 flex flex-col gap-0">
 
-              {/* Feature 1 — On-chain Transparency (large, spans 2 cols, tall) */}
-              <div className="lg:col-span-2 lg:row-span-2 relative rounded-2xl overflow-hidden group" style={{ minHeight: "480px" }}>
-                <img
-                  src="/feature-transparency.png"
-                  alt="On-chain Transparency"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ filter: "brightness(0.6) saturate(1.15)" }}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(10,8,6,0.15) 0%, rgba(10,8,6,0.7) 100%)" }} />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, transparent 55%)" }} />
-                <div className="absolute inset-0 p-10 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.35)", background: "rgba(200,146,42,0.08)" }}>
-                      Core Protocol
+            {[
+              {
+                num: "01",
+                tag: "Core Protocol",
+                tagColor: "#C8922A",
+                tagBorder: "rgba(200,146,42,0.4)",
+                tagBg: "rgba(200,146,42,0.1)",
+                accentLine: "#C8922A",
+                title: "On-Chain Transparency",
+                body: "Every transaction, position, and yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol — no trust, no intermediaries.",
+                sub: "Verifiable by anyone, always",
+                img: "/feature-transparency.png",
+                imgRight: false,
+              },
+              {
+                num: "02",
+                tag: "Security",
+                tagColor: "#C85050",
+                tagBorder: "rgba(200,80,80,0.4)",
+                tagBg: "rgba(200,80,80,0.1)",
+                accentLine: "#C85050",
+                title: "Audited Smart Contracts",
+                body: "Every contract is formally verified and independently audited by leading blockchain security firms before any deployment. Multi-sig treasury controls and timelocked upgrades ensure deep, layered protection.",
+                sub: "Zero single points of failure",
+                img: "/feature-audited.png",
+                imgRight: true,
+              },
+              {
+                num: "03",
+                tag: "Yield",
+                tagColor: "#C8922A",
+                tagBorder: "rgba(200,146,42,0.4)",
+                tagBg: "rgba(200,146,42,0.1)",
+                accentLine: "#C8922A",
+                title: "Native Staking",
+                body: "Lock capital, earn protocol yield. Staking rewards are distributed on-chain and auto-compound across vaults — no custodial risk, no intermediary skimming returns. Up to 12.81% APR.",
+                sub: "Up to 12.81% APR",
+                img: "/feature-staking.png",
+                imgRight: false,
+              },
+              {
+                num: "04",
+                tag: "Token Economics",
+                tagColor: "#C85050",
+                tagBorder: "rgba(200,80,80,0.4)",
+                tagBg: "rgba(200,80,80,0.1)",
+                accentLine: "#C85050",
+                title: "Programmable Vesting",
+                body: "Time-locked token release schedules enforced entirely on-chain. Cliff periods, linear drip, and milestone-based unlocks — all parameters are transparent and immutable from the moment of deployment.",
+                sub: "No trusted intermediary",
+                img: "/feature-vesting.png",
+                imgRight: true,
+              },
+              {
+                num: "05",
+                tag: "Compatibility",
+                tagColor: "#C8922A",
+                tagBorder: "rgba(200,146,42,0.4)",
+                tagBg: "rgba(200,146,42,0.1)",
+                accentLine: "#C8922A",
+                title: "Multi-Wallet Support",
+                body: "MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains. Designed for the broadest ecosystem reach from day one.",
+                sub: "All major chains supported",
+                img: "/feature-wallets.png",
+                imgRight: false,
+              },
+            ].map((f, i) => (
+              <div
+                key={f.num}
+                className="flex flex-col lg:flex-row items-stretch"
+                style={{ borderTop: i === 0 ? "none" : "1px solid rgba(200,146,42,0.1)" }}
+              >
+                {/* Image side */}
+                <div className={`relative overflow-hidden lg:w-[52%] ${f.imgRight ? "lg:order-2" : "lg:order-1"}`} style={{ minHeight: "360px" }}>
+                  <img
+                    src={f.img}
+                    alt={f.title}
+                    className="w-full h-full object-cover"
+                    style={{ filter: "brightness(0.88) saturate(1.1)" }}
+                  />
+                  {/* Subtle edge fade toward text side only */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: f.imgRight
+                        ? "linear-gradient(270deg, rgba(10,8,6,0.9) 0%, transparent 45%)"
+                        : "linear-gradient(90deg, rgba(10,8,6,0.9) 0%, transparent 45%)",
+                    }}
+                  />
+                  {/* Number watermark */}
+                  <span
+                    className="absolute bottom-6 right-8 font-serif leading-none select-none"
+                    style={{ fontSize: "7rem", color: "rgba(255,255,255,0.06)" }}
+                  >
+                    {f.num}
+                  </span>
+                </div>
+
+                {/* Text side */}
+                <div
+                  className={`lg:w-[48%] flex flex-col justify-center px-10 py-14 lg:py-0 lg:px-16 ${f.imgRight ? "lg:order-1" : "lg:order-2"}`}
+                  style={{ background: "rgba(255,255,255,0.018)" }}
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <span
+                      className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border"
+                      style={{ color: f.tagColor, borderColor: f.tagBorder, background: f.tagBg }}
+                    >
+                      {f.tag}
                     </span>
-                    <span className="font-serif text-6xl leading-none select-none" style={{ color: "rgba(200,146,42,0.15)" }}>01</span>
+                    <div className="flex-1 h-px" style={{ background: `${f.tagBorder}` }} />
+                    <span className="font-serif text-3xl leading-none select-none" style={{ color: `${f.tagBg.replace("0.1", "0.4")}` }}>
+                      {f.num}
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="font-serif text-3xl lg:text-4xl text-white mb-4 leading-snug">On-Chain Transparency</h3>
-                    <p className="text-white/55 text-[14px] leading-relaxed max-w-lg">
-                      Every transaction, every position, every yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol without trusting a third party.
-                    </p>
-                    <div className="mt-8 flex items-center gap-3">
-                      <div className="w-8 h-px" style={{ background: "#C8922A" }} />
-                      <span className="text-[11px] tracking-widest uppercase text-white/30">Verifiable by anyone, always</span>
-                    </div>
+
+                  <h3 className="font-serif text-3xl lg:text-4xl text-white mb-5 leading-snug">
+                    {f.title}
+                  </h3>
+
+                  <p className="text-white/60 text-[14px] leading-[1.85] max-w-md">
+                    {f.body}
+                  </p>
+
+                  <div className="mt-8 flex items-center gap-3">
+                    <div className="w-8 h-px" style={{ background: f.accentLine }} />
+                    <span className="text-[10px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      {f.sub}
+                    </span>
                   </div>
                 </div>
               </div>
+            ))}
 
-              {/* Feature 2 — Audited Smart Contracts */}
-              <div className="relative rounded-2xl overflow-hidden group" style={{ minHeight: "232px" }}>
-                <img
-                  src="/feature-audited.png"
-                  alt="Audited Smart Contracts"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ filter: "brightness(0.55) saturate(1.2)" }}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.3) 100%)" }} />
-                <div className="absolute inset-0 p-7 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C85050", borderColor: "rgba(200,80,80,0.35)", background: "rgba(200,80,80,0.08)" }}>
-                      Security
-                    </span>
-                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,80,80,0.15)" }}>02</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl text-white mb-2 leading-snug">Audited Smart Contracts</h3>
-                    <p className="text-white/50 text-[12px] leading-relaxed">
-                      Formally verified and independently audited by leading blockchain security firms before any deployment.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Feature 3 — Multi-Wallet Compatibility */}
-              <div className="relative rounded-2xl overflow-hidden group" style={{ minHeight: "232px" }}>
-                <img
-                  src="/feature-wallets.png"
-                  alt="Multi-Wallet Compatibility"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ filter: "brightness(0.55) saturate(1.1)" }}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.3) 100%)" }} />
-                <div className="absolute inset-0 p-7 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.35)", background: "rgba(200,146,42,0.08)" }}>
-                      Compatibility
-                    </span>
-                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,146,42,0.15)" }}>05</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl text-white mb-2 leading-snug">Multi-Wallet Support</h3>
-                    <p className="text-white/50 text-[12px] leading-relaxed">
-                      MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom row — Staking + Vesting (equal halves) */}
-              <div className="relative rounded-2xl overflow-hidden group" style={{ minHeight: "260px" }}>
-                <img
-                  src="/feature-staking.png"
-                  alt="Staking"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ filter: "brightness(0.55) saturate(1.2)" }}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.25) 100%)" }} />
-                <div className="absolute inset-0 p-8 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.35)", background: "rgba(200,146,42,0.08)" }}>
-                      Yield
-                    </span>
-                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,146,42,0.15)" }}>03</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-2xl text-white mb-3 leading-snug">Native Staking</h3>
-                    <p className="text-white/50 text-[13px] leading-relaxed">
-                      Lock capital, earn protocol yield. Staking rewards are distributed on-chain, auto-compounding across vaults with no custodial risk.
-                    </p>
-                    <div className="mt-6 flex items-center gap-3">
-                      <div className="w-6 h-px" style={{ background: "#C8922A" }} />
-                      <span className="text-[10px] tracking-widest uppercase text-white/30">Up to 12.81% APR</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative rounded-2xl overflow-hidden group lg:col-span-2" style={{ minHeight: "260px" }}>
-                <img
-                  src="/feature-vesting.png"
-                  alt="Vesting"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ filter: "brightness(0.55) saturate(1.1)" }}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(10,8,6,0.2) 0%, rgba(10,8,6,0.85) 100%)" }} />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, transparent 60%)" }} />
-                <div className="absolute inset-0 p-8 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C85050", borderColor: "rgba(200,80,80,0.35)", background: "rgba(200,80,80,0.08)" }}>
-                      Token Economics
-                    </span>
-                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,80,80,0.15)" }}>04</span>
-                  </div>
-                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-                    <div>
-                      <h3 className="font-serif text-2xl text-white mb-3 leading-snug">Programmable Vesting</h3>
-                      <p className="text-white/50 text-[13px] leading-relaxed max-w-md">
-                        Time-locked token release schedules enforced entirely on-chain. Cliffs, linear drip, and milestone-based unlocks — all transparent and immutable from day one.
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0 flex items-center gap-3">
-                      <div className="w-6 h-px" style={{ background: "#C85050" }} />
-                      <span className="text-[10px] tracking-widest uppercase text-white/30">No trusted intermediary</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
           </div>
 
           {/* Bottom border */}
