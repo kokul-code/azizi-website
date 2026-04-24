@@ -23,6 +23,7 @@ const FEATURES = [
     body: "Every transaction, position, and yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol — no trust, no intermediaries.",
     sub: "Verifiable by anyone, always",
     img: "/feature-transparency.png",
+    imgRight: true,
   },
   {
     num: "02",
@@ -35,6 +36,7 @@ const FEATURES = [
     body: "Every contract is formally verified and independently audited by leading blockchain security firms before any deployment. Multi-sig treasury controls and timelocked upgrades ensure deep, layered protection.",
     sub: "Zero single points of failure",
     img: "/feature-audited.png",
+    imgRight: false,
   },
   {
     num: "03",
@@ -47,6 +49,7 @@ const FEATURES = [
     body: "Lock capital, earn protocol yield. Staking rewards are distributed on-chain and auto-compound across vaults — no custodial risk, no intermediary skimming returns. Up to 12.81% APR.",
     sub: "Up to 12.81% APR",
     img: "/feature-staking.png",
+    imgRight: true,
   },
   {
     num: "04",
@@ -59,6 +62,7 @@ const FEATURES = [
     body: "Time-locked token release schedules enforced entirely on-chain. Cliff periods, linear drip, and milestone-based unlocks — all parameters are transparent and immutable from the moment of deployment.",
     sub: "No trusted intermediary",
     img: "/feature-vesting.png",
+    imgRight: false,
   },
   {
     num: "05",
@@ -71,6 +75,7 @@ const FEATURES = [
     body: "MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains. Designed for the broadest ecosystem reach from day one.",
     sub: "All major chains supported",
     img: "/feature-wallets.png",
+    imgRight: true,
   },
 ];
 
@@ -403,11 +408,17 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* ── Bottom: image (left) + feature content (right) ── */}
+              {/* ── Bottom: image + content, alternating sides ── */}
               <div className="flex flex-1 min-h-0">
 
-                {/* Left: image — fits remaining height, not full screen */}
-                <div className="relative w-[40%] flex-shrink-0 overflow-hidden">
+                {/* Image panel — 55% width, swaps side via CSS order */}
+                <div
+                  className="relative flex-shrink-0 overflow-hidden"
+                  style={{
+                    width: "55%",
+                    order: FEATURES[activeFeature].imgRight ? 2 : 1,
+                  }}
+                >
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={FEATURES[activeFeature].img}
@@ -418,18 +429,31 @@ export default function Home() {
                       initial={{ opacity: 0, scale: 1.04 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.97 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      transition={{ duration: 0.55, ease: "easeInOut" }}
                     />
                   </AnimatePresence>
-                  {/* Right-edge fade */}
-                  <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 45%, #0A0806 100%)" }} />
+                  {/* Edge fade — direction follows image side */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: FEATURES[activeFeature].imgRight
+                        ? "linear-gradient(270deg, transparent 50%, #0A0806 100%)"
+                        : "linear-gradient(90deg, transparent 50%, #0A0806 100%)",
+                    }}
+                  />
                   {/* Ghost number */}
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={activeFeature}
-                      className="absolute bottom-6 left-6 font-serif leading-none select-none pointer-events-none"
-                      style={{ fontSize: "7rem", color: "rgba(255,255,255,0.07)", lineHeight: 1 }}
-                      initial={{ opacity: 0, y: 12 }}
+                      className="absolute bottom-8 font-serif leading-none select-none pointer-events-none"
+                      style={{
+                        fontSize: "8rem",
+                        color: "rgba(255,255,255,0.07)",
+                        lineHeight: 1,
+                        left: FEATURES[activeFeature].imgRight ? "auto" : "2rem",
+                        right: FEATURES[activeFeature].imgRight ? "2rem" : "auto",
+                      }}
+                      initial={{ opacity: 0, y: 14 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.35 }}
@@ -439,11 +463,24 @@ export default function Home() {
                   </AnimatePresence>
                 </div>
 
-                {/* Right: feature text content */}
-                <div className="relative flex-1 flex flex-col justify-center px-10 xl:px-14 py-10" style={{ background: "rgba(255,255,255,0.014)" }}>
-
-                  {/* Vertical progress indicator */}
-                  <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+                {/* Content panel — fills remaining space, swaps side */}
+                <div
+                  className="relative flex-1 flex flex-col justify-center py-10"
+                  style={{
+                    order: FEATURES[activeFeature].imgRight ? 1 : 2,
+                    background: "rgba(255,255,255,0.014)",
+                    paddingLeft: FEATURES[activeFeature].imgRight ? "3rem" : "3.5rem",
+                    paddingRight: FEATURES[activeFeature].imgRight ? "3.5rem" : "3rem",
+                  }}
+                >
+                  {/* Vertical progress indicator — always on the outer edge */}
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+                    style={{
+                      left: FEATURES[activeFeature].imgRight ? "auto" : "1.25rem",
+                      right: FEATURES[activeFeature].imgRight ? "1.25rem" : "auto",
+                    }}
+                  >
                     {FEATURES.map((_, i) => (
                       <motion.div
                         key={i}
@@ -459,7 +496,7 @@ export default function Home() {
                     ))}
                   </div>
 
-                  {/* Animated feature content */}
+                  {/* Animated content */}
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeFeature}
@@ -467,7 +504,7 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -16 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="max-w-lg pr-10"
+                      className="max-w-md"
                     >
                       {/* Tag + rule + number */}
                       <div className="flex items-center gap-4 mb-6">
@@ -490,17 +527,14 @@ export default function Home() {
                         </span>
                       </div>
 
-                      {/* Title */}
-                      <h3 className="font-serif text-3xl lg:text-4xl text-white mb-5 leading-snug">
+                      <h3 className="font-serif text-3xl lg:text-[2.6rem] text-white mb-5 leading-snug">
                         {FEATURES[activeFeature].title}
                       </h3>
 
-                      {/* Body */}
-                      <p className="text-white/62 text-[14px] leading-[1.85]">
+                      <p className="text-white/65 text-[14px] leading-[1.88]">
                         {FEATURES[activeFeature].body}
                       </p>
 
-                      {/* Accent rule */}
                       <div className="mt-8 flex items-center gap-3">
                         <div className="w-10 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
                         <span className="text-[11px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
