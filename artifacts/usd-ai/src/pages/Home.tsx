@@ -315,14 +315,14 @@ export default function Home() {
 
           {/* Header band */}
           <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
-            <span className="inline-block text-[10px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
+            <span className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
               Why Azizi Global
             </span>
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <h2 className="font-serif text-4xl lg:text-5xl text-white leading-tight max-w-xl">
+              <h2 className="font-serif text-5xl lg:text-6xl text-white leading-tight max-w-xl">
                 Infrastructure built for the next era of capital markets.
               </h2>
-              <p className="text-white/45 text-[13px] leading-relaxed max-w-sm lg:text-right">
+              <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
                 Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
               </p>
             </div>
@@ -405,7 +405,7 @@ export default function Home() {
                 style={{ borderTop: i === 0 ? "none" : "1px solid rgba(200,146,42,0.1)" }}
               >
                 {/* Image side */}
-                <div className={`relative overflow-hidden lg:w-[52%] ${f.imgRight ? "lg:order-2" : "lg:order-1"}`} style={{ minHeight: "360px" }}>
+                <div className={`relative overflow-hidden lg:w-[52%] ${f.imgRight ? "lg:order-2" : "lg:order-1"}`} style={{ minHeight: "420px" }}>
                   <img
                     src={f.img}
                     alt={f.title}
@@ -435,30 +435,30 @@ export default function Home() {
                   className={`lg:w-[48%] flex flex-col justify-center px-10 py-14 lg:py-0 lg:px-16 ${f.imgRight ? "lg:order-1" : "lg:order-2"}`}
                   style={{ background: "rgba(255,255,255,0.018)" }}
                 >
-                  <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-4 mb-7">
                     <span
-                      className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border"
+                      className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
                       style={{ color: f.tagColor, borderColor: f.tagBorder, background: f.tagBg }}
                     >
                       {f.tag}
                     </span>
                     <div className="flex-1 h-px" style={{ background: `${f.tagBorder}` }} />
-                    <span className="font-serif text-3xl leading-none select-none" style={{ color: `${f.tagBg.replace("0.1", "0.4")}` }}>
+                    <span className="font-serif text-5xl leading-none select-none" style={{ color: `${f.tagBg.replace("0.1", "0.35")}` }}>
                       {f.num}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-3xl lg:text-4xl text-white mb-5 leading-snug">
+                  <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug">
                     {f.title}
                   </h3>
 
-                  <p className="text-white/60 text-[14px] leading-[1.85] max-w-md">
+                  <p className="text-white/65 text-[16px] leading-[1.9] max-w-lg">
                     {f.body}
                   </p>
 
-                  <div className="mt-8 flex items-center gap-3">
-                    <div className="w-8 h-px" style={{ background: f.accentLine }} />
-                    <span className="text-[10px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <div className="mt-9 flex items-center gap-3">
+                    <div className="w-10 h-px" style={{ background: f.accentLine }} />
+                    <span className="text-[13px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
                       {f.sub}
                     </span>
                   </div>
