@@ -26,6 +26,51 @@ const renderActiveShape = (props: any) => {
   );
 };
 
+const ROADMAP = [
+  {
+    phase: "01",
+    date: "Q1 2024",
+    title: "Concept & Whitepaper",
+    body: "Foundational vision of Azizi Global Group established. Core team assembled, legal framework structured, and the Whitepaper published outlining the Web4.0 infrastructure thesis and token economic model.",
+  },
+  {
+    phase: "02",
+    date: "Q2 2024",
+    title: "Token Architecture",
+    body: "Smart contract development and independent security audit. Tokenomics model finalized with vesting schedules, staking mechanics, and liquidity provisioning parameters locked and verified on testnet.",
+  },
+  {
+    phase: "03",
+    date: "Q3 2024",
+    title: "Private Sale",
+    body: "Seed and private investor rounds conducted. KYC/AML compliance infrastructure deployed. Strategic partnerships with institutional backers established to anchor initial liquidity and long-term stability.",
+  },
+  {
+    phase: "04",
+    date: "Q4 2024",
+    title: "Public Launch",
+    body: "Public token generation event. Listings on major decentralized exchanges. Community rewards program activated, staking vaults open, and the governance portal goes live for token holders.",
+  },
+  {
+    phase: "05",
+    date: "Q1 2025",
+    title: "DeFi Integrations",
+    body: "Yield optimization vaults deployed across partner protocols. Cross-chain bridge infrastructure launched enabling multi-network liquidity. Automated compounding strategies released for retail and institutional users.",
+  },
+  {
+    phase: "06",
+    date: "Q2 2025",
+    title: "Ecosystem Expansion",
+    body: "Onboarding of 80+ partner protocols into the Azizi liquidity network. Institutional access tier activated with enhanced reporting and compliance tooling. On-chain governance module empowers community stewardship.",
+  },
+  {
+    phase: "07",
+    date: "Q3 2025+",
+    title: "Web4.0 Infrastructure",
+    body: "Full decentralized governance operational. Real-world asset tokenization framework deployed. Global liquidity network reaches critical mass, enabling programmable finance at institutional scale across all major chains.",
+  },
+];
+
 const HERO_VIDEOS = [
   "/hero-ocean.mp4",
   "/hero-city.mp4",
@@ -49,6 +94,9 @@ export default function Home() {
 
   // ── Tokenomics chart state
   const [tokenActiveIdx, setTokenActiveIdx] = useState<number | null>(null);
+
+  // ── Roadmap state
+  const [roadmapActive, setRoadmapActive] = useState(0);
 
   // ── Video state
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -694,6 +742,281 @@ export default function Home() {
 
           {/* Bottom border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+        </section>
+
+        {/* ── ROADMAP SECTION ── */}
+        <section className="relative overflow-hidden" style={{ background: "#0A0806" }}>
+          {/* Top border */}
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+
+          {/* ── Globe glow background ── */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Large ambient glow at top center */}
+            <div
+              className="absolute"
+              style={{
+                top: "-10%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "900px",
+                height: "900px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(200,146,42,0.10) 0%, rgba(200,146,42,0.04) 38%, transparent 65%)",
+              }}
+            />
+            {/* Globe ring arc */}
+            <div
+              className="absolute"
+              style={{
+                top: "-22%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "820px",
+                height: "820px",
+                borderRadius: "50%",
+                border: "1px solid rgba(200,146,42,0.10)",
+                boxShadow: "0 0 80px 0 rgba(200,146,42,0.06)",
+              }}
+            />
+            <div
+              className="absolute"
+              style={{
+                top: "-18%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "680px",
+                height: "680px",
+                borderRadius: "50%",
+                border: "1px solid rgba(200,146,42,0.08)",
+              }}
+            />
+            {/* Watermark text */}
+            <div
+              className="absolute font-sans font-black uppercase select-none"
+              style={{
+                top: "16%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontSize: "clamp(80px, 16vw, 200px)",
+                letterSpacing: "0.25em",
+                color: "rgba(200,146,42,0.045)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              ROADMAP
+            </div>
+          </div>
+
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full py-24">
+
+            {/* ── Heading ── */}
+            <div className="text-center mb-20">
+              <div className="mb-3">
+                <span className="text-[13px] tracking-[0.45em] uppercase font-medium" style={{ color: "rgba(200,146,42,0.7)" }}>
+                  Our Journey
+                </span>
+              </div>
+              <div className="inline-flex items-end gap-0 leading-none mb-6">
+                <span
+                  className="font-sans font-black uppercase"
+                  style={{ fontSize: "clamp(60px, 8.5vw, 104px)", letterSpacing: "0.04em", color: "#ffffff" }}
+                >
+                  ROAD
+                </span>
+                <span
+                  className="font-sans font-black uppercase"
+                  style={{ fontSize: "clamp(60px, 8.5vw, 104px)", letterSpacing: "0.04em", color: "#C8922A" }}
+                >
+                  MAP
+                </span>
+              </div>
+              <div className="flex items-center justify-center gap-5">
+                <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
+                <span className="text-[13px] tracking-[0.3em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  The Evolution of Azizi Global Group
+                </span>
+                <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
+              </div>
+            </div>
+
+            {/* ── Timeline ── */}
+            <div className="flex items-start gap-0 lg:gap-4">
+
+              {/* Left column: phase list */}
+              <div className="hidden lg:flex flex-col w-[36%] pr-6 pt-1">
+                {ROADMAP.map((item, i) => (
+                  <button
+                    key={item.phase}
+                    onClick={() => setRoadmapActive(i)}
+                    className="text-right flex flex-col items-end pb-0 cursor-pointer group"
+                    style={{ minHeight: "72px" }}
+                  >
+                    <span
+                      className="text-[13px] font-bold tracking-[0.18em] uppercase transition-colors duration-200 leading-none mb-1"
+                      style={{ color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.75)" }}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      className="text-[12px] tracking-[0.15em] uppercase transition-colors duration-200"
+                      style={{ color: roadmapActive === i ? "rgba(200,146,42,0.7)" : "rgba(255,255,255,0.30)" }}
+                    >
+                      {item.date}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Center: vertical line + numbered circles */}
+              <div className="flex flex-col items-center" style={{ width: "64px", flexShrink: 0 }}>
+                {ROADMAP.map((item, i) => (
+                  <div key={item.phase} className="flex flex-col items-center">
+                    {/* Number bubble */}
+                    <button
+                      onClick={() => setRoadmapActive(i)}
+                      className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-10 relative"
+                      style={{
+                        background: roadmapActive === i
+                          ? "linear-gradient(135deg, #C8922A, #A07018)"
+                          : "rgba(255,255,255,0.06)",
+                        border: roadmapActive === i
+                          ? "none"
+                          : "1px solid rgba(200,146,42,0.3)",
+                        boxShadow: roadmapActive === i
+                          ? "0 0 20px rgba(200,146,42,0.45), 0 0 6px rgba(200,146,42,0.3)"
+                          : "none",
+                        color: roadmapActive === i ? "#0A0806" : "rgba(200,146,42,0.7)",
+                        fontWeight: 800,
+                        fontSize: "13px",
+                        fontFamily: "sans-serif",
+                        letterSpacing: "0.02em",
+                      }}
+                    >
+                      {item.phase}
+                    </button>
+                    {/* Connector line */}
+                    {i < ROADMAP.length - 1 && (
+                      <div
+                        className="transition-all duration-300"
+                        style={{
+                          width: "1px",
+                          height: "32px",
+                          background: i < roadmapActive
+                            ? "linear-gradient(to bottom, #C8922A, rgba(200,146,42,0.4))"
+                            : "rgba(255,255,255,0.12)",
+                        }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Right column: expanded detail */}
+              <div className="flex-1 pl-6 lg:pl-8 pt-0">
+                {/* Mobile phase list */}
+                <div className="flex lg:hidden flex-wrap gap-3 mb-8">
+                  {ROADMAP.map((item, i) => (
+                    <button
+                      key={item.phase}
+                      onClick={() => setRoadmapActive(i)}
+                      className="text-[12px] tracking-[0.12em] uppercase font-bold px-3 py-1.5 rounded-full transition-all duration-200"
+                      style={{
+                        background: roadmapActive === i ? "rgba(200,146,42,0.2)" : "rgba(255,255,255,0.04)",
+                        border: roadmapActive === i ? "1px solid rgba(200,146,42,0.6)" : "1px solid rgba(255,255,255,0.10)",
+                        color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.55)",
+                      }}
+                    >
+                      {item.phase}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Active phase detail panel */}
+                <div key={roadmapActive} style={{ minHeight: "340px" }}>
+                  <div className="mb-5">
+                    <span
+                      className="text-[12px] tracking-[0.3em] uppercase font-semibold"
+                      style={{ color: "rgba(200,146,42,0.8)" }}
+                    >
+                      {ROADMAP[roadmapActive].date}
+                    </span>
+                  </div>
+                  <h3
+                    className="font-sans font-black uppercase mb-8 leading-none"
+                    style={{
+                      fontSize: "clamp(28px, 3.5vw, 48px)",
+                      letterSpacing: "0.04em",
+                      color: "#ffffff",
+                    }}
+                  >
+                    {ROADMAP[roadmapActive].title}
+                  </h3>
+                  <p
+                    className="text-[16px] leading-[1.9]"
+                    style={{ color: "rgba(255,255,255,0.72)", maxWidth: "540px" }}
+                  >
+                    {ROADMAP[roadmapActive].body}
+                  </p>
+
+                  {/* Progress bar */}
+                  <div className="mt-10">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[12px] tracking-[0.2em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.4)" }}>
+                        Progress
+                      </span>
+                      <span className="text-[12px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#C8922A" }}>
+                        Phase {parseInt(ROADMAP[roadmapActive].phase)} of {ROADMAP.length}
+                      </span>
+                    </div>
+                    <div className="h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }}>
+                      <div
+                        className="h-full transition-all duration-500"
+                        style={{
+                          width: `${((roadmapActive + 1) / ROADMAP.length) * 100}%`,
+                          background: "linear-gradient(90deg, #C8922A, rgba(200,146,42,0.5))",
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Nav arrows */}
+                  <div className="flex items-center gap-4 mt-8">
+                    <button
+                      onClick={() => setRoadmapActive(Math.max(0, roadmapActive - 1))}
+                      disabled={roadmapActive === 0}
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+                      style={{
+                        border: "1px solid rgba(200,146,42,0.3)",
+                        color: roadmapActive === 0 ? "rgba(255,255,255,0.15)" : "rgba(200,146,42,0.8)",
+                        background: "transparent",
+                        cursor: roadmapActive === 0 ? "default" : "pointer",
+                      }}
+                    >
+                      ←
+                    </button>
+                    <button
+                      onClick={() => setRoadmapActive(Math.min(ROADMAP.length - 1, roadmapActive + 1))}
+                      disabled={roadmapActive === ROADMAP.length - 1}
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+                      style={{
+                        background: roadmapActive === ROADMAP.length - 1 ? "transparent" : "linear-gradient(135deg, #C8922A, #A07018)",
+                        border: roadmapActive === ROADMAP.length - 1 ? "1px solid rgba(200,146,42,0.3)" : "none",
+                        color: roadmapActive === ROADMAP.length - 1 ? "rgba(255,255,255,0.15)" : "#0A0806",
+                        cursor: roadmapActive === ROADMAP.length - 1 ? "default" : "pointer",
+                        fontWeight: 700,
+                      }}
+                    >
+                      →
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Bottom border */}
+          <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
         {/* ECOSYSTEM PIGGY BANK SECTION */}
