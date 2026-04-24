@@ -770,18 +770,18 @@ export default function Home() {
         </section>
 
         {/* ── ROADMAP SECTION ── */}
-        <section ref={roadmapRef} className="relative" style={{ background: "#0A0806", overflowX: "clip" }}>
+        <section ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#0A0806" }}>
           {/* Top border */}
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
           {/* ── GLOBE HERO with parallax ── */}
-          <div className="relative" style={{ height: "72vh", minHeight: "560px" }}>
+          <div className="relative overflow-hidden" style={{ height: "72vh", minHeight: "560px" }}>
             <motion.div
               style={{ y: globeParallaxY }}
               className="absolute inset-0 flex flex-col items-center"
             >
               {/* Globe SVG */}
-              <div className="relative flex justify-center" style={{ marginTop: "-18%" }}>
+              <div className="relative flex justify-center" style={{ marginTop: "-5%" }}>
                 <svg
                   width="1000"
                   height="1000"
