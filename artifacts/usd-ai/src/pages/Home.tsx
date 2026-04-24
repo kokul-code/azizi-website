@@ -923,7 +923,7 @@ export default function Home() {
             <div className="flex items-start gap-0 lg:gap-4">
 
               {/* Left column: phase list */}
-              <div className="hidden lg:flex flex-col w-[36%] pr-8 pt-1">
+              <div className="hidden lg:flex flex-col flex-1 pr-8 pt-1">
                 {ROADMAP.map((item, i) => (
                   <button
                     key={item.phase}
