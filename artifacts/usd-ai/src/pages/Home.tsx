@@ -384,139 +384,139 @@ export default function Home() {
 
         {/* ── KEY FEATURES SECTION ── */}
         <section className="relative flex flex-col" style={{ background: "#0A0806" }}>
-          {/* Top border */}
-          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
-
-          {/* Header band */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
-            <span className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
-              Why Azizi Global
-            </span>
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <h2 className="font-serif text-4xl lg:text-5xl text-white leading-tight max-w-xl">
-                Infrastructure built for the next era of capital markets.
-              </h2>
-              <p className="text-white/50 text-[14px] leading-relaxed max-w-sm lg:text-right">
-                Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
-              </p>
-            </div>
-            <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
-          </div>
-
-          {/* Sticky scroll track — 500vh gives 100vh per feature */}
+          {/* Sticky scroll track — header + features all inside one sticky screen */}
           <div ref={featuresRef} style={{ height: `${FEATURES.length * 100}vh` }} className="relative">
-            <div className="sticky top-0 h-screen flex overflow-hidden">
+            <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
 
-              {/* ── Left: image panel (crossfades) ── */}
-              <div className="relative w-[55%] h-full overflow-hidden flex-shrink-0">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={FEATURES[activeFeature].img}
-                    src={FEATURES[activeFeature].img}
-                    alt={FEATURES[activeFeature].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ filter: "brightness(0.88) saturate(1.1)" }}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ duration: 0.55, ease: "easeInOut" }}
-                  />
-                </AnimatePresence>
-                {/* Right-edge bleed into text panel */}
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 50%, #0A0806 100%)" }} />
-                {/* Large ghost number on image */}
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={activeFeature}
-                    className="absolute bottom-10 left-10 font-serif leading-none select-none pointer-events-none"
-                    style={{ fontSize: "11rem", color: "rgba(255,255,255,0.055)", lineHeight: 1 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {FEATURES[activeFeature].num}
-                  </motion.span>
-                </AnimatePresence>
+              {/* ── Top: header band (always visible, compact) ── */}
+              <div className="flex-shrink-0 px-10 pt-8 pb-6" style={{ borderBottom: "1px solid rgba(200,146,42,0.15)" }}>
+                <span className="inline-block text-[11px] font-semibold tracking-[0.28em] uppercase mb-3" style={{ color: "#C8922A" }}>
+                  Why Azizi Global
+                </span>
+                <div className="flex items-end justify-between gap-8">
+                  <h2 className="font-serif text-3xl lg:text-4xl text-white leading-tight max-w-lg">
+                    Infrastructure built for the next era of capital markets.
+                  </h2>
+                  <p className="text-white/45 text-[13px] leading-relaxed max-w-xs text-right hidden lg:block">
+                    Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
+                  </p>
+                </div>
               </div>
 
-              {/* ── Right: text panel (slides in/out) ── */}
-              <div className="relative flex-1 h-full flex flex-col justify-center px-14 xl:px-20 py-16" style={{ background: "rgba(255,255,255,0.016)" }}>
+              {/* ── Bottom: image (left) + feature content (right) ── */}
+              <div className="flex flex-1 min-h-0">
 
-                {/* Vertical progress bar */}
-                <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2.5">
-                  {FEATURES.map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="rounded-full"
-                      animate={{
-                        height: i === activeFeature ? 36 : 10,
-                        background: i === activeFeature ? FEATURES[activeFeature].tagColor : "rgba(255,255,255,0.18)",
-                        opacity: i === activeFeature ? 1 : 0.5,
-                      }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      style={{ width: 3 }}
+                {/* Left: image — fits remaining height, not full screen */}
+                <div className="relative w-[40%] flex-shrink-0 overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={FEATURES[activeFeature].img}
+                      src={FEATURES[activeFeature].img}
+                      alt={FEATURES[activeFeature].title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{ filter: "brightness(0.9) saturate(1.1)" }}
+                      initial={{ opacity: 0, scale: 1.04 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.97 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
                     />
-                  ))}
+                  </AnimatePresence>
+                  {/* Right-edge fade */}
+                  <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, transparent 45%, #0A0806 100%)" }} />
+                  {/* Ghost number */}
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={activeFeature}
+                      className="absolute bottom-6 left-6 font-serif leading-none select-none pointer-events-none"
+                      style={{ fontSize: "7rem", color: "rgba(255,255,255,0.07)", lineHeight: 1 }}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.35 }}
+                    >
+                      {FEATURES[activeFeature].num}
+                    </motion.span>
+                  </AnimatePresence>
                 </div>
 
-                {/* Animated content */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeFeature}
-                    initial={{ opacity: 0, y: 32 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.45, ease: "easeOut" }}
-                    className="max-w-xl"
-                  >
-                    {/* Tag + rule + number */}
-                    <div className="flex items-center gap-4 mb-8">
-                      <span
-                        className="text-[11px] font-bold tracking-[0.25em] uppercase px-3 py-1.5 rounded-full border flex-shrink-0"
-                        style={{
-                          color: FEATURES[activeFeature].tagColor,
-                          borderColor: FEATURES[activeFeature].tagBorder,
-                          background: FEATURES[activeFeature].tagBg,
+                {/* Right: feature text content */}
+                <div className="relative flex-1 flex flex-col justify-center px-10 xl:px-14 py-10" style={{ background: "rgba(255,255,255,0.014)" }}>
+
+                  {/* Vertical progress indicator */}
+                  <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+                    {FEATURES.map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="rounded-full"
+                        animate={{
+                          height: i === activeFeature ? 32 : 8,
+                          background: i === activeFeature ? FEATURES[activeFeature].tagColor : "rgba(255,255,255,0.2)",
+                          opacity: i === activeFeature ? 1 : 0.45,
                         }}
-                      >
-                        {FEATURES[activeFeature].tag}
-                      </span>
-                      <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
-                      <span
-                        className="font-serif text-4xl leading-none select-none flex-shrink-0"
-                        style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
-                      >
-                        {FEATURES[activeFeature].num}
-                      </span>
-                    </div>
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        style={{ width: 3 }}
+                      />
+                    ))}
+                  </div>
 
-                    {/* Title */}
-                    <h3 className="font-serif text-3xl lg:text-4xl text-white mb-6 leading-snug">
-                      {FEATURES[activeFeature].title}
-                    </h3>
+                  {/* Animated feature content */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeFeature}
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -16 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="max-w-lg pr-10"
+                    >
+                      {/* Tag + rule + number */}
+                      <div className="flex items-center gap-4 mb-6">
+                        <span
+                          className="text-[10px] font-bold tracking-[0.25em] uppercase px-3 py-1.5 rounded-full border flex-shrink-0"
+                          style={{
+                            color: FEATURES[activeFeature].tagColor,
+                            borderColor: FEATURES[activeFeature].tagBorder,
+                            background: FEATURES[activeFeature].tagBg,
+                          }}
+                        >
+                          {FEATURES[activeFeature].tag}
+                        </span>
+                        <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
+                        <span
+                          className="font-serif text-3xl leading-none select-none flex-shrink-0"
+                          style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
+                        >
+                          {FEATURES[activeFeature].num}
+                        </span>
+                      </div>
 
-                    {/* Body */}
-                    <p className="text-white/65 text-[15px] leading-[1.85] max-w-md">
-                      {FEATURES[activeFeature].body}
-                    </p>
+                      {/* Title */}
+                      <h3 className="font-serif text-3xl lg:text-4xl text-white mb-5 leading-snug">
+                        {FEATURES[activeFeature].title}
+                      </h3>
 
-                    {/* Accent rule */}
-                    <div className="mt-10 flex items-center gap-4">
-                      <div className="w-12 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
-                      <span className="text-[13px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.38)" }}>
-                        {FEATURES[activeFeature].sub}
-                      </span>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                      {/* Body */}
+                      <p className="text-white/62 text-[14px] leading-[1.85]">
+                        {FEATURES[activeFeature].body}
+                      </p>
+
+                      {/* Accent rule */}
+                      <div className="mt-8 flex items-center gap-3">
+                        <div className="w-10 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
+                        <span className="text-[11px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+                          {FEATURES[activeFeature].sub}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
               </div>
 
+              {/* Bottom border inside sticky */}
+              <div className="flex-shrink-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
             </div>
           </div>
-
-          {/* Bottom border */}
-          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
         {/* STATS & GLOBE SECTION */}
