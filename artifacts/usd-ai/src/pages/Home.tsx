@@ -308,70 +308,176 @@ export default function Home() {
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
-        {/* FEATURES GRID SECTION */}
-        <section className="py-32 bg-background">
-          <div className="container mx-auto px-6">
-            <div className="mb-20 max-w-3xl">
-              <span className="text-xs font-semibold tracking-widest uppercase text-accent mb-6 block">Capital</span>
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight text-primary">
-                Capital for builders outside the megafund circle. Yield drawn from their machine-backed credit.
+        {/* ── KEY FEATURES SECTION ── */}
+        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
+          {/* Top border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+
+          {/* Header band */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
+            <span className="inline-block text-[10px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
+              Why Azizi Global
+            </span>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <h2 className="font-serif text-4xl lg:text-5xl text-white leading-tight max-w-xl">
+                Infrastructure built for the next era of capital markets.
               </h2>
+              <p className="text-white/45 text-[13px] leading-relaxed max-w-sm lg:text-right">
+                Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
+              </p>
             </div>
+            <div className="mt-10 h-px w-full" style={{ background: "linear-gradient(90deg, rgba(200,146,42,0.6) 0%, rgba(200,146,42,0.1) 60%, transparent 100%)" }} />
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-primary/10">
-              {/* Row 1 */}
-              <div className="p-10 border-b border-r border-primary/10 hover:bg-card/50 transition-colors group">
-                <div className="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <ArrowUpRight className="w-5 h-5 text-primary" />
+          {/* Bento grid */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pb-20 flex-1">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+              {/* Feature 1 — On-chain Transparency (large, spans 2 cols, tall) */}
+              <div className="lg:col-span-2 lg:row-span-2 relative rounded-2xl overflow-hidden group" style={{ minHeight: "480px" }}>
+                <img
+                  src="/feature-transparency.png"
+                  alt="On-chain Transparency"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ filter: "brightness(0.6) saturate(1.15)" }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(10,8,6,0.15) 0%, rgba(10,8,6,0.7) 100%)" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, transparent 55%)" }} />
+                <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.35)", background: "rgba(200,146,42,0.08)" }}>
+                      Core Protocol
+                    </span>
+                    <span className="font-serif text-6xl leading-none select-none" style={{ color: "rgba(200,146,42,0.15)" }}>01</span>
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-3xl lg:text-4xl text-white mb-4 leading-snug">On-Chain Transparency</h3>
+                    <p className="text-white/55 text-[14px] leading-relaxed max-w-lg">
+                      Every transaction, every position, every yield distribution is recorded immutably on-chain. Real-time cryptographic proofs let any participant verify the full state of the protocol without trusting a third party.
+                    </p>
+                    <div className="mt-8 flex items-center gap-3">
+                      <div className="w-8 h-px" style={{ background: "#C8922A" }} />
+                      <span className="text-[11px] tracking-widest uppercase text-white/30">Verifiable by anyone, always</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl mb-4 text-primary">Backed by the Future</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  Collateralized by forward contracts on GPU clusters and verified datacenter capacity, decoupling from legacy fiat systems.
-                </p>
               </div>
 
-              <div className="p-10 border-b border-r border-primary/10 hover:bg-card/50 transition-colors group">
-                <div className="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <FileText className="w-5 h-5 text-primary" />
+              {/* Feature 2 — Audited Smart Contracts */}
+              <div className="relative rounded-2xl overflow-hidden group" style={{ minHeight: "232px" }}>
+                <img
+                  src="/feature-audited.png"
+                  alt="Audited Smart Contracts"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ filter: "brightness(0.55) saturate(1.2)" }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.3) 100%)" }} />
+                <div className="absolute inset-0 p-7 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C85050", borderColor: "rgba(200,80,80,0.35)", background: "rgba(200,80,80,0.08)" }}>
+                      Security
+                    </span>
+                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,80,80,0.15)" }}>02</span>
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-xl text-white mb-2 leading-snug">Audited Smart Contracts</h3>
+                    <p className="text-white/50 text-[12px] leading-relaxed">
+                      Formally verified and independently audited by leading blockchain security firms before any deployment.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl mb-4 text-primary">Verified Reserves</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  Real-time cryptographic proofs of underlying infrastructure assets, audited daily by decentralized oracles.
-                </p>
               </div>
 
-              <div className="p-10 border-b border-r border-primary/10 hover:bg-card/50 transition-colors group">
-                <div className="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <Search className="w-5 h-5 text-primary" />
+              {/* Feature 3 — Multi-Wallet Compatibility */}
+              <div className="relative rounded-2xl overflow-hidden group" style={{ minHeight: "232px" }}>
+                <img
+                  src="/feature-wallets.png"
+                  alt="Multi-Wallet Compatibility"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ filter: "brightness(0.55) saturate(1.1)" }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.3) 100%)" }} />
+                <div className="absolute inset-0 p-7 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.35)", background: "rgba(200,146,42,0.08)" }}>
+                      Compatibility
+                    </span>
+                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,146,42,0.15)" }}>05</span>
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-xl text-white mb-2 leading-snug">Multi-Wallet Support</h3>
+                    <p className="text-white/50 text-[12px] leading-relaxed">
+                      MetaMask, Ledger, Phantom, WalletConnect and beyond — connect with any wallet across all major chains.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl mb-4 text-primary">Decentralized Underwriting</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  Automated risk assessment models evaluate facility uptime, PUE metrics, and historical provider performance.
-                </p>
               </div>
 
-              {/* Row 2 - spans 1.5 cols each roughly in visual space, but we'll use a flex layout or 2-col grid for the bottom row to match reference */}
-              <div className="p-10 border-b border-r border-primary/10 hover:bg-card/50 transition-colors group md:col-span-1.5">
-                <div className="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <Shield className="w-5 h-5 text-primary" />
+              {/* Bottom row — Staking + Vesting (equal halves) */}
+              <div className="relative rounded-2xl overflow-hidden group" style={{ minHeight: "260px" }}>
+                <img
+                  src="/feature-staking.png"
+                  alt="Staking"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ filter: "brightness(0.55) saturate(1.2)" }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.25) 100%)" }} />
+                <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C8922A", borderColor: "rgba(200,146,42,0.35)", background: "rgba(200,146,42,0.08)" }}>
+                      Yield
+                    </span>
+                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,146,42,0.15)" }}>03</span>
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-2xl text-white mb-3 leading-snug">Native Staking</h3>
+                    <p className="text-white/50 text-[13px] leading-relaxed">
+                      Lock capital, earn protocol yield. Staking rewards are distributed on-chain, auto-compounding across vaults with no custodial risk.
+                    </p>
+                    <div className="mt-6 flex items-center gap-3">
+                      <div className="w-6 h-px" style={{ background: "#C8922A" }} />
+                      <span className="text-[10px] tracking-widest uppercase text-white/30">Up to 12.81% APR</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl mb-4 text-primary">Immutable Security</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm max-w-sm">
-                  Smart contracts formally verified. Multi-sig treasury controls and timelocked protocol upgrades ensure deep security.
-                </p>
               </div>
 
-              <div className="p-10 border-b border-r border-primary/10 hover:bg-card/50 transition-colors group md:col-span-2">
-                <div className="w-12 h-12 rounded-full border border-primary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <LogOut className="w-5 h-5 text-primary" />
+              <div className="relative rounded-2xl overflow-hidden group lg:col-span-2" style={{ minHeight: "260px" }}>
+                <img
+                  src="/feature-vesting.png"
+                  alt="Vesting"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ filter: "brightness(0.55) saturate(1.1)" }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(10,8,6,0.2) 0%, rgba(10,8,6,0.85) 100%)" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(10,8,6,0.95) 0%, transparent 60%)" }} />
+                <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border" style={{ color: "#C85050", borderColor: "rgba(200,80,80,0.35)", background: "rgba(200,80,80,0.08)" }}>
+                      Token Economics
+                    </span>
+                    <span className="font-serif text-4xl leading-none select-none" style={{ color: "rgba(200,80,80,0.15)" }}>04</span>
+                  </div>
+                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+                    <div>
+                      <h3 className="font-serif text-2xl text-white mb-3 leading-snug">Programmable Vesting</h3>
+                      <p className="text-white/50 text-[13px] leading-relaxed max-w-md">
+                        Time-locked token release schedules enforced entirely on-chain. Cliffs, linear drip, and milestone-based unlocks — all transparent and immutable from day one.
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0 flex items-center gap-3">
+                      <div className="w-6 h-px" style={{ background: "#C85050" }} />
+                      <span className="text-[10px] tracking-widest uppercase text-white/30">No trusted intermediary</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl mb-4 text-primary">Smart Exits via QPF</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm max-w-md">
-                  Seamlessly unwrap positions to fiat or raw compute credits through our Qualified Provider Framework with minimal slippage.
-                </p>
               </div>
+
             </div>
           </div>
+
+          {/* Bottom border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
         {/* STATS & GLOBE SECTION */}

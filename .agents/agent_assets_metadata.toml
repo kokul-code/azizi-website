@@ -66,3 +66,33 @@ id = "RqfOB0SY2ZS3zyxB9ZM5h"
 uri = "file://attached_assets/about-blockchain.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "ux2xIaJhGbGdR5jIpAVHP"
+uri = "file://artifacts/usd-ai/public/feature-transparency.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "sVBsGuJkiIGJl7wyM4q7C"
+uri = "file://artifacts/usd-ai/public/feature-audited.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "CFGdNH-RmrYARL0xGbtgu"
+uri = "file://artifacts/usd-ai/public/feature-staking.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "RZLEoE-E65BjlA4DxoID5"
+uri = "file://artifacts/usd-ai/public/feature-vesting.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "lRgDQXSGnWzqvA02Y4XOz"
+uri = "file://artifacts/usd-ai/public/feature-wallets.png"
+type = "image"
+title = "generated_image"
