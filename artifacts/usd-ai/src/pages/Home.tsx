@@ -1035,36 +1035,6 @@ export default function Home() {
                     {ROADMAP[roadmapActive].body}
                   </p>
 
-                  {/* Nav arrows */}
-                  <div className="flex items-center gap-4 mt-8">
-                    <button
-                      onClick={() => setRoadmapActive(Math.max(0, roadmapActive - 1))}
-                      disabled={roadmapActive === 0}
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
-                      style={{
-                        border: "1px solid rgba(200,146,42,0.3)",
-                        color: roadmapActive === 0 ? "rgba(255,255,255,0.15)" : "rgba(200,146,42,0.8)",
-                        background: "transparent",
-                        cursor: roadmapActive === 0 ? "default" : "pointer",
-                      }}
-                    >
-                      ←
-                    </button>
-                    <button
-                      onClick={() => setRoadmapActive(Math.min(ROADMAP.length - 1, roadmapActive + 1))}
-                      disabled={roadmapActive === ROADMAP.length - 1}
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
-                      style={{
-                        background: roadmapActive === ROADMAP.length - 1 ? "transparent" : "linear-gradient(135deg, #C8922A, #A07018)",
-                        border: roadmapActive === ROADMAP.length - 1 ? "1px solid rgba(200,146,42,0.3)" : "none",
-                        color: roadmapActive === ROADMAP.length - 1 ? "rgba(255,255,255,0.15)" : "#0A0806",
-                        cursor: roadmapActive === ROADMAP.length - 1 ? "default" : "pointer",
-                        fontWeight: 700,
-                      }}
-                    >
-                      →
-                    </button>
-                  </div>
                 </div>
               </div>
 
