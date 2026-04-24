@@ -504,27 +504,43 @@ export default function Home() {
           <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full py-20 flex-1 flex flex-col">
 
             {/* ── Centered heading ── */}
-            <div className="text-center mb-20 text-[16px]">
-              <div className="inline-flex items-baseline gap-0 mb-6">
+            <div className="text-center mb-20">
+              <div className="mb-4">
                 <span
-                  className="font-serif italic text-7xl lg:text-8xl leading-none"
-                  style={{ color: "rgba(255,255,255,0.92)", letterSpacing: "-0.02em" }}
+                  className="text-[13px] tracking-[0.45em] uppercase font-medium"
+                  style={{ color: "rgba(200,146,42,0.7)" }}
                 >
-                  Token
-                </span>
-                <span
-                  className="font-serif italic text-7xl lg:text-8xl leading-none"
-                  style={{ color: "#C8922A", letterSpacing: "-0.02em" }}
-                >
-                  omics
+                  Distribution
                 </span>
               </div>
-              <div className="flex items-center justify-center gap-5 mt-5">
-                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.35)" }} />
-                <span className="text-[13px] tracking-[0.3em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <div className="inline-flex items-end gap-0 leading-none mb-7">
+                <span
+                  className="font-sans font-black uppercase leading-none"
+                  style={{
+                    fontSize: "clamp(64px, 9vw, 110px)",
+                    letterSpacing: "0.04em",
+                    color: "#ffffff",
+                  }}
+                >
+                  TOKEN
+                </span>
+                <span
+                  className="font-sans font-black uppercase leading-none"
+                  style={{
+                    fontSize: "clamp(64px, 9vw, 110px)",
+                    letterSpacing: "0.04em",
+                    color: "#C8922A",
+                  }}
+                >
+                  OMICS
+                </span>
+              </div>
+              <div className="flex items-center justify-center gap-5">
+                <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
+                <span className="text-[13px] tracking-[0.3em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
                   Total Supply · 1,000,000,000 Tokens
                 </span>
-                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.35)" }} />
+                <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
               </div>
             </div>
 
@@ -566,19 +582,19 @@ export default function Home() {
                     {tokenActiveIdx !== null ? (
                       <div className="text-center px-4">
                         <div
-                          className="font-serif text-5xl leading-none mb-2"
+                          className="font-sans font-black text-5xl leading-none mb-2"
                           style={{ color: TOKENOMICS[tokenActiveIdx].color }}
                         >
                           {TOKENOMICS[tokenActiveIdx].pct}%
                         </div>
-                        <div className="text-[12px] text-white/55 leading-snug max-w-[130px] text-center tracking-wide">
+                        <div className="text-[13px] text-white/75 leading-snug max-w-[130px] text-center tracking-wide font-medium">
                           {TOKENOMICS[tokenActiveIdx].name}
                         </div>
                       </div>
                     ) : (
                       <div className="text-center">
-                        <div className="font-serif text-4xl text-white/30 leading-none">1B</div>
-                        <div className="text-[11px] text-white/20 tracking-[0.25em] uppercase mt-2">Total Supply</div>
+                        <div className="font-sans font-black text-4xl text-white/60 leading-none">1B</div>
+                        <div className="text-[11px] text-white/40 tracking-[0.25em] uppercase mt-2 font-medium">Total Supply</div>
                       </div>
                     )}
                   </div>
@@ -602,9 +618,9 @@ export default function Home() {
                     borderBottom: "1px solid rgba(200,146,42,0.25)",
                   }}
                 >
-                  <span className="text-[12px] tracking-[0.25em] uppercase" style={{ color: "rgba(200,146,42,0.7)" }}>Category</span>
-                  <span className="text-[12px] tracking-[0.25em] uppercase text-center" style={{ color: "rgba(200,146,42,0.7)" }}>%</span>
-                  <span className="text-[12px] tracking-[0.25em] uppercase text-right" style={{ color: "rgba(200,146,42,0.7)" }}>Tokens</span>
+                  <span className="text-[12px] tracking-[0.25em] uppercase font-semibold" style={{ color: "#C8922A" }}>Category</span>
+                  <span className="text-[12px] tracking-[0.25em] uppercase font-semibold text-center" style={{ color: "#C8922A" }}>%</span>
+                  <span className="text-[12px] tracking-[0.25em] uppercase font-semibold text-right" style={{ color: "#C8922A" }}>Tokens</span>
                 </div>
 
                 {/* Rows */}
@@ -614,8 +630,8 @@ export default function Home() {
                     className="grid py-5 cursor-default rounded-lg px-3 -mx-3 transition-all duration-200"
                     style={{
                       gridTemplateColumns: "1fr 90px 150px",
-                      borderBottom: i < TOKENOMICS.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                      background: tokenActiveIdx === i ? "rgba(255,255,255,0.04)" : "transparent",
+                      borderBottom: i < TOKENOMICS.length - 1 ? "1px solid rgba(255,255,255,0.10)" : "none",
+                      background: tokenActiveIdx === i ? "rgba(255,255,255,0.05)" : "transparent",
                     }}
                     onMouseEnter={() => setTokenActiveIdx(i)}
                     onMouseLeave={() => setTokenActiveIdx(null)}
@@ -631,8 +647,8 @@ export default function Home() {
                         }}
                       />
                       <span
-                        className="text-[15px] transition-colors duration-200"
-                        style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.65)" }}
+                        className="text-[15px] transition-colors duration-200 font-medium"
+                        style={{ color: tokenActiveIdx === i ? "#ffffff" : "rgba(255,255,255,0.85)" }}
                       >
                         {item.name}
                       </span>
@@ -640,8 +656,8 @@ export default function Home() {
                     {/* Pct */}
                     <div className="flex items-center justify-center">
                       <span
-                        className="font-serif text-[20px] leading-none transition-colors duration-200"
-                        style={{ color: tokenActiveIdx === i ? item.color : `${item.color}99` }}
+                        className="font-sans font-bold text-[20px] leading-none transition-colors duration-200"
+                        style={{ color: item.color }}
                       >
                         {item.pct}%
                       </span>
@@ -650,7 +666,7 @@ export default function Home() {
                     <div className="flex items-center justify-end">
                       <span
                         className="text-[14px] font-mono transition-colors duration-200"
-                        style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.35)" }}
+                        style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.65)" }}
                       >
                         {item.tokens}
                       </span>
@@ -667,9 +683,9 @@ export default function Home() {
                     background: "rgba(200,146,42,0.06)",
                   }}
                 >
-                  <span className="text-[14px] font-semibold tracking-wide text-white/80">Total Supply</span>
-                  <span className="font-serif text-[20px] text-center" style={{ color: "#C8922A" }}>100%</span>
-                  <span className="text-[14px] font-mono text-right text-white/70">1,000,000,000</span>
+                  <span className="text-[15px] font-bold tracking-wide text-white">Total Supply</span>
+                  <span className="font-sans font-bold text-[20px] text-center" style={{ color: "#C8922A" }}>100%</span>
+                  <span className="text-[14px] font-mono text-right text-white/85">1,000,000,000</span>
                 </div>
               </div>
 
