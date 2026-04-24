@@ -680,52 +680,6 @@ export default function Home() {
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
         </section>
 
-        {/* STATS & GLOBE SECTION */}
-        <section className="py-24 bg-card border-y border-border">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-              <div className="lg:w-1/2">
-                <span className="text-xs font-semibold tracking-widest uppercase text-accent mb-6 block">Scale</span>
-                <h2 className="font-serif text-4xl md:text-5xl leading-tight text-primary mb-12">
-                  We help scale companies globally.
-                </h2>
-                
-                <div className="grid grid-cols-2 gap-x-8 gap-y-12 mb-12">
-                  <div>
-                    <div className="font-serif text-3xl text-primary mb-2">$2.4bn</div>
-                    <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Deployed</div>
-                  </div>
-                  <div>
-                    <div className="font-serif text-3xl text-primary mb-2">9.2%</div>
-                    <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Avg Yield</div>
-                  </div>
-                  <div>
-                    <div className="font-serif text-3xl text-primary mb-2">80+</div>
-                    <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Partner Protocols</div>
-                  </div>
-                  <div>
-                    <div className="font-serif text-3xl text-primary mb-2">75,807</div>
-                    <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Builders Served</div>
-                  </div>
-                </div>
-                
-                <div className="flex gap-4">
-                  <Button variant="outline" className="rounded-none border-primary/20 text-primary hover:bg-primary/5 font-medium px-6">
-                    View Network
-                  </Button>
-                  <Button variant="outline" className="rounded-none border-primary/20 text-primary hover:bg-primary/5 font-medium px-6">
-                    Read the Docs
-                  </Button>
-                </div>
-              </div>
-              
-              <div className="lg:w-1/2 flex justify-center">
-                <img src="/globe.png" alt="Global network" className="w-full max-w-lg object-contain mix-blend-multiply" />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ECOSYSTEM PIGGY BANK SECTION */}
         <section className="py-32 bg-background text-center">
           <div className="container mx-auto px-6">
