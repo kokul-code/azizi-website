@@ -1,9 +1,30 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
+import { PieChart, Pie, Cell, Sector } from "recharts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowUpRight, Search, FileText, LogOut } from "lucide-react";
+
+const TOKENOMICS = [
+  { name: "Liquidity (DEX Pools)",    pct: 25, tokens: "250,000,000", color: "#C8922A" },
+  { name: "Community & Rewards",       pct: 20, tokens: "200,000,000", color: "#E8C55A" },
+  { name: "Team & Founders",           pct: 15, tokens: "150,000,000", color: "#C85050" },
+  { name: "Investors (Seed/Private)",  pct: 15, tokens: "150,000,000", color: "#A03838" },
+  { name: "Treasury",                  pct: 10, tokens: "100,000,000", color: "#6B8B8B" },
+  { name: "Ecosystem Growth",          pct: 10, tokens: "100,000,000", color: "#4A7A6A" },
+  { name: "Airdrop",                   pct:  5, tokens:  "50,000,000", color: "#9B7040" },
+];
+
+const renderActiveShape = (props: any) => {
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
+  return (
+    <g>
+      <Sector cx={cx} cy={cy} innerRadius={innerRadius - 4} outerRadius={outerRadius + 14} startAngle={startAngle} endAngle={endAngle} fill={fill} opacity={1} />
+      <Sector cx={cx} cy={cy} innerRadius={outerRadius + 18} outerRadius={outerRadius + 22} startAngle={startAngle} endAngle={endAngle} fill={fill} opacity={0.5} />
+    </g>
+  );
+};
 
 const HERO_VIDEOS = [
   "/hero-ocean.mp4",
@@ -25,6 +46,9 @@ export default function Home() {
   const missionImgY = useTransform(aboutScroll, [0, 1], ["8%", "-8%"]);
   const aboutHeadY = useTransform(aboutScroll, [0, 0.4], ["30px", "0px"]);
   const aboutHeadO = useTransform(aboutScroll, [0, 0.3], [0, 1]);
+
+  // ── Tokenomics chart state
+  const [tokenActiveIdx, setTokenActiveIdx] = useState<number | null>(null);
 
   // ── Video state
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -466,6 +490,190 @@ export default function Home() {
               </div>
             ))}
 
+          </div>
+
+          {/* Bottom border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+        </section>
+
+        {/* ── TOKENOMICS SECTION ── */}
+        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
+          {/* Top border */}
+          <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
+
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full py-20 flex-1 flex flex-col">
+
+            {/* ── Centered heading ── */}
+            <div className="text-center mb-20">
+              <div className="inline-flex items-baseline gap-0 mb-6">
+                <span
+                  className="font-serif italic text-7xl lg:text-8xl leading-none"
+                  style={{ color: "rgba(255,255,255,0.92)", letterSpacing: "-0.02em" }}
+                >
+                  Token
+                </span>
+                <span
+                  className="font-serif italic text-7xl lg:text-8xl leading-none"
+                  style={{ color: "#C8922A", letterSpacing: "-0.02em" }}
+                >
+                  omics
+                </span>
+              </div>
+              <div className="flex items-center justify-center gap-5 mt-5">
+                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.35)" }} />
+                <span className="text-[13px] tracking-[0.3em] uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  Total Supply · 1,000,000,000 Tokens
+                </span>
+                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.35)" }} />
+              </div>
+            </div>
+
+            {/* ── Chart + Legend ── */}
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 flex-1">
+
+              {/* Donut chart */}
+              <div className="lg:w-[45%] flex justify-center items-center">
+                <div className="relative" style={{ width: 400, height: 400 }}>
+                  <PieChart width={400} height={400}>
+                    <Pie
+                      data={TOKENOMICS.map(d => ({ ...d, value: d.pct }))}
+                      cx={200}
+                      cy={200}
+                      innerRadius={118}
+                      outerRadius={162}
+                      paddingAngle={2}
+                      dataKey="value"
+                      activeIndex={tokenActiveIdx ?? undefined}
+                      activeShape={renderActiveShape}
+                      onMouseEnter={(_: any, index: number) => setTokenActiveIdx(index)}
+                      onMouseLeave={() => setTokenActiveIdx(null)}
+                      stroke="none"
+                      startAngle={90}
+                      endAngle={-270}
+                    >
+                      {TOKENOMICS.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={entry.color}
+                          opacity={tokenActiveIdx === null || tokenActiveIdx === index ? 1 : 0.28}
+                          style={{ cursor: "pointer", transition: "opacity 0.2s" }}
+                        />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                  {/* Center label */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    {tokenActiveIdx !== null ? (
+                      <div className="text-center px-4">
+                        <div
+                          className="font-serif text-5xl leading-none mb-2"
+                          style={{ color: TOKENOMICS[tokenActiveIdx].color }}
+                        >
+                          {TOKENOMICS[tokenActiveIdx].pct}%
+                        </div>
+                        <div className="text-[12px] text-white/55 leading-snug max-w-[130px] text-center tracking-wide">
+                          {TOKENOMICS[tokenActiveIdx].name}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-center">
+                        <div className="font-serif text-4xl text-white/30 leading-none">1B</div>
+                        <div className="text-[11px] text-white/20 tracking-[0.25em] uppercase mt-2">Total Supply</div>
+                      </div>
+                    )}
+                  </div>
+                  {/* Glow ring behind chart */}
+                  <div
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{
+                      background: "radial-gradient(circle, transparent 45%, rgba(200,146,42,0.04) 65%, transparent 75%)",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Legend table */}
+              <div className="lg:w-[55%] w-full">
+                {/* Table header */}
+                <div
+                  className="grid py-4 mb-1"
+                  style={{
+                    gridTemplateColumns: "1fr 90px 150px",
+                    borderBottom: "1px solid rgba(200,146,42,0.25)",
+                  }}
+                >
+                  <span className="text-[12px] tracking-[0.25em] uppercase" style={{ color: "rgba(200,146,42,0.7)" }}>Category</span>
+                  <span className="text-[12px] tracking-[0.25em] uppercase text-center" style={{ color: "rgba(200,146,42,0.7)" }}>%</span>
+                  <span className="text-[12px] tracking-[0.25em] uppercase text-right" style={{ color: "rgba(200,146,42,0.7)" }}>Tokens</span>
+                </div>
+
+                {/* Rows */}
+                {TOKENOMICS.map((item, i) => (
+                  <div
+                    key={item.name}
+                    className="grid py-5 cursor-default rounded-lg px-3 -mx-3 transition-all duration-200"
+                    style={{
+                      gridTemplateColumns: "1fr 90px 150px",
+                      borderBottom: i < TOKENOMICS.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                      background: tokenActiveIdx === i ? "rgba(255,255,255,0.04)" : "transparent",
+                    }}
+                    onMouseEnter={() => setTokenActiveIdx(i)}
+                    onMouseLeave={() => setTokenActiveIdx(null)}
+                  >
+                    {/* Name */}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-3 h-3 rounded-full flex-shrink-0 transition-transform duration-200"
+                        style={{
+                          background: item.color,
+                          boxShadow: tokenActiveIdx === i ? `0 0 10px ${item.color}80` : "none",
+                          transform: tokenActiveIdx === i ? "scale(1.3)" : "scale(1)",
+                        }}
+                      />
+                      <span
+                        className="text-[15px] transition-colors duration-200"
+                        style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.65)" }}
+                      >
+                        {item.name}
+                      </span>
+                    </div>
+                    {/* Pct */}
+                    <div className="flex items-center justify-center">
+                      <span
+                        className="font-serif text-[20px] leading-none transition-colors duration-200"
+                        style={{ color: tokenActiveIdx === i ? item.color : `${item.color}99` }}
+                      >
+                        {item.pct}%
+                      </span>
+                    </div>
+                    {/* Tokens */}
+                    <div className="flex items-center justify-end">
+                      <span
+                        className="text-[14px] font-mono transition-colors duration-200"
+                        style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.35)" }}
+                      >
+                        {item.tokens}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Total row */}
+                <div
+                  className="grid py-5 px-3 -mx-3 mt-1 rounded-lg"
+                  style={{
+                    gridTemplateColumns: "1fr 90px 150px",
+                    borderTop: "1px solid rgba(200,146,42,0.3)",
+                    background: "rgba(200,146,42,0.06)",
+                  }}
+                >
+                  <span className="text-[14px] font-semibold tracking-wide text-white/80">Total Supply</span>
+                  <span className="font-serif text-[20px] text-center" style={{ color: "#C8922A" }}>100%</span>
+                  <span className="text-[14px] font-mono text-right text-white/70">1,000,000,000</span>
+                </div>
+              </div>
+
+            </div>
           </div>
 
           {/* Bottom border */}
