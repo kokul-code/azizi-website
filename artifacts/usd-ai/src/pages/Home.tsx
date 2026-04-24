@@ -126,7 +126,7 @@ export default function Home() {
                 ].map(([label, value], i) => (
                   <span key={label} className="inline-flex items-center shrink-0">
                     {i > 0 && <span className="mx-4 text-white/40">|</span>}
-                    <span className="text-white/65 mr-1.5">{label}:</span>
+                    <span className="text-white/65 mr-1.5 text-[12px]">{label}:</span>
                     <span className="text-white">{value}</span>
                   </span>
                 ))}
