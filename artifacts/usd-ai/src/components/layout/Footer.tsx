@@ -1,75 +1,164 @@
 import { Link } from "wouter";
-import { Twitter, Github, MessageSquare } from "lucide-react";
+import { Twitter, Github, Send } from "lucide-react";
+
+const FOOTER_LINKS = [
+  {
+    label: "Protocol",
+    links: [
+      { name: "Tokenomics", href: "#tokenomics" },
+      { name: "Staking", href: "#" },
+      { name: "Governance", href: "#" },
+      { name: "Smart Contracts", href: "#" },
+      { name: "Audits", href: "#" },
+    ],
+  },
+  {
+    label: "Company",
+    links: [
+      { name: "About Us", href: "#about" },
+      { name: "Roadmap", href: "#roadmap" },
+      { name: "Whitepaper", href: "#" },
+      { name: "Careers", href: "#" },
+      { name: "Contact", href: "#" },
+    ],
+  },
+  {
+    label: "Community",
+    links: [
+      { name: "Telegram", href: "#" },
+      { name: "Discord", href: "#" },
+      { name: "Twitter / X", href: "#" },
+      { name: "Blog", href: "#" },
+      { name: "FAQ", href: "#faq" },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground py-20">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="font-serif text-2xl font-medium tracking-tight mb-4 inline-block">
-              USD-AI
+    <footer style={{ background: "#07060A", borderTop: "1px solid rgba(200,146,42,0.25)" }}>
+      {/* Main grid */}
+      <div className="max-w-[1320px] mx-auto px-8 pt-20 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-12 lg:gap-8">
+
+          {/* Brand column */}
+          <div className="flex flex-col gap-6">
+            <Link href="/">
+              <img
+                src="/logo.png"
+                alt="Azizi Global Group"
+                className="h-10 w-auto object-contain"
+                style={{ filter: "brightness(1.05)" }}
+              />
             </Link>
-            <p className="text-primary-foreground/60 text-sm max-w-xs">
-              The dollar that builds AI, wherever it serves.
+            <p
+              className="text-[14px] leading-[1.8] max-w-[280px]"
+              style={{ color: "rgba(255,255,255,0.48)" }}
+            >
+              Azizi Global Group Inc. is building the next generation of
+              decentralised Web4.0 financial infrastructure — transparent,
+              borderless, and community-governed.
             </p>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-3 mt-2">
+              {[
+                { icon: <Twitter className="w-4 h-4" />, href: "#", label: "Twitter" },
+                { icon: <Github className="w-4 h-4" />, href: "#", label: "GitHub" },
+                { icon: <Send className="w-4 h-4" />, href: "#", label: "Telegram" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 hover:scale-105"
+                  style={{
+                    border: "1px solid rgba(200,146,42,0.25)",
+                    color: "rgba(255,255,255,0.45)",
+                    background: "rgba(200,146,42,0.05)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(200,146,42,0.7)";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "#C8922A";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(200,146,42,0.25)";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.45)";
+                  }}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+
+            {/* Status pill */}
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full self-start mt-1"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] tracking-[0.1em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
+                All systems normal
+              </span>
+            </div>
           </div>
-          
-          <div>
-            <h4 className="font-serif text-lg mb-6">Ecosystem</h4>
-            <ul className="space-y-4 text-sm text-primary-foreground/60">
-              <li><Link href="/stablecoin" className="hover:text-primary-foreground transition-colors">Stablecoin</Link></li>
-              <li><Link href="/yield" className="hover:text-primary-foreground transition-colors">Yield Products</Link></li>
-              <li><Link href="/institutional" className="hover:text-primary-foreground transition-colors">Institutional</Link></li>
-              <li><Link href="/audits" className="hover:text-primary-foreground transition-colors">Audits</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-serif text-lg mb-6">Developers</h4>
-            <ul className="space-y-4 text-sm text-primary-foreground/60">
-              <li><Link href="/docs" className="hover:text-primary-foreground transition-colors">Documentation</Link></li>
-              <li><Link href="/github" className="hover:text-primary-foreground transition-colors">GitHub</Link></li>
-              <li><Link href="/grants" className="hover:text-primary-foreground transition-colors">Grants</Link></li>
-              <li><Link href="/bounties" className="hover:text-primary-foreground transition-colors">Bug Bounties</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-serif text-lg mb-6">Resources</h4>
-            <ul className="space-y-4 text-sm text-primary-foreground/60">
-              <li><Link href="/about" className="hover:text-primary-foreground transition-colors">About Us</Link></li>
-              <li><Link href="/blog" className="hover:text-primary-foreground transition-colors">Blog</Link></li>
-              <li><Link href="/careers" className="hover:text-primary-foreground transition-colors">Careers</Link></li>
-              <li><Link href="/contact" className="hover:text-primary-foreground transition-colors">Contact</Link></li>
-            </ul>
-          </div>
+
+          {/* Link columns */}
+          {FOOTER_LINKS.map((col) => (
+            <div key={col.label}>
+              <p
+                className="text-[11px] tracking-[0.28em] uppercase font-semibold mb-6"
+                style={{ color: "#C8922A" }}
+              >
+                {col.label}
+              </p>
+              <ul className="flex flex-col gap-3.5">
+                {col.links.map((l) => (
+                  <li key={l.name}>
+                    <a
+                      href={l.href}
+                      className="text-[14px] transition-colors duration-150"
+                      style={{ color: "rgba(255,255,255,0.45)" }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.color = "#ffffff";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.45)";
+                      }}
+                    >
+                      {l.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        
-        <div className="pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 text-primary-foreground/60 text-sm">
-            <span>© 2026 USD-AI Protocol</span>
-            <Link href="/privacy" className="hover:text-primary-foreground transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-primary-foreground transition-colors">Terms</Link>
-          </div>
-          
+
+        {/* Divider */}
+        <div
+          className="mt-16 mb-8 h-px w-full"
+          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(200,146,42,0.35) 40%, rgba(200,146,42,0.35) 60%, transparent 100%)" }}
+        />
+
+        {/* Bottom bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] tracking-[0.06em]" style={{ color: "rgba(255,255,255,0.28)" }}>
+            © {new Date().getFullYear()} Azizi Global Group Inc. All rights reserved.
+          </p>
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-4">
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                <Twitter className="w-5 h-5" />
+            {["Privacy Policy", "Terms of Use", "Cookie Policy"].map((t) => (
+              <a
+                key={t}
+                href="#"
+                className="text-[12px] tracking-[0.04em] transition-colors duration-150"
+                style={{ color: "rgba(255,255,255,0.28)" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(200,146,42,0.8)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.28)"; }}
+              >
+                {t}
               </a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="https://discord.com" target="_blank" rel="noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                <MessageSquare className="w-5 h-5" />
-              </a>
-            </div>
-            
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-primary-foreground/5 rounded-full border border-primary-foreground/10">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-xs text-primary-foreground/80 font-medium">All systems normal</span>
-            </div>
+            ))}
           </div>
         </div>
       </div>
