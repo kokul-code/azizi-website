@@ -71,6 +71,25 @@ const ROADMAP = [
   },
 ];
 
+const GLOBE_RAYS = (() => {
+  const rays: { x1: number; y1: number; x2: number; y2: number; opacity: number; w: number }[] = [];
+  const cx = 500, cy = 500, r = 380;
+  const lens = [28, 55, 85, 38, 65, 100, 44, 72, 90, 32, 52, 78, 60, 40, 110, 48, 68, 95, 36, 58];
+  for (let i = 0; i < 180; i++) {
+    const angle = (i / 180) * Math.PI * 2;
+    const len = lens[i % lens.length];
+    rays.push({
+      x1: cx + Math.cos(angle) * r,
+      y1: cy + Math.sin(angle) * r,
+      x2: cx + Math.cos(angle) * (r + len),
+      y2: cy + Math.sin(angle) * (r + len),
+      opacity: [0.60, 0.22, 0.08, 0.14, 0.40][i % 5],
+      w: [1.6, 0.7, 0.3, 0.45, 1.1][i % 5],
+    });
+  }
+  return rays;
+})();
+
 const HERO_VIDEOS = [
   "/hero-ocean.mp4",
   "/hero-city.mp4",
@@ -95,8 +114,14 @@ export default function Home() {
   // ── Tokenomics chart state
   const [tokenActiveIdx, setTokenActiveIdx] = useState<number | null>(null);
 
-  // ── Roadmap state
+  // ── Roadmap state + parallax
   const [roadmapActive, setRoadmapActive] = useState(0);
+  const roadmapRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: roadmapScroll } = useScroll({
+    target: roadmapRef,
+    offset: ["start start", "end start"],
+  });
+  const globeParallaxY = useTransform(roadmapScroll, [0, 1], ["0%", "-32%"]);
 
   // ── Video state
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -745,99 +770,193 @@ export default function Home() {
         </section>
 
         {/* ── ROADMAP SECTION ── */}
-        <section className="relative overflow-hidden" style={{ background: "#0A0806" }}>
+        <section ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#0A0806" }}>
           {/* Top border */}
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
-          {/* ── Globe glow background ── */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Large ambient glow at top center */}
-            <div
-              className="absolute"
-              style={{
-                top: "-10%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "900px",
-                height: "900px",
-                borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(200,146,42,0.10) 0%, rgba(200,146,42,0.04) 38%, transparent 65%)",
-              }}
-            />
-            {/* Globe ring arc */}
-            <div
-              className="absolute"
-              style={{
-                top: "-22%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "820px",
-                height: "820px",
-                borderRadius: "50%",
-                border: "1px solid rgba(200,146,42,0.10)",
-                boxShadow: "0 0 80px 0 rgba(200,146,42,0.06)",
-              }}
-            />
-            <div
-              className="absolute"
-              style={{
-                top: "-18%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "680px",
-                height: "680px",
-                borderRadius: "50%",
-                border: "1px solid rgba(200,146,42,0.08)",
-              }}
-            />
-            {/* Watermark text */}
-            <div
-              className="absolute font-sans font-black uppercase select-none"
-              style={{
-                top: "16%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                fontSize: "clamp(80px, 16vw, 200px)",
-                letterSpacing: "0.25em",
-                color: "rgba(200,146,42,0.045)",
-                whiteSpace: "nowrap",
-              }}
+          {/* ── GLOBE HERO with parallax ── */}
+          <div className="relative overflow-hidden" style={{ height: "72vh", minHeight: "560px" }}>
+            <motion.div
+              style={{ y: globeParallaxY }}
+              className="absolute inset-0 flex flex-col items-center"
             >
-              ROADMAP
-            </div>
-          </div>
+              {/* Globe SVG */}
+              <div className="relative flex justify-center" style={{ marginTop: "-12%" }}>
+                <svg
+                  width="1000"
+                  height="1000"
+                  viewBox="0 0 1000 1000"
+                  style={{ position: "relative", zIndex: 1, overflow: "visible" }}
+                >
+                  <defs>
+                    {/* Sphere base gradient */}
+                    <radialGradient id="globeBase" cx="38%" cy="34%" r="65%">
+                      <stop offset="0%" stopColor="#1e3d5c" stopOpacity="0.95" />
+                      <stop offset="25%" stopColor="#0f2238" stopOpacity="0.98" />
+                      <stop offset="55%" stopColor="#060f1c" stopOpacity="1" />
+                      <stop offset="80%" stopColor="#020810" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#010509" stopOpacity="1" />
+                    </radialGradient>
+                    {/* Gold atmosphere gradient */}
+                    <radialGradient id="globeAtmos" cx="50%" cy="50%" r="50%">
+                      <stop offset="78%" stopColor="transparent" />
+                      <stop offset="90%" stopColor="#C8922A" stopOpacity="0.18" />
+                      <stop offset="97%" stopColor="#E8B840" stopOpacity="0.40" />
+                      <stop offset="100%" stopColor="#F0C855" stopOpacity="0.12" />
+                    </radialGradient>
+                    {/* Highlight gradient */}
+                    <radialGradient id="globeHighlight" cx="32%" cy="28%" r="40%">
+                      <stop offset="0%" stopColor="#4a8fba" stopOpacity="0.20" />
+                      <stop offset="60%" stopColor="transparent" />
+                    </radialGradient>
+                    <clipPath id="globeClip">
+                      <circle cx="500" cy="500" r="380" />
+                    </clipPath>
+                    {/* Ray fade mask */}
+                    <radialGradient id="rayMask" cx="50%" cy="50%" r="50%">
+                      <stop offset="70%" stopColor="white" stopOpacity="1" />
+                      <stop offset="100%" stopColor="white" stopOpacity="0" />
+                    </radialGradient>
+                    <mask id="rayFade">
+                      <rect x="0" y="0" width="1000" height="1000" fill="url(#rayMask)" />
+                    </mask>
+                  </defs>
 
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full py-24">
+                  {/* ── Outer glow rings ── */}
+                  <circle cx="500" cy="500" r="420" fill="none" stroke="rgba(200,146,42,0.06)" strokeWidth="1" />
+                  <circle cx="500" cy="500" r="450" fill="none" stroke="rgba(200,146,42,0.04)" strokeWidth="1" />
+                  <circle cx="500" cy="500" r="490" fill="none" stroke="rgba(200,146,42,0.02)" strokeWidth="1" />
 
-            {/* ── Heading ── */}
-            <div className="text-center mb-20">
-              <div className="mb-3">
-                <span className="text-[13px] tracking-[0.45em] uppercase font-medium" style={{ color: "rgba(200,146,42,0.7)" }}>
+                  {/* ── Particle rays ── */}
+                  <g mask="url(#rayFade)">
+                    {GLOBE_RAYS.map((ray, i) => (
+                      <line
+                        key={i}
+                        x1={ray.x1} y1={ray.y1}
+                        x2={ray.x2} y2={ray.y2}
+                        stroke="#C8922A"
+                        strokeWidth={ray.w}
+                        strokeOpacity={ray.opacity}
+                        strokeLinecap="round"
+                      />
+                    ))}
+                  </g>
+
+                  {/* ── Globe sphere ── */}
+                  <circle cx="500" cy="500" r="380" fill="url(#globeBase)" />
+
+                  {/* Latitude grid lines inside globe */}
+                  <g clipPath="url(#globeClip)" opacity="0.18">
+                    {[-60, -30, 0, 30, 60].map((lat) => {
+                      const ry = 380 * Math.abs(Math.cos((lat * Math.PI) / 180));
+                      const cy2 = 500 - 380 * Math.sin((lat * Math.PI) / 180);
+                      return (
+                        <ellipse key={lat} cx="500" cy={cy2} rx={ry} ry={ry * 0.14}
+                          fill="none" stroke="#C8922A" strokeWidth="0.6" />
+                      );
+                    })}
+                    {/* Longitude lines */}
+                    {[-90, -60, -30, 0, 30, 60, 90].map((lon) => {
+                      const rx2 = 380 * Math.abs(Math.cos((lon * Math.PI) / 180));
+                      return (
+                        <ellipse key={lon} cx="500" cy="500" rx={rx2 * 0.18} ry="380"
+                          fill="none" stroke="#C8922A" strokeWidth="0.5"
+                          transform={`rotate(${lon}, 500, 500)`} />
+                      );
+                    })}
+                  </g>
+
+                  {/* Continent blobs (simplified silhouettes) */}
+                  <g clipPath="url(#globeClip)" opacity="0.22">
+                    {/* Europe/Asia blob */}
+                    <path d="M480,340 Q540,310 600,330 Q660,350 680,390 Q700,430 660,450 Q620,470 580,460 Q540,450 510,430 Q470,410 460,380 Q450,355 480,340Z"
+                      fill="rgba(180,160,100,0.4)" />
+                    {/* Africa blob */}
+                    <path d="M490,420 Q530,400 560,420 Q590,440 590,490 Q590,540 560,570 Q530,595 500,580 Q470,565 460,530 Q450,495 460,460 Q470,430 490,420Z"
+                      fill="rgba(180,160,100,0.35)" />
+                    {/* Americas blob */}
+                    <path d="M350,350 Q380,330 400,350 Q420,370 415,410 Q410,450 390,470 Q370,490 350,470 Q330,450 330,410 Q330,370 350,350Z"
+                      fill="rgba(180,160,100,0.3)" />
+                    {/* UK/Scandinavia small shapes */}
+                    <ellipse cx="490" cy="335" rx="18" ry="12" fill="rgba(180,160,100,0.3)" />
+                    <ellipse cx="530" cy="320" rx="14" ry="9" fill="rgba(180,160,100,0.25)" />
+                  </g>
+
+                  {/* City lights scatter on continents */}
+                  <g clipPath="url(#globeClip)" opacity="0.5">
+                    {[
+                      [500,370],[520,355],[545,345],[560,360],[575,370],
+                      [510,400],[530,395],[555,388],[565,420],
+                      [490,430],[505,450],[520,460],[530,480],[515,500],
+                      [360,370],[375,360],[390,375],[380,390],
+                    ].map(([cx2, cy2], i) => (
+                      <circle key={i} cx={cx2} cy={cy2} r="1.5"
+                        fill="#FFD080" opacity={0.6 + (i % 4) * 0.1} />
+                    ))}
+                  </g>
+
+                  {/* Atmosphere overlay */}
+                  <circle cx="500" cy="500" r="380" fill="url(#globeAtmos)" />
+                  {/* Highlight */}
+                  <circle cx="500" cy="500" r="380" fill="url(#globeHighlight)" />
+
+                  {/* Atmosphere glow ring */}
+                  <circle cx="500" cy="500" r="380"
+                    fill="none"
+                    stroke="url(#globeAtmos)"
+                    strokeWidth="3"
+                    style={{ filter: "blur(2px)" }}
+                  />
+
+                  {/* ROADMAP watermark inside globe */}
+                  <text
+                    x="500" y="510"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    fontFamily="sans-serif"
+                    fontWeight="900"
+                    fontSize="72"
+                    letterSpacing="18"
+                    fill="rgba(200,146,42,0.12)"
+                    clipPath="url(#globeClip)"
+                  >
+                    ROADMAP
+                  </text>
+                </svg>
+              </div>
+            </motion.div>
+
+            {/* Heading overlay — sits at the bottom of the globe area */}
+            <div className="absolute bottom-0 left-0 right-0 z-10 text-center pb-10" style={{
+              background: "linear-gradient(to top, #0A0806 0%, rgba(10,8,6,0.85) 45%, transparent 100%)",
+            }}>
+              <div className="mb-2">
+                <span className="text-[13px] tracking-[0.45em] uppercase font-medium" style={{ color: "rgba(200,146,42,0.75)" }}>
                   Our Journey
                 </span>
               </div>
-              <div className="inline-flex items-end gap-0 leading-none mb-6">
-                <span
-                  className="font-sans font-black uppercase"
-                  style={{ fontSize: "clamp(60px, 8.5vw, 104px)", letterSpacing: "0.04em", color: "#ffffff" }}
-                >
+              <div className="inline-flex items-end gap-0 leading-none mb-4">
+                <span className="font-sans font-black uppercase"
+                  style={{ fontSize: "clamp(52px, 7.5vw, 96px)", letterSpacing: "0.04em", color: "#ffffff" }}>
                   ROAD
                 </span>
-                <span
-                  className="font-sans font-black uppercase"
-                  style={{ fontSize: "clamp(60px, 8.5vw, 104px)", letterSpacing: "0.04em", color: "#C8922A" }}
-                >
+                <span className="font-sans font-black uppercase"
+                  style={{ fontSize: "clamp(52px, 7.5vw, 96px)", letterSpacing: "0.04em", color: "#C8922A" }}>
                   MAP
                 </span>
               </div>
               <div className="flex items-center justify-center gap-5">
-                <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
+                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.4)" }} />
                 <span className="text-[13px] tracking-[0.3em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
                   The Evolution of Azizi Global Group
                 </span>
-                <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
+                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.4)" }} />
               </div>
             </div>
+          </div>
+
+          {/* ── Timeline content ── */}
+          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-12 pb-24">
 
             {/* ── Timeline ── */}
             <div className="flex items-start gap-0 lg:gap-4">
