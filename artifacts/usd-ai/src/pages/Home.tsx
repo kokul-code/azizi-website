@@ -323,6 +323,7 @@ export default function Home() {
 
         {/* ABOUT US SECTION — full screen */}
         <section
+          id="about"
           ref={aboutRef}
           className="relative overflow-hidden flex flex-col"
           style={{ background: "#0A0806", minHeight: "100vh" }}
@@ -599,7 +600,7 @@ export default function Home() {
         </section>
 
         {/* ── TOKENOMICS SECTION ── */}
-        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
+        <section id="tokenomics" className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
           {/* Top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -799,7 +800,7 @@ export default function Home() {
         </section>
 
         {/* ── ROADMAP SECTION ── */}
-        <section ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#0A0806" }}>
+        <section id="roadmap" ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#0A0806" }}>
           {/* Top border */}
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -1075,7 +1076,7 @@ export default function Home() {
         </section>
 
         {/* ── FAQ SECTION ── */}
-        <section className="relative overflow-hidden" style={{ background: "#07060A" }}>
+        <section id="faq" className="relative overflow-hidden" style={{ background: "#07060A" }}>
           {/* Split layout */}
           <div className="flex flex-col lg:flex-row min-h-[680px]">
 

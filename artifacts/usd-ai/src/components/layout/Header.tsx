@@ -40,21 +40,23 @@ export default function Header({ dark = false }: HeaderProps) {
         {/* Center Nav — absolutely centered */}
         <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {[
-            { label: "Home", active: true },
-            { label: "About Us" },
-            { label: "Tokenomics" },
-            { label: "Roadmap" },
-            { label: "FAQ" },
-            { label: "Whitepaper" },
-          ].map(({ label, active }) => (
+            { label: "Home",        href: "#"           },
+            { label: "About Us",    href: "#about"      },
+            { label: "Tokenomics",  href: "#tokenomics" },
+            { label: "Roadmap",     href: "#roadmap"    },
+            { label: "FAQ",         href: "#faq"        },
+            { label: "Whitepaper",  href: "#"           },
+          ].map(({ label, href }) => (
             <a
               key={label}
-              href="#"
-              className={`text-[14px] font-medium transition-colors whitespace-nowrap ${
-                active
-                  ? "text-white font-semibold"
-                  : "text-white/60 hover:text-white"
-              }`}
+              href={href}
+              onClick={(e) => {
+                if (href.startsWith("#") && href.length > 1) {
+                  e.preventDefault();
+                  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="text-[14px] font-medium transition-colors whitespace-nowrap text-white/60 hover:text-white"
             >
               {label}
             </a>
