@@ -504,7 +504,7 @@ export default function Home() {
           <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full py-20 flex-1 flex flex-col">
 
             {/* ── Centered heading ── */}
-            <div className="text-center mb-20">
+            <div className="text-center mb-20 text-[32px]">
               <div className="inline-flex items-baseline gap-0 mb-6">
                 <span
                   className="font-serif italic text-7xl lg:text-8xl leading-none"
