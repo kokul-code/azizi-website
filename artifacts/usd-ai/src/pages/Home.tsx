@@ -897,32 +897,22 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Heading overlay — sits at the bottom of the globe area */}
-            <div className="absolute bottom-0 left-0 right-0 z-10 text-center pb-10" style={{
-              background: "linear-gradient(to top, #0A0806 0%, rgba(10,8,6,0.85) 45%, transparent 100%)",
+            {/* Heading overlay — centered over lower globe */}
+            <div className="absolute bottom-0 left-0 right-0 z-10 text-center pb-14" style={{
+              background: "linear-gradient(to top, #0A0806 0%, rgba(10,8,6,0.92) 38%, transparent 100%)",
             }}>
-              <div className="mb-2">
-                <span className="text-[13px] tracking-[0.45em] uppercase font-medium" style={{ color: "rgba(200,146,42,0.75)" }}>
-                  Our Journey
-                </span>
-              </div>
-              <div className="inline-flex items-end gap-0 leading-none mb-4">
-                <span className="font-sans font-black uppercase"
-                  style={{ fontSize: "clamp(52px, 7.5vw, 96px)", letterSpacing: "0.04em", color: "#ffffff" }}>
-                  ROAD
-                </span>
-                <span className="font-sans font-black uppercase"
-                  style={{ fontSize: "clamp(52px, 7.5vw, 96px)", letterSpacing: "0.04em", color: "#C8922A" }}>
-                  MAP
-                </span>
-              </div>
-              <div className="flex items-center justify-center gap-5">
-                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.4)" }} />
-                <span className="text-[13px] tracking-[0.3em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  The Evolution of Azizi Global Group
-                </span>
-                <div className="h-px w-20" style={{ background: "rgba(200,146,42,0.4)" }} />
-              </div>
+              <p
+                className="font-sans font-bold uppercase tracking-[0.4em] text-white mb-3"
+                style={{ fontSize: "17px", letterSpacing: "0.4em" }}
+              >
+                ROADMAP
+              </p>
+              <p
+                className="font-sans uppercase tracking-[0.22em] font-medium"
+                style={{ fontSize: "12px", color: "#C8922A", letterSpacing: "0.28em" }}
+              >
+                The Process of Our DeFi Program
+              </p>
             </div>
           </div>
 
@@ -933,23 +923,23 @@ export default function Home() {
             <div className="flex items-start gap-0 lg:gap-4">
 
               {/* Left column: phase list */}
-              <div className="hidden lg:flex flex-col w-[36%] pr-6 pt-1">
+              <div className="hidden lg:flex flex-col w-[36%] pr-8 pt-1">
                 {ROADMAP.map((item, i) => (
                   <button
                     key={item.phase}
                     onClick={() => setRoadmapActive(i)}
-                    className="text-right flex flex-col items-end pb-0 cursor-pointer group"
-                    style={{ minHeight: "72px" }}
+                    className="text-right flex flex-col items-end cursor-pointer"
+                    style={{ minHeight: "80px" }}
                   >
                     <span
-                      className="text-[13px] font-bold tracking-[0.18em] uppercase transition-colors duration-200 leading-none mb-1"
-                      style={{ color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.75)" }}
+                      className="text-[12px] font-bold tracking-[0.22em] uppercase transition-colors duration-200 leading-none mb-1.5"
+                      style={{ color: roadmapActive === i ? "#ffffff" : "rgba(255,255,255,0.60)" }}
                     >
                       {item.title}
                     </span>
                     <span
-                      className="text-[12px] tracking-[0.15em] uppercase transition-colors duration-200"
-                      style={{ color: roadmapActive === i ? "rgba(200,146,42,0.7)" : "rgba(255,255,255,0.30)" }}
+                      className="text-[11px] tracking-[0.18em] uppercase transition-colors duration-200"
+                      style={{ color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.28)" }}
                     >
                       {item.date}
                     </span>
@@ -958,31 +948,30 @@ export default function Home() {
               </div>
 
               {/* Center: vertical line + numbered circles */}
-              <div className="flex flex-col items-center" style={{ width: "64px", flexShrink: 0 }}>
+              <div className="flex flex-col items-center" style={{ width: "60px", flexShrink: 0 }}>
                 {ROADMAP.map((item, i) => (
                   <div key={item.phase} className="flex flex-col items-center">
                     {/* Number bubble */}
                     <button
                       onClick={() => setRoadmapActive(i)}
-                      className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-10 relative"
+                      className="w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-10 relative"
                       style={{
                         background: roadmapActive === i
-                          ? "linear-gradient(135deg, #C8922A, #A07018)"
+                          ? "rgba(255,255,255,0.12)"
                           : "rgba(255,255,255,0.06)",
                         border: roadmapActive === i
-                          ? "none"
-                          : "1px solid rgba(200,146,42,0.3)",
+                          ? "1px solid rgba(200,146,42,0.6)"
+                          : "1px solid rgba(255,255,255,0.18)",
                         boxShadow: roadmapActive === i
-                          ? "0 0 20px rgba(200,146,42,0.45), 0 0 6px rgba(200,146,42,0.3)"
+                          ? "0 0 16px rgba(200,146,42,0.30)"
                           : "none",
-                        color: roadmapActive === i ? "#0A0806" : "rgba(200,146,42,0.7)",
-                        fontWeight: 800,
-                        fontSize: "13px",
+                        color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.55)",
+                        fontWeight: 700,
+                        fontSize: "15px",
                         fontFamily: "sans-serif",
-                        letterSpacing: "0.02em",
                       }}
                     >
-                      {item.phase}
+                      {i + 1}
                     </button>
                     {/* Connector line */}
                     {i < ROADMAP.length - 1 && (
@@ -990,10 +979,10 @@ export default function Home() {
                         className="transition-all duration-300"
                         style={{
                           width: "1px",
-                          height: "32px",
+                          height: "34px",
                           background: i < roadmapActive
-                            ? "linear-gradient(to bottom, #C8922A, rgba(200,146,42,0.4))"
-                            : "rgba(255,255,255,0.12)",
+                            ? "rgba(200,146,42,0.5)"
+                            : "rgba(255,255,255,0.14)",
                         }}
                       />
                     )}
@@ -1016,34 +1005,32 @@ export default function Home() {
                         color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.55)",
                       }}
                     >
-                      {item.phase}
+                      {i + 1}
                     </button>
                   ))}
                 </div>
 
                 {/* Active phase detail panel */}
                 <div key={roadmapActive} style={{ minHeight: "340px" }}>
-                  <div className="mb-5">
-                    <span
-                      className="text-[12px] tracking-[0.3em] uppercase font-semibold"
-                      style={{ color: "rgba(200,146,42,0.8)" }}
-                    >
-                      {ROADMAP[roadmapActive].date}
-                    </span>
-                  </div>
+                  <p
+                    className="text-[11px] tracking-[0.3em] uppercase font-semibold mb-3"
+                    style={{ color: "rgba(200,146,42,0.85)" }}
+                  >
+                    {ROADMAP[roadmapActive].date}
+                  </p>
                   <h3
-                    className="font-sans font-black uppercase mb-8 leading-none"
+                    className="font-sans font-bold uppercase mb-6 leading-tight"
                     style={{
-                      fontSize: "clamp(28px, 3.5vw, 48px)",
-                      letterSpacing: "0.04em",
+                      fontSize: "clamp(18px, 2.2vw, 26px)",
+                      letterSpacing: "0.10em",
                       color: "#ffffff",
                     }}
                   >
                     {ROADMAP[roadmapActive].title}
                   </h3>
                   <p
-                    className="text-[16px] leading-[1.9]"
-                    style={{ color: "rgba(255,255,255,0.72)", maxWidth: "540px" }}
+                    className="text-[15px] leading-[1.85]"
+                    style={{ color: "rgba(255,255,255,0.68)", maxWidth: "520px" }}
                   >
                     {ROADMAP[roadmapActive].body}
                   </p>
@@ -1051,11 +1038,11 @@ export default function Home() {
                   {/* Progress bar */}
                   <div className="mt-10">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-[12px] tracking-[0.2em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      <span className="text-[11px] tracking-[0.22em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>
                         Progress
                       </span>
-                      <span className="text-[12px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#C8922A" }}>
-                        Phase {parseInt(ROADMAP[roadmapActive].phase)} of {ROADMAP.length}
+                      <span className="text-[11px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#C8922A" }}>
+                        Phase {roadmapActive + 1} of {ROADMAP.length}
                       </span>
                     </div>
                     <div className="h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }}>
