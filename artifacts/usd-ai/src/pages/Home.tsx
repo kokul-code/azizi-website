@@ -244,7 +244,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif tracking-tight text-white mb-10 text-5xl lg:text-6xl"
+                className="font-serif tracking-tight text-white mb-10 lg:text-6xl text-[36px]"
               >
                 On-chain capital for the borderless economy.
               </motion.h1>
