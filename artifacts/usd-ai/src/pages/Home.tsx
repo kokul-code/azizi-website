@@ -1035,27 +1035,6 @@ export default function Home() {
                     {ROADMAP[roadmapActive].body}
                   </p>
 
-                  {/* Progress bar */}
-                  <div className="mt-10">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-[11px] tracking-[0.22em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>
-                        Progress
-                      </span>
-                      <span className="text-[11px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#C8922A" }}>
-                        Phase {roadmapActive + 1} of {ROADMAP.length}
-                      </span>
-                    </div>
-                    <div className="h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }}>
-                      <div
-                        className="h-full transition-all duration-500"
-                        style={{
-                          width: `${((roadmapActive + 1) / ROADMAP.length) * 100}%`,
-                          background: "linear-gradient(90deg, #C8922A, rgba(200,146,42,0.5))",
-                        }}
-                      />
-                    </div>
-                  </div>
-
                   {/* Nav arrows */}
                   <div className="flex items-center gap-4 mt-8">
                     <button
