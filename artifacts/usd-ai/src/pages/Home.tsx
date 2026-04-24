@@ -383,7 +383,7 @@ export default function Home() {
         </section>
 
         {/* ── KEY FEATURES SECTION ── */}
-        <section className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806" }}>
+        <section className="relative flex flex-col" style={{ background: "#0A0806" }}>
           {/* Top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -393,10 +393,10 @@ export default function Home() {
               Why Azizi Global
             </span>
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <h2 className="font-serif text-5xl lg:text-6xl text-white leading-tight max-w-xl">
+              <h2 className="font-serif text-4xl lg:text-5xl text-white leading-tight max-w-xl">
                 Infrastructure built for the next era of capital markets.
               </h2>
-              <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
+              <p className="text-white/50 text-[14px] leading-relaxed max-w-sm lg:text-right">
                 Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
               </p>
             </div>
@@ -471,9 +471,9 @@ export default function Home() {
                     className="max-w-xl"
                   >
                     {/* Tag + rule + number */}
-                    <div className="flex items-center gap-5 mb-10">
+                    <div className="flex items-center gap-4 mb-8">
                       <span
-                        className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border flex-shrink-0"
+                        className="text-[11px] font-bold tracking-[0.25em] uppercase px-3 py-1.5 rounded-full border flex-shrink-0"
                         style={{
                           color: FEATURES[activeFeature].tagColor,
                           borderColor: FEATURES[activeFeature].tagBorder,
@@ -484,7 +484,7 @@ export default function Home() {
                       </span>
                       <div className="flex-1 h-px" style={{ background: FEATURES[activeFeature].tagBorder }} />
                       <span
-                        className="font-serif text-5xl leading-none select-none flex-shrink-0"
+                        className="font-serif text-4xl leading-none select-none flex-shrink-0"
                         style={{ color: FEATURES[activeFeature].tagBg.replace("0.1", "0.4") }}
                       >
                         {FEATURES[activeFeature].num}
@@ -492,17 +492,17 @@ export default function Home() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-serif text-5xl xl:text-6xl text-white mb-7 leading-[1.1]">
+                    <h3 className="font-serif text-3xl lg:text-4xl text-white mb-6 leading-snug">
                       {FEATURES[activeFeature].title}
                     </h3>
 
                     {/* Body */}
-                    <p className="text-white/65 text-[17px] leading-[2] max-w-md">
+                    <p className="text-white/65 text-[15px] leading-[1.85] max-w-md">
                       {FEATURES[activeFeature].body}
                     </p>
 
                     {/* Accent rule */}
-                    <div className="mt-12 flex items-center gap-4">
+                    <div className="mt-10 flex items-center gap-4">
                       <div className="w-12 h-px" style={{ background: FEATURES[activeFeature].accentLine }} />
                       <span className="text-[13px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.38)" }}>
                         {FEATURES[activeFeature].sub}
