@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm --filter @workspace/usd-ai run build",
+  "outputDirectory": "artifacts/usd-ai/dist/public",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
