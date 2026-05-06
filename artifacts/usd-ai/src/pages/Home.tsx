@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { PieChart, Pie, Cell, Sector } from "recharts";
 import Header from "@/components/layout/Header";
@@ -239,6 +239,16 @@ export default function Home() {
     offset: ["start start", "end start"],
   });
   const globeParallaxY = useTransform(roadmapScroll, [0, 1], ["0%", "-32%"]);
+
+  // Scroll-driven roadmap phase: globe occupies ~first 42%, timeline spans rest
+  useMotionValueEvent(roadmapScroll, "change", (p) => {
+    if (p < 0.40) return; // still in globe hero
+    const phase = Math.min(
+      Math.round(((p - 0.42) / 0.54) * (ROADMAP.length - 1)),
+      ROADMAP.length - 1
+    );
+    setRoadmapActive(Math.max(0, phase));
+  });
 
   // ── Video state
   const [currentIdx, setCurrentIdx] = useState(0);
