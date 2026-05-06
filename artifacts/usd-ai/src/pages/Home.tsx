@@ -852,7 +852,7 @@ export default function Home() {
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
           {/* ── GLOBE HERO with parallax ── */}
-          <div className="relative overflow-hidden" style={{ height: "72vh", minHeight: "400px" }}>
+          <div className="relative overflow-hidden" style={{ height: isMobile ? "calc(96vw + 80px)" : "72vh", minHeight: isMobile ? "340px" : "400px" }}>
             <motion.div
               style={{ y: globeParallaxY }}
               className="absolute inset-0 flex flex-col items-center"
@@ -1067,24 +1067,6 @@ export default function Home() {
 
               {/* Right column: expanded detail */}
               <div className="flex-1 pl-6 lg:pl-8 pt-0">
-                {/* Mobile phase list */}
-                <div className="flex lg:hidden flex-wrap gap-3 mb-8">
-                  {ROADMAP.map((item, i) => (
-                    <button
-                      key={item.phase}
-                      onClick={() => setRoadmapActive(i)}
-                      className="text-[12px] tracking-[0.12em] uppercase font-bold px-3 py-1.5 rounded-full transition-all duration-200"
-                      style={{
-                        background: roadmapActive === i ? "rgba(200,146,42,0.2)" : "rgba(255,255,255,0.04)",
-                        border: roadmapActive === i ? "1px solid rgba(200,146,42,0.6)" : "1px solid rgba(255,255,255,0.10)",
-                        color: roadmapActive === i ? "#C8922A" : "rgba(255,255,255,0.55)",
-                      }}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                </div>
-
                 {/* Active phase detail panel */}
                 <div key={roadmapActive} style={{ minHeight: isMobile ? "220px" : "340px" }}>
                   <p
