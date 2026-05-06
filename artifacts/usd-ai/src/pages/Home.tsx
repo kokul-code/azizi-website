@@ -271,15 +271,20 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
             </motion.div>
-            {/* Top veil: ensures header/logo stays readable over any video colour */}
+            {/* Top veil: ensures header/logo stays readable */}
             <div
               className="absolute inset-x-0 top-0 z-10 pointer-events-none"
               style={{ height: "160px", background: "linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, transparent 100%)" }}
             />
+            {/* Left text-backing: darkens only the left 65% where content lives */}
+            <div
+              className="absolute inset-y-0 left-0 z-10 pointer-events-none"
+              style={{ width: "65%", background: "linear-gradient(to right, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.22) 60%, transparent 100%)" }}
+            />
             {/* Bottom text-contrast layer */}
             <div
               className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
-              style={{ height: "220px", background: "linear-gradient(to top, rgba(0,0,0,0.38) 0%, transparent 100%)" }}
+              style={{ height: "200px", background: "linear-gradient(to top, rgba(0,0,0,0.38) 0%, transparent 100%)" }}
             />
           </div>
 
@@ -297,6 +302,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="font-serif tracking-tight text-white mb-10 text-[36px]"
+                style={{ textShadow: "0 2px 16px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.9)" }}
               >
                 On-chain capital for the borderless economy.
               </motion.h1>
@@ -307,6 +313,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="grid grid-cols-2 gap-x-6 gap-y-3 sm:flex sm:flex-wrap sm:items-center sm:gap-0 text-[13px] font-semibold tracking-[0.12em] uppercase"
+                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
               >
                 {[
                   ["CURRENT APR", "7.11%"],
