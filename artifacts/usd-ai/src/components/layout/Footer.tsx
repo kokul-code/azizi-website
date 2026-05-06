@@ -38,11 +38,11 @@ export default function Footer() {
   return (
     <footer style={{ background: "#07060A", borderTop: "1px solid rgba(200,146,42,0.25)" }}>
       {/* Main grid */}
-      <div className="max-w-[1320px] mx-auto px-8 pt-20 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-12 lg:gap-8">
+      <div className="max-w-[1320px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-10 sm:pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-10 lg:gap-8">
 
           {/* Brand column */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 sm:col-span-2 lg:col-span-1">
             <Link href="/">
               <img
                 src="/logo.png"

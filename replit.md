@@ -37,7 +37,17 @@ Marketing site for Azizi Global Group / USD-AI — on-chain capital and Web4.0 i
 
 ## Product
 
-Single landing page with hero, stats, partner logos, and informational sections about Azizi's on-chain product.
+Single landing page with hero, stats, partner logos, About (vision/mission), key Features (sticky stacking cards), Tokenomics (interactive donut chart + table), Roadmap (globe + timeline), and FAQ accordion. Fully responsive — mobile hamburger menu, 2-column stats grid, adaptive chart sizing, scaled globe SVG.
+
+## User preferences
+
+- Mobile-first responsive design; all sections must work on 390px+ screens.
+
+## Gotchas
+
+- Key Features sticky stacking uses `isMobile` state (< 1024px) to toggle between sticky/auto layout — do not remove.
+- Tokenomics PieChart dimensions are driven by `chartSize` state measured from a container ref — keep ref on the chart container div.
+- Globe SVG uses CSS `width: min(1000px, 96vw)` + `height: auto` for scaling — do NOT add fixed `width`/`height` attributes back.
 
 ## Pointers
 

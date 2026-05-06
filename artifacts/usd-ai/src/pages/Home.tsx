@@ -146,6 +146,30 @@ export default function Home() {
   // ── FAQ state
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
 
+  // ── Mobile detection (< lg = 1024px)
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // ── Tokenomics chart responsive size
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const [chartSize, setChartSize] = useState(400);
+  useEffect(() => {
+    const measure = () => {
+      if (chartContainerRef.current) {
+        const w = chartContainerRef.current.offsetWidth;
+        setChartSize(Math.min(400, Math.max(240, w)));
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
   // ── Key Features sticky header measurement
   const featureHeadRef = useRef<HTMLDivElement>(null);
   const [featureTop, setFeatureTop] = useState(0);
@@ -254,7 +278,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-0 text-[13px] font-semibold tracking-[0.12em] uppercase"
+                className="grid grid-cols-2 gap-x-6 gap-y-3 sm:flex sm:flex-wrap sm:items-center sm:gap-0 text-[13px] font-semibold tracking-[0.12em] uppercase"
               >
                 {[
                   ["CURRENT APR", "7.11%"],
@@ -262,8 +286,8 @@ export default function Home() {
                   ["TOTAL DEPOSITS", "$344M"],
                   ["USERS", "73,907"],
                 ].map(([label, value], i) => (
-                  <span key={label} className="inline-flex items-center shrink-0">
-                    {i > 0 && <span className="mx-4 text-white/40">|</span>}
+                  <span key={label} className="inline-flex items-center">
+                    {i > 0 && <span className="hidden sm:inline mx-4 text-white/40">|</span>}
                     <span className="text-white/65 mr-1.5 text-[12px]">{label}:</span>
                     <span className="text-white">{value}</span>
                   </span>
@@ -344,7 +368,7 @@ export default function Home() {
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
           {/* ── HEADER BAND ── */}
-          <motion.div style={{ y: aboutHeadY, opacity: aboutHeadO }} className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16 shrink-0">
+          <motion.div style={{ y: aboutHeadY, opacity: aboutHeadO }} className="relative z-10 max-w-[1320px] mx-auto px-5 sm:px-8 w-full pt-14 sm:pt-20 pb-10 sm:pb-16 shrink-0">
             <span
               className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5"
               style={{ color: "#C8922A" }}
@@ -352,7 +376,7 @@ export default function Home() {
               About Us
             </span>
             <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-24">
-              <h2 className="font-serif text-5xl lg:text-6xl leading-[1.1] text-white lg:max-w-xl">
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-white lg:max-w-xl">
                 Redefining digital finance for a borderless world.
               </h2>
               <div className="lg:max-w-md pb-1">
@@ -368,7 +392,7 @@ export default function Home() {
           {/* ── VISION ROW ── image left, text right */}
           <div className="relative flex flex-col lg:flex-row flex-1 min-h-0" style={{ borderBottom: "1px solid rgba(200,146,42,0.12)" }}>
             {/* Image with parallax */}
-            <div className="relative lg:w-1/2 h-72 lg:h-auto overflow-hidden">
+            <div className="relative lg:w-1/2 h-64 sm:h-72 lg:h-auto overflow-hidden">
               <motion.img
                 style={{ y: visionImgY, scale: 1.12, filter: "brightness(0.75) saturate(1.1)" }}
                 src="/about-vision.png"
@@ -380,7 +404,7 @@ export default function Home() {
               <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #0A0806 0%, transparent 30%)" }} />
             </div>
             {/* Text */}
-            <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-12">
+            <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-10 sm:py-12">
               <div className="flex items-center gap-4 mb-6">
                 <span
                   className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
@@ -391,7 +415,7 @@ export default function Home() {
                 <div className="flex-1 h-px" style={{ background: "rgba(200,146,42,0.25)" }} />
                 <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,146,42,0.2)" }}>01</span>
               </div>
-              <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
                 A world where capital flows as freely as information.
               </h3>
               <p className="text-white/60 text-[16px] leading-[1.9] max-w-lg">
@@ -407,7 +431,7 @@ export default function Home() {
           {/* ── MISSION ROW ── text left, image right */}
           <div className="relative flex flex-col-reverse lg:flex-row flex-1 min-h-0">
             {/* Text */}
-            <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-12">
+            <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-10 sm:py-12">
               <div className="flex items-center gap-4 mb-6">
                 <span
                   className="text-[12px] font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full border"
@@ -418,7 +442,7 @@ export default function Home() {
                 <div className="flex-1 h-px" style={{ background: "rgba(200,80,80,0.25)" }} />
                 <span className="font-serif text-5xl leading-none select-none" style={{ color: "rgba(200,80,80,0.2)" }}>02</span>
               </div>
-              <h3 className="font-serif text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
                 Build the rails for on-chain capital markets that trust no intermediary.
               </h3>
               <p className="text-white/60 text-[16px] leading-[1.9] max-w-lg">
@@ -457,12 +481,12 @@ export default function Home() {
             style={{ position: "sticky", top: 0, zIndex: 20, background: "#0A0806" }}
           >
             <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
-            <div className="max-w-[1320px] mx-auto px-8 w-full pt-20 pb-16">
+            <div className="max-w-[1320px] mx-auto px-5 sm:px-8 w-full pt-14 sm:pt-20 pb-12 sm:pb-16">
               <span className="inline-block text-[13px] font-semibold tracking-[0.28em] uppercase mb-5" style={{ color: "#C8922A" }}>
                 Why Azizi Global
               </span>
               <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-                <h2 className="font-serif text-5xl lg:text-6xl text-white leading-tight max-w-xl">
+                <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-tight max-w-xl">
                   Infrastructure built for the next era of capital markets.
                 </h2>
                 <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
@@ -545,10 +569,10 @@ export default function Home() {
               key={f.num}
               className="flex flex-col lg:flex-row items-stretch overflow-hidden"
               style={{
-                position: "sticky",
-                top: featureTop,
+                position: isMobile ? "relative" : "sticky",
+                top: isMobile ? undefined : featureTop,
                 zIndex: i + 1,
-                height: featureTop > 0 ? `calc(100vh - ${featureTop}px)` : "60vh",
+                height: isMobile ? "auto" : (featureTop > 0 ? `calc(100vh - ${featureTop}px)` : "60vh"),
                 background: "#0A0806",
                 borderTop: "1px solid rgba(200,146,42,0.12)",
               }}
@@ -556,7 +580,7 @@ export default function Home() {
               {/* Image side */}
               <div
                 className={`relative overflow-hidden lg:w-[52%] ${f.imgRight ? "lg:order-2" : "lg:order-1"}`}
-                style={{ height: "100%" }}
+                style={{ height: isMobile ? "260px" : "100%" }}
               >
                 <img
                   src={f.img}
@@ -584,7 +608,7 @@ export default function Home() {
 
               {/* Text side */}
               <div
-                className={`lg:w-[48%] flex flex-col justify-center px-10 py-14 lg:py-0 lg:px-16 ${f.imgRight ? "lg:order-1" : "lg:order-2"}`}
+                className={`lg:w-[48%] flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:py-0 lg:px-16 ${f.imgRight ? "lg:order-1" : "lg:order-2"}`}
                 style={{ background: "rgba(255,255,255,0.018)" }}
               >
                 <div className="flex items-center gap-4 mb-7">
@@ -627,7 +651,7 @@ export default function Home() {
           {/* Top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full py-20 flex-1 flex flex-col">
+          <div className="relative z-10 max-w-[1320px] mx-auto px-5 sm:px-8 w-full py-14 sm:py-20 flex-1 flex flex-col">
 
             {/* ── Centered heading ── */}
             <div className="text-center mb-20">
@@ -643,7 +667,7 @@ export default function Home() {
                 <span
                   className="font-sans font-black uppercase leading-none"
                   style={{
-                    fontSize: "clamp(64px, 9vw, 110px)",
+                    fontSize: "clamp(32px, 8vw, 110px)",
                     letterSpacing: "0.04em",
                     color: "#ffffff",
                   }}
@@ -653,7 +677,7 @@ export default function Home() {
                 <span
                   className="font-sans font-black uppercase leading-none"
                   style={{
-                    fontSize: "clamp(64px, 9vw, 110px)",
+                    fontSize: "clamp(32px, 8vw, 110px)",
                     letterSpacing: "0.04em",
                     color: "#C8922A",
                   }}
@@ -674,15 +698,15 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 flex-1">
 
               {/* Donut chart */}
-              <div className="lg:w-[45%] flex justify-center items-center">
-                <div className="relative" style={{ width: 400, height: 400 }}>
-                  <PieChart width={400} height={400}>
+              <div className="lg:w-[45%] w-full flex justify-center items-center" ref={chartContainerRef}>
+                <div className="relative" style={{ width: chartSize, height: chartSize }}>
+                  <PieChart width={chartSize} height={chartSize}>
                     <Pie
                       data={TOKENOMICS.map(d => ({ ...d, value: d.pct }))}
-                      cx={200}
-                      cy={200}
-                      innerRadius={118}
-                      outerRadius={162}
+                      cx={chartSize / 2}
+                      cy={chartSize / 2}
+                      innerRadius={Math.round(chartSize * 0.295)}
+                      outerRadius={Math.round(chartSize * 0.405)}
                       paddingAngle={2}
                       dataKey="value"
                       activeIndex={tokenActiveIdx ?? undefined}
@@ -740,7 +764,7 @@ export default function Home() {
                 <div
                   className="grid py-4 mb-1"
                   style={{
-                    gridTemplateColumns: "1fr 90px 150px",
+                    gridTemplateColumns: isMobile ? "1fr 54px 106px" : "1fr 90px 150px",
                     borderBottom: "1px solid rgba(200,146,42,0.25)",
                   }}
                 >
@@ -755,7 +779,7 @@ export default function Home() {
                     key={item.name}
                     className="grid py-5 cursor-default rounded-lg px-3 -mx-3 transition-all duration-200"
                     style={{
-                      gridTemplateColumns: "1fr 90px 150px",
+                      gridTemplateColumns: isMobile ? "1fr 54px 106px" : "1fr 90px 150px",
                       borderBottom: i < TOKENOMICS.length - 1 ? "1px solid rgba(255,255,255,0.10)" : "none",
                       background: tokenActiveIdx === i ? "rgba(255,255,255,0.05)" : "transparent",
                     }}
@@ -804,7 +828,7 @@ export default function Home() {
                 <div
                   className="grid py-5 px-3 -mx-3 mt-1 rounded-lg"
                   style={{
-                    gridTemplateColumns: "1fr 90px 150px",
+                    gridTemplateColumns: isMobile ? "1fr 54px 106px" : "1fr 90px 150px",
                     borderTop: "1px solid rgba(200,146,42,0.3)",
                     background: "rgba(200,146,42,0.06)",
                   }}
@@ -828,7 +852,7 @@ export default function Home() {
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
           {/* ── GLOBE HERO with parallax ── */}
-          <div className="relative overflow-hidden" style={{ height: "72vh", minHeight: "560px" }}>
+          <div className="relative overflow-hidden" style={{ height: "72vh", minHeight: "400px" }}>
             <motion.div
               style={{ y: globeParallaxY }}
               className="absolute inset-0 flex flex-col items-center"
@@ -836,10 +860,8 @@ export default function Home() {
               {/* Globe SVG */}
               <div className="relative flex justify-center" style={{ marginTop: "-5%" }}>
                 <svg
-                  width="1000"
-                  height="1000"
                   viewBox="0 0 1000 1000"
-                  style={{ position: "relative", zIndex: 1, overflow: "visible" }}
+                  style={{ width: "min(1000px, 96vw)", height: "auto", position: "relative", zIndex: 1, overflow: "visible" }}
                 >
                   <defs>
                     {/* Sphere base gradient */}
@@ -970,7 +992,7 @@ export default function Home() {
           </div>
 
           {/* ── Timeline content ── */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-8 w-full pt-12 pb-24">
+          <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-8 w-full pt-12 pb-16 sm:pb-24">
 
             {/* ── Timeline ── */}
             <div className="flex items-start gap-0 lg:gap-4">
@@ -1064,7 +1086,7 @@ export default function Home() {
                 </div>
 
                 {/* Active phase detail panel */}
-                <div key={roadmapActive} style={{ minHeight: "340px" }}>
+                <div key={roadmapActive} style={{ minHeight: isMobile ? "220px" : "340px" }}>
                   <p
                     className="text-[11px] tracking-[0.3em] uppercase font-semibold mb-3"
                     style={{ color: "rgba(200,146,42,0.85)" }}
