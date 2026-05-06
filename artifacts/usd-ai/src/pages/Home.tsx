@@ -240,11 +240,15 @@ export default function Home() {
   });
   const globeParallaxY = useTransform(roadmapScroll, [0, 1], ["0%", "-32%"]);
 
-  // Scroll-driven roadmap phase: globe occupies ~first 42%, timeline spans rest
-  useMotionValueEvent(roadmapScroll, "change", (p) => {
-    if (p < 0.40) return; // still in globe hero
+  // Scroll-driven roadmap: track the timeline content div independently
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: timelineScroll } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"],
+  });
+  useMotionValueEvent(timelineScroll, "change", (p) => {
     const phase = Math.min(
-      Math.round(((p - 0.42) / 0.54) * (ROADMAP.length - 1)),
+      Math.round(p * (ROADMAP.length - 1)),
       ROADMAP.length - 1
     );
     setRoadmapActive(Math.max(0, phase));
@@ -1058,7 +1062,7 @@ export default function Home() {
           </div>
 
           {/* ── Timeline content ── */}
-          <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-8 w-full pt-12 pb-16 sm:pb-24">
+          <div ref={timelineRef} className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-8 w-full pt-12 pb-16 sm:pb-24">
 
             {/* ── Timeline ── */}
             <div className="flex items-start gap-0 lg:gap-4">
