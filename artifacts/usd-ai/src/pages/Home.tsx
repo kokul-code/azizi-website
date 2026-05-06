@@ -6,14 +6,52 @@ import Footer from "@/components/layout/Footer";
 import { Shield, ArrowUpRight, Search, FileText, LogOut } from "lucide-react";
 
 const TOKENOMICS = [
-  { name: "Liquidity (DEX Pools)",    pct: 25, tokens: "250,000,000", color: "#C8922A" },
-  { name: "Community & Rewards",       pct: 20, tokens: "200,000,000", color: "#E8C55A" },
-  { name: "Team & Founders",           pct: 15, tokens: "150,000,000", color: "#C85050" },
-  { name: "Investors (Seed/Private)",  pct: 15, tokens: "150,000,000", color: "#A03838" },
-  { name: "Treasury",                  pct: 10, tokens: "100,000,000", color: "#6B8B8B" },
-  { name: "Ecosystem Growth",          pct: 10, tokens: "100,000,000", color: "#4A7A6A" },
-  { name: "Airdrop",                   pct:  5, tokens:  "50,000,000", color: "#9B7040" },
+  { name: "Liquidity (DEX Pools)",    pct: 25, tokens: "250,000,000", tokensNum: 250000000, color: "#C8922A" },
+  { name: "Community & Rewards",       pct: 20, tokens: "200,000,000", tokensNum: 200000000, color: "#E8C55A" },
+  { name: "Team & Founders",           pct: 15, tokens: "150,000,000", tokensNum: 150000000, color: "#C85050" },
+  { name: "Investors (Seed/Private)",  pct: 15, tokens: "150,000,000", tokensNum: 150000000, color: "#A03838" },
+  { name: "Treasury",                  pct: 10, tokens: "100,000,000", tokensNum: 100000000, color: "#6B8B8B" },
+  { name: "Ecosystem Growth",          pct: 10, tokens: "100,000,000", tokensNum: 100000000, color: "#4A7A6A" },
+  { name: "Airdrop",                   pct:  5, tokens:  "50,000,000", tokensNum:  50000000, color: "#9B7040" },
 ];
+
+function useCountUp(target: number, inView: boolean, duration = 1400, delay = 0) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let timeout: ReturnType<typeof setTimeout>;
+    let raf: number;
+    const start = () => {
+      const startTime = performance.now();
+      const tick = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        setValue(Math.round(eased * target));
+        if (progress < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    };
+    timeout = setTimeout(start, delay);
+    return () => { clearTimeout(timeout); cancelAnimationFrame(raf); };
+  }, [inView, target, duration, delay]);
+  return value;
+}
+
+function CountUp({ target, inView, duration = 1400, delay = 0, format }: {
+  target: number;
+  inView: boolean;
+  duration?: number;
+  delay?: number;
+  format?: (n: number) => string;
+}) {
+  const v = useCountUp(target, inView, duration, delay);
+  return <>{format ? format(v) : v}</>;
+}
+
+function fmtTokens(n: number) {
+  return n.toLocaleString("en-US");
+}
 
 const renderActiveShape = (props: any) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
@@ -139,6 +177,20 @@ export default function Home() {
 
   // ── Tokenomics chart state
   const [tokenActiveIdx, setTokenActiveIdx] = useState<number | null>(null);
+
+  // ── Tokenomics count-up: fires once when section enters viewport
+  const tokenomicsSectionRef = useRef<HTMLElement>(null);
+  const [tokenomicsInView, setTokenomicsInView] = useState(false);
+  useEffect(() => {
+    const el = tokenomicsSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTokenomicsInView(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // ── Roadmap state + parallax
   const [roadmapActive, setRoadmapActive] = useState(0);
@@ -647,7 +699,7 @@ export default function Home() {
         </section>
 
         {/* ── TOKENOMICS SECTION ── */}
-        <section id="tokenomics" className="relative overflow-hidden flex flex-col" style={{ background: "#4A1426", minHeight: "100vh" }}>
+        <section id="tokenomics" ref={tokenomicsSectionRef} className="relative overflow-hidden flex flex-col" style={{ background: "#4A1426", minHeight: "100vh" }}>
           {/* Top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -809,7 +861,7 @@ export default function Home() {
                         className="font-sans font-bold text-[20px] leading-none transition-colors duration-200"
                         style={{ color: item.color }}
                       >
-                        {item.pct}%
+                        <CountUp target={item.pct} inView={tokenomicsInView} delay={i * 90} />%
                       </span>
                     </div>
                     {/* Tokens */}
@@ -818,7 +870,7 @@ export default function Home() {
                         className="text-[14px] font-mono transition-colors duration-200"
                         style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.65)" }}
                       >
-                        {item.tokens}
+                        <CountUp target={item.tokensNum} inView={tokenomicsInView} delay={i * 90} format={fmtTokens} />
                       </span>
                     </div>
                   </div>
@@ -834,8 +886,12 @@ export default function Home() {
                   }}
                 >
                   <span className="text-[15px] font-bold tracking-wide text-white">Total Supply</span>
-                  <span className="font-sans font-bold text-[20px] text-center" style={{ color: "#C8922A" }}>100%</span>
-                  <span className="text-[14px] font-mono text-right text-white/85">1,000,000,000</span>
+                  <span className="font-sans font-bold text-[20px] text-center" style={{ color: "#C8922A" }}>
+                    <CountUp target={100} inView={tokenomicsInView} delay={TOKENOMICS.length * 90} />%
+                  </span>
+                  <span className="text-[14px] font-mono text-right text-white/85">
+                    <CountUp target={1000000000} inView={tokenomicsInView} delay={TOKENOMICS.length * 90} format={fmtTokens} />
+                  </span>
                 </div>
               </div>
 
