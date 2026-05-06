@@ -271,15 +271,6 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
             </motion.div>
-            {/* Primary gradient scrim: top-to-bottom for readability */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/20 to-black/65 pointer-events-none" />
-            {/* Corner vignette: darkens top-left for logo contrast */}
-            <div
-              className="absolute inset-0 z-10 pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse 45% 35% at 0% 0%, rgba(0,0,0,0.75) 0%, transparent 100%)",
-              }}
-            />
           </div>
 
           {/* Content wrapper — fills screen, with subtle parallax drift */}
