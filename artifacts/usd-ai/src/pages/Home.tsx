@@ -217,43 +217,8 @@ export default function Home() {
         <section
           ref={heroRef}
           className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
-          style={{ height: "calc(100vh - 2rem)" }}
+          style={{ height: "calc(100vh - 2rem)", background: "#ffffff" }}
         >
-          {/* Background video carousel with crossfade + parallax */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[130%] -top-[15%]">
-            {HERO_VIDEOS.map((src, idx) => {
-              const isActive = idx === currentIdx;
-              const isFading = idx === fadingOut;
-              return (
-                <video
-                  key={src}
-                  ref={(el) => { videoRefs.current[idx] = el; }}
-                  src={src}
-                  autoPlay={idx === 0}
-                  muted
-                  playsInline
-                  onEnded={isActive ? handleVideoEnd : undefined}
-                  className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1200ms]"
-                  style={{
-                    opacity: isActive ? 1 : isFading ? 0 : 0,
-                    zIndex: isActive ? 2 : isFading ? 1 : 0,
-                    pointerEvents: "none",
-                  }}
-                />
-              );
-            })}
-            </motion.div>
-            {/* Primary gradient scrim: top-to-bottom for readability */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
-            {/* Corner vignette: darkens top-left for logo contrast */}
-            <div
-              className="absolute inset-0 z-10 pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse 45% 35% at 0% 0%, rgba(0,0,0,0.75) 0%, transparent 100%)",
-              }}
-            />
-          </div>
 
           {/* Content wrapper — fills screen, with subtle parallax drift */}
           <motion.div style={{ y: heroContentY }} className="relative z-20 flex flex-col h-full max-w-[1320px] mx-auto px-6 w-full">
@@ -268,7 +233,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif tracking-tight text-white mb-10 text-[36px]"
+                className="font-serif tracking-tight text-[#2C0914] mb-10 text-[36px]"
               >
                 On-chain capital for the borderless economy.
               </motion.h1>
@@ -287,9 +252,9 @@ export default function Home() {
                   ["USERS", "73,907"],
                 ].map(([label, value], i) => (
                   <span key={label} className="inline-flex items-center">
-                    {i > 0 && <span className="hidden sm:inline mx-4 text-white/40">|</span>}
-                    <span className="text-white/65 mr-1.5 text-[12px]">{label}:</span>
-                    <span className="text-white">{value}</span>
+                    {i > 0 && <span className="hidden sm:inline mx-4 text-[#4A1426]/30">|</span>}
+                    <span className="text-[#4A1426]/55 mr-1.5 text-[12px]">{label}:</span>
+                    <span className="text-[#C8922A]">{value}</span>
                   </span>
                 ))}
               </motion.div>
@@ -302,39 +267,39 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.55 }}
               className="mb-20"
             >
-              <p className="text-[13px] font-semibold tracking-[0.15em] uppercase text-white/65 mb-4 text-center">
+              <p className="text-[13px] font-semibold tracking-[0.15em] uppercase text-[#4A1426]/45 mb-4 text-center">
                 Trusted by global institutions
               </p>
               {/* Wider ticker strip — break out of container padding */}
               <div className="overflow-hidden relative -mx-6">
                 {/* Fade edges */}
-                <div className="absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-black/40 to-transparent pointer-events-none" />
-                <div className="absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-black/40 to-transparent pointer-events-none" />
+                <div className="absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
                 <div className="animate-ticker flex items-center whitespace-nowrap py-4">
                   {[...Array(2)].map((_, pass) => (
                     <span key={pass} className="inline-flex items-center">
                       {/* Framework */}
-                      <span className="inline-flex items-center mx-7 font-serif italic text-xl text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                      <span className="inline-flex items-center mx-7 font-serif italic text-xl text-[#2C0914]/50 hover:text-[#2C0914]/80 transition-colors cursor-default shrink-0">
                         Framework
                       </span>
                       {/* NVIDIA */}
-                      <span className="inline-flex items-center gap-2 mx-7 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                      <span className="inline-flex items-center gap-2 mx-7 text-[#2C0914]/50 hover:text-[#2C0914]/80 transition-colors cursor-default shrink-0">
                         <svg width="18" height="14" viewBox="0 0 18 14" fill="currentColor">
                           <polygon points="0,14 9,0 18,14" opacity="0.9" />
                         </svg>
                         <span className="text-sm font-semibold uppercase tracking-wider">NVIDIA</span>
-                        <span className="text-xs text-white/40 font-medium">Inception Program</span>
+                        <span className="text-xs text-[#4A1426]/35 font-medium">Inception Program</span>
                       </span>
                       {/* PayPal PYUSD */}
-                      <span className="inline-flex items-center gap-2 mx-7 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                      <span className="inline-flex items-center gap-2 mx-7 text-[#2C0914]/50 hover:text-[#2C0914]/80 transition-colors cursor-default shrink-0">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M20.067 7.301c.16-1.02.001-1.712-.553-2.34C18.828 4.178 17.42 4 15.61 4H9.893c-.392 0-.726.285-.787.672l-2.326 14.76a.472.472 0 00.466.544h3.393l-.22 1.397a.413.413 0 00.408.475h2.866c.344 0 .637-.25.69-.59l.029-.148.547-3.468.035-.19a.696.696 0 01.69-.59h.434c2.814 0 5.015-1.144 5.658-4.45.268-1.38.13-2.533-.582-3.341z" />
                         </svg>
                         <span className="text-sm font-semibold">PayPal</span>
-                        <span className="text-sm font-bold text-white/80">PYUSD</span>
+                        <span className="text-sm font-bold text-[#2C0914]/65">PYUSD</span>
                       </span>
                       {/* HYDRA */}
-                      <span className="inline-flex items-center gap-2 mx-7 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                      <span className="inline-flex items-center gap-2 mx-7 text-[#2C0914]/50 hover:text-[#2C0914]/80 transition-colors cursor-default shrink-0">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M8 1L2 5v6l6 4 6-4V5L8 1z" stroke="currentColor" strokeWidth="1.2" fill="none" />
                           <path d="M8 4l-3 2v4l3 2 3-2V6L8 4z" fill="currentColor" opacity="0.5" />
@@ -342,11 +307,11 @@ export default function Home() {
                         <span className="text-sm font-bold tracking-widest uppercase">HYDRA</span>
                       </span>
                       {/* Dragonfly */}
-                      <span className="inline-flex items-center mx-7 text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                      <span className="inline-flex items-center mx-7 text-[#2C0914]/50 hover:text-[#2C0914]/80 transition-colors cursor-default shrink-0">
                         <span className="text-sm font-bold tracking-widest uppercase">Dragonfly</span>
                       </span>
                       {/* Variant */}
-                      <span className="inline-flex items-center mx-7 font-serif text-xl text-white/65 hover:text-white/90 transition-colors cursor-default shrink-0">
+                      <span className="inline-flex items-center mx-7 font-serif text-xl text-[#2C0914]/50 hover:text-[#2C0914]/80 transition-colors cursor-default shrink-0">
                         Variant
                       </span>
                     </span>
@@ -394,7 +359,7 @@ export default function Home() {
             {/* Image with parallax */}
             <div className="relative lg:w-1/2 h-64 sm:h-72 lg:h-auto overflow-hidden">
               <motion.img
-                style={{ y: visionImgY, scale: 1.12, filter: "brightness(0.75) saturate(1.1)" }}
+                style={{ y: visionImgY, scale: 1.12, filter: "brightness(0.92) saturate(1.05)" }}
                 src="/about-vision.png"
                 alt="Vision"
                 className="w-full h-full object-cover"
