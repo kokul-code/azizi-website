@@ -1,2 +1,0 @@
-artifacts/usd-ai/public/hero-ocean.mp4 filter=lfs diff=lfs merge=lfs -text
-attached_assets/generated_videos/ocean_scenic.mp4 filter=lfs diff=lfs merge=lfs -text

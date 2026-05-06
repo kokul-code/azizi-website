@@ -1,0 +1,98 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "y8oQtf3hn1BGgolnv8Kzt"
+uri = "file://artifacts/usd-ai/public/hero-topography.png"
+type = "image"
+title = "Hero topography photo"
+
+[[generated]]
+id = "NPAjN4cG8S4PBLnaTInld"
+uri = "file://artifacts/usd-ai/public/globe.png"
+type = "image"
+title = "Globe illustration"
+
+[[generated]]
+id = "g1URX0B16nYkrQZ4gTbAQ"
+uri = "file://artifacts/usd-ai/public/piggy-bank.png"
+type = "image"
+title = "Piggy bank illustration"
+
+[[generated]]
+id = "ez5a4eff0B1DEAI7ZdK-b"
+uri = "file://artifacts/usd-ai/public/insight-1.png"
+type = "image"
+title = "Martini trophy"
+
+[[generated]]
+id = "PkPvwkD8VueSa2DOvYi_J"
+uri = "file://artifacts/usd-ai/public/insight-2.png"
+type = "image"
+title = "Typewriter close-up"
+
+[[generated]]
+id = "RUMp1CcnJhJQEWygT2P-C"
+uri = "file://artifacts/usd-ai/public/insight-3.png"
+type = "image"
+title = "Industrial GPU rack"
+
+[[generated]]
+id = "SnVOuDUdoZSrP3jmbx_i6"
+uri = "file://artifacts/usd-ai/public/insight-4.png"
+type = "image"
+title = "Piano keyboard"
+
+[[generated]]
+id = "kNw2GmuUU1RD1Z14r0r6d"
+uri = "file://artifacts/usd-ai/public/cabin-dusk.png"
+type = "image"
+title = "Cabin at dusk"
+
+[[generated]]
+id = "8uXIAny1p2PeqLnDuzycq"
+uri = "file://attached_assets/about-mission.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "AzI8OXn62ILd3c9xZpviV"
+uri = "file://attached_assets/about-vision.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "RqfOB0SY2ZS3zyxB9ZM5h"
+uri = "file://attached_assets/about-blockchain.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ux2xIaJhGbGdR5jIpAVHP"
+uri = "file://artifacts/usd-ai/public/feature-transparency.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "sVBsGuJkiIGJl7wyM4q7C"
+uri = "file://artifacts/usd-ai/public/feature-audited.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "CFGdNH-RmrYARL0xGbtgu"
+uri = "file://artifacts/usd-ai/public/feature-staking.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "RZLEoE-E65BjlA4DxoID5"
+uri = "file://artifacts/usd-ai/public/feature-vesting.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "lRgDQXSGnWzqvA02Y4XOz"
+uri = "file://artifacts/usd-ai/public/feature-wallets.png"
+type = "image"
+title = "generated_image"
