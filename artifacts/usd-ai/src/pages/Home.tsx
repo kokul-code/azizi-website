@@ -217,7 +217,7 @@ export default function Home() {
         <section
           ref={heroRef}
           className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
-          style={{ height: "calc(100vh - 2rem)", backgroundColor: "#000" }}
+          style={{ height: "calc(100vh - 2rem)" }}
         >
           {/* Background video carousel with crossfade + parallax */}
           <div className="absolute inset-0 z-0 overflow-hidden">
