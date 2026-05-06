@@ -740,7 +740,7 @@ export default function Home() {
               <div className="flex items-center justify-center gap-5">
                 <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
                 <span className="text-[13px] tracking-[0.3em] uppercase font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  Total Supply · 1,000,000,000 Tokens
+                  Total Supply · <CountUp target={1000000000} inView={tokenomicsInView} format={fmtTokens} /> Tokens
                 </span>
                 <div className="h-px w-24" style={{ background: "rgba(200,146,42,0.4)" }} />
               </div>
