@@ -36,7 +36,7 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#07060A", borderTop: "1px solid rgba(200,146,42,0.25)" }}>
+    <footer style={{ background: "#2C0914", borderTop: "1px solid rgba(200,146,42,0.25)" }}>
       {/* Main grid */}
       <div className="max-w-[1320px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-10 lg:gap-8">

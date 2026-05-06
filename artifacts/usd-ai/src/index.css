@@ -63,8 +63,8 @@ html {
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 40 30% 96%;
-  --foreground: 30 30% 15%;
+  --background: 342 58% 18%;
+  --foreground: 0 0% 94%;
   --border: 30 15% 85%;
   
   --card: 40 25% 92%;
@@ -149,7 +149,7 @@ html {
   }
 
   html, body {
-    background-color: hsl(40, 30%, 96%);
+    background-color: #4A1426;
   }
 
   body {

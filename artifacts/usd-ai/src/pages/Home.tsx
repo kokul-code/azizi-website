@@ -362,7 +362,7 @@ export default function Home() {
           id="about"
           ref={aboutRef}
           className="relative overflow-hidden flex flex-col"
-          style={{ background: "#0A0806", minHeight: "100vh" }}
+          style={{ background: "#4A1426", minHeight: "100vh" }}
         >
           {/* Gold top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
@@ -400,8 +400,8 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               {/* Gold overlay fade */}
-              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 60%, #0A0806 100%)" }} />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #0A0806 0%, transparent 30%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 60%, #4A1426 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #4A1426 0%, transparent 30%)" }} />
             </div>
             {/* Text */}
             <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-10 sm:py-12">
@@ -462,8 +462,8 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               {/* Red overlay fade */}
-              <div className="absolute inset-0" style={{ background: "linear-gradient(270deg, transparent 60%, #0A0806 100%)" }} />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #0A0806 0%, transparent 30%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(270deg, transparent 60%, #4A1426 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #4A1426 0%, transparent 30%)" }} />
             </div>
           </div>
 
@@ -472,13 +472,13 @@ export default function Home() {
         </section>
 
         {/* ── KEY FEATURES SECTION ── */}
-        <section className="relative flex flex-col" style={{ background: "#0A0806" }}>
+        <section className="relative flex flex-col" style={{ background: "#4A1426" }}>
           {/* Top border — part of the sticky header so it sticks too */}
 
           {/* Header band — sticky layer 1: stays pinned at top while features scroll */}
           <div
             ref={featureHeadRef}
-            style={{ position: "sticky", top: 0, zIndex: 20, background: "#0A0806" }}
+            style={{ position: "sticky", top: 0, zIndex: 20, background: "#4A1426" }}
           >
             <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
             <div className="max-w-[1320px] mx-auto px-5 sm:px-8 w-full pt-14 sm:pt-20 pb-12 sm:pb-16">
@@ -573,7 +573,7 @@ export default function Home() {
                 top: isMobile ? undefined : featureTop,
                 zIndex: i + 1,
                 height: isMobile ? "auto" : (featureTop > 0 ? `calc(100vh - ${featureTop}px)` : "60vh"),
-                background: "#0A0806",
+                background: "#4A1426",
                 borderTop: "1px solid rgba(200,146,42,0.12)",
               }}
             >
@@ -593,8 +593,8 @@ export default function Home() {
                   className="absolute inset-0"
                   style={{
                     background: f.imgRight
-                      ? "linear-gradient(270deg, rgba(10,8,6,0.92) 0%, transparent 50%)"
-                      : "linear-gradient(90deg, rgba(10,8,6,0.92) 0%, transparent 50%)",
+                      ? "linear-gradient(270deg, rgba(74,20,38,0.92) 0%, transparent 50%)"
+                      : "linear-gradient(90deg, rgba(74,20,38,0.92) 0%, transparent 50%)",
                   }}
                 />
                 {/* Number watermark */}
@@ -647,7 +647,7 @@ export default function Home() {
         </section>
 
         {/* ── TOKENOMICS SECTION ── */}
-        <section id="tokenomics" className="relative overflow-hidden flex flex-col" style={{ background: "#0A0806", minHeight: "100vh" }}>
+        <section id="tokenomics" className="relative overflow-hidden flex flex-col" style={{ background: "#4A1426", minHeight: "100vh" }}>
           {/* Top border */}
           <div className="h-px w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -847,7 +847,7 @@ export default function Home() {
         </section>
 
         {/* ── ROADMAP SECTION ── */}
-        <section id="roadmap" ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#0A0806" }}>
+        <section id="roadmap" ref={roadmapRef} className="relative overflow-hidden" style={{ background: "#4A1426" }}>
           {/* Top border */}
           <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent 0%, #C8922A 40%, #C8922A 60%, transparent 100%)" }} />
 
@@ -974,7 +974,7 @@ export default function Home() {
 
             {/* Heading overlay — centered over lower globe */}
             <div className="absolute bottom-0 left-0 right-0 z-10 text-center pb-14" style={{
-              background: "linear-gradient(to top, #0A0806 0%, rgba(10,8,6,0.92) 38%, transparent 100%)",
+              background: "linear-gradient(to top, #4A1426 0%, rgba(74,20,38,0.92) 38%, transparent 100%)",
             }}>
               <p
                 className="font-sans font-bold uppercase tracking-[0.4em] text-white mb-3"
@@ -1103,7 +1103,7 @@ export default function Home() {
         </section>
 
         {/* ── FAQ SECTION ── */}
-        <section id="faq" className="relative overflow-hidden" style={{ background: "#07060A" }}>
+        <section id="faq" className="relative overflow-hidden" style={{ background: "#3A0E1E" }}>
           {/* Split layout */}
           <div className="flex flex-col lg:flex-row min-h-[680px]">
 
@@ -1119,14 +1119,14 @@ export default function Home() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: "linear-gradient(to right, transparent 55%, #07060A 100%)",
+                  background: "linear-gradient(to right, transparent 55%, #3A0E1E 100%)",
                 }}
               />
               {/* Gradient bottom */}
               <div
                 className="absolute inset-0"
                 style={{
-                  background: "linear-gradient(to top, #07060A 0%, transparent 40%)",
+                  background: "linear-gradient(to top, #3A0E1E 0%, transparent 40%)",
                 }}
               />
               {/* Gold accent line on left edge */}

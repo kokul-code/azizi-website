@@ -34,6 +34,7 @@ Marketing site for Azizi Global Group / USD-AI — on-chain capital and Web4.0 i
 - Ported from Vercel; the imported project was already Vite + React (not Next.js), so no framework conversion was needed — only artifact registration and dependency install.
 - Single-page presentation site, no backend required.
 - `@assets` Vite alias maps to `../../attached_assets` for imported imagery.
+- Brand palette: deep burgundy `#4A1426` / `#3A0E1E` (background), gold `#C8922A` (accent), `#C85050` (red accent), white text. The `--background` CSS variable and `html/body` background are both set to match.
 
 ## Product
 

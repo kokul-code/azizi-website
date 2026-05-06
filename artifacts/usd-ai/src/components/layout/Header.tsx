@@ -45,7 +45,7 @@ export default function Header({ dark: _dark = false }: HeaderProps) {
     <header
       className={`fixed top-5 left-3 right-3 z-50 transition-all duration-500 ${
         hasBackground
-          ? "bg-[#0e1014]/94 backdrop-blur-md border border-white/10 rounded-2xl"
+          ? "bg-[#3A0E1E]/94 backdrop-blur-md border border-white/10 rounded-2xl"
           : "bg-transparent rounded-t-2xl"
       }`}
     >
