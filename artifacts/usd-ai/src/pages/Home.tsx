@@ -400,8 +400,8 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               {/* Gold overlay fade */}
-              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 60%, #4A1426 100%)" }} />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #4A1426 0%, transparent 30%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 75%, rgba(74,20,38,0.6) 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(74,20,38,0.5) 0%, transparent 18%)" }} />
             </div>
             {/* Text */}
             <div className="relative z-10 lg:w-1/2 flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-10 sm:py-12">
@@ -462,8 +462,8 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               {/* Red overlay fade */}
-              <div className="absolute inset-0" style={{ background: "linear-gradient(270deg, transparent 60%, #4A1426 100%)" }} />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, #4A1426 0%, transparent 30%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(270deg, transparent 75%, rgba(74,20,38,0.6) 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, rgba(74,20,38,0.5) 0%, transparent 18%)" }} />
             </div>
           </div>
 
