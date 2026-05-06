@@ -271,13 +271,15 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
             </motion.div>
-            {/* Minimal text-contrast layer — just enough to read white text, not a black tint */}
+            {/* Top veil: ensures header/logo stays readable over any video colour */}
             <div
-              className="absolute inset-0 z-10 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.32) 100%)",
-              }}
+              className="absolute inset-x-0 top-0 z-10 pointer-events-none"
+              style={{ height: "160px", background: "linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, transparent 100%)" }}
+            />
+            {/* Bottom text-contrast layer */}
+            <div
+              className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
+              style={{ height: "220px", background: "linear-gradient(to top, rgba(0,0,0,0.38) 0%, transparent 100%)" }}
             />
           </div>
 
