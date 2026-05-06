@@ -1140,10 +1140,10 @@ export default function Home() {
             {/* Left — premium image panel */}
             <div className="relative hidden lg:block lg:w-[42%] flex-shrink-0 overflow-hidden">
               <img
-                src="/hero-topography.png"
+                src="/about-blockchain.png"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
-                style={{ filter: "brightness(0.45) saturate(0.7)" }}
+                style={{ filter: "brightness(0.55) saturate(0.85)" }}
               />
               {/* Gradient edge bleed toward right */}
               <div
