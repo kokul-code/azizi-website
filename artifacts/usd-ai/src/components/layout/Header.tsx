@@ -70,7 +70,7 @@ export default function Header({ dark: _dark = false }: HeaderProps) {
               key={label}
               href={href}
               onClick={(e) => handleNavClick(e, href)}
-              className={`text-[14px] font-medium transition-colors whitespace-nowrap ${hasBackground ? "text-white/65 hover:text-white" : "text-[#4A1426]/70 hover:text-[#4A1426]"}`}
+              className="text-[14px] font-medium transition-colors whitespace-nowrap text-white/60 hover:text-white"
             >
               {label}
             </a>
