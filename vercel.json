@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @workspace/usd-ai run build",
+  "outputDirectory": "artifacts/usd-ai/dist/public",
+  "installCommand": "pnpm install",
+  "framework": null
+}
