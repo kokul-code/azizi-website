@@ -269,6 +269,7 @@ export default function Home() {
                 muted
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover object-center"
+                style={{ filter: "saturate(0) brightness(0.28) contrast(1.15)" }}
               />
             </motion.div>
             {/* Primary gradient scrim: top-to-bottom for readability */}
