@@ -1,10 +1,10 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Sector } from "recharts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import HeroScene from "@/components/HeroScene";
 import { Shield, ArrowUpRight, Search, FileText, LogOut } from "lucide-react";
+import heroVideo from "@assets/video_1778069720401.mp4";
 
 const TOKENOMICS = [
   { name: "Liquidity (DEX Pools)",    pct: 25, tokens: "250,000,000", tokensNum: 250000000, color: "#C8922A" },
@@ -128,12 +128,6 @@ const GLOBE_RAYS = (() => {
   return rays;
 })();
 
-const HERO_VIDEOS = [
-  "/hero-ocean.mp4",
-  "/hero-city.mp4",
-  "/hero-lava.mp4",
-];
-
 const FAQ_ITEMS = [
   {
     q: "What is Azizi Global Group's USD-AI token?",
@@ -255,27 +249,6 @@ export default function Home() {
     setRoadmapActive(Math.max(0, phase));
   });
 
-  // ── Video state
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [fadingOut, setFadingOut] = useState<number | null>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  // Whenever currentIdx changes, play that video
-  useEffect(() => {
-    const vid = videoRefs.current[currentIdx];
-    if (vid) {
-      vid.currentTime = 0;
-      vid.play().catch(() => {});
-    }
-  }, [currentIdx]);
-
-  const handleVideoEnd = useCallback(() => {
-    const next = (currentIdx + 1) % HERO_VIDEOS.length;
-    setFadingOut(currentIdx);
-    setCurrentIdx(next);
-    setTimeout(() => setFadingOut(null), 1200);
-  }, [currentIdx]);
-
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Header />
@@ -286,13 +259,20 @@ export default function Home() {
           className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
           style={{ height: "calc(100vh - 2rem)" }}
         >
-          {/* 3D animated coin/portal scene with parallax */}
+          {/* Background hero video — looping with parallax */}
           <div className="absolute inset-0 z-0 overflow-hidden" style={{ background: "#080205" }}>
-            <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[110%] -top-[5%]">
-              <HeroScene />
+            <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[115%] -top-[7%]">
+              <video
+                src={heroVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover object-center"
+              />
             </motion.div>
             {/* Primary gradient scrim: top-to-bottom for readability */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/20 to-black/70 pointer-events-none" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/20 to-black/65 pointer-events-none" />
             {/* Corner vignette: darkens top-left for logo contrast */}
             <div
               className="absolute inset-0 z-10 pointer-events-none"
