@@ -3,6 +3,7 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { PieChart, Pie, Cell, Sector } from "recharts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import HeroScene from "@/components/HeroScene";
 import { Shield, ArrowUpRight, Search, FileText, LogOut } from "lucide-react";
 
 const TOKENOMICS = [
@@ -285,33 +286,13 @@ export default function Home() {
           className="relative mx-3 mt-5 mb-3 rounded-2xl overflow-hidden flex flex-col"
           style={{ height: "calc(100vh - 2rem)" }}
         >
-          {/* Background video carousel with crossfade + parallax */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* 3D animated coin/portal scene with parallax */}
+          <div className="absolute inset-0 z-0 overflow-hidden" style={{ background: "#080205" }}>
             <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[130%] -top-[15%]">
-            {HERO_VIDEOS.map((src, idx) => {
-              const isActive = idx === currentIdx;
-              const isFading = idx === fadingOut;
-              return (
-                <video
-                  key={src}
-                  ref={(el) => { videoRefs.current[idx] = el; }}
-                  src={src}
-                  autoPlay={idx === 0}
-                  muted
-                  playsInline
-                  onEnded={isActive ? handleVideoEnd : undefined}
-                  className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1200ms]"
-                  style={{
-                    opacity: isActive ? 1 : isFading ? 0 : 0,
-                    zIndex: isActive ? 2 : isFading ? 1 : 0,
-                    pointerEvents: "none",
-                  }}
-                />
-              );
-            })}
+              <HeroScene />
             </motion.div>
             {/* Primary gradient scrim: top-to-bottom for readability */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/20 to-black/70 pointer-events-none" />
             {/* Corner vignette: darkens top-left for logo contrast */}
             <div
               className="absolute inset-0 z-10 pointer-events-none"
