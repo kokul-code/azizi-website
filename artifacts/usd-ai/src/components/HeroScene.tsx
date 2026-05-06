@@ -62,10 +62,10 @@ function makeTrackTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-const UPPER_START = new THREE.Vector3(7.2, 2.6, -0.3);
-const PORTAL_IN = new THREE.Vector3(1.6, 1.1, 0);
-const PORTAL_OUT = new THREE.Vector3(-1.6, -1.1, 0);
-const LOWER_END = new THREE.Vector3(-7.2, -2.6, 0.3);
+const UPPER_START = new THREE.Vector3(4.6, 1.7, -0.8);
+const PORTAL_IN = new THREE.Vector3(1.0, 0.5, 0);
+const PORTAL_OUT = new THREE.Vector3(-1.0, -0.7, 0);
+const LOWER_END = new THREE.Vector3(-4.6, -1.9, 0.8);
 
 function Track({ from, to }: { from: THREE.Vector3; to: THREE.Vector3 }) {
   const trackTex = useMemo(() => makeTrackTexture(), []);
@@ -73,28 +73,30 @@ function Track({ from, to }: { from: THREE.Vector3; to: THREE.Vector3 }) {
   const len = dir.length();
   const mid = from.clone().add(to).multiplyScalar(0.5);
   const angleZ = Math.atan2(dir.y, dir.x);
-  trackTex.repeat.set(Math.max(2, len * 0.6), 1.2);
+  // tilt slightly for depth based on z difference
+  const angleY = Math.atan2(to.z - from.z, Math.hypot(to.x - from.x, to.y - from.y));
+  trackTex.repeat.set(Math.max(2, len * 0.7), 1);
   return (
-    <group position={mid} rotation={[0, 0, angleZ]}>
+    <group position={mid} rotation={[0, -angleY, angleZ]}>
       <mesh>
-        <boxGeometry args={[len, 1.3, 0.18]} />
+        <boxGeometry args={[len, 0.75, 0.14]} />
         <meshStandardMaterial
           map={trackTex}
           color="#1a0510"
-          roughness={0.85}
-          metalness={0.25}
+          roughness={0.8}
+          metalness={0.3}
           emissive="#2A0810"
-          emissiveIntensity={0.2}
+          emissiveIntensity={0.25}
         />
       </mesh>
       {/* Glowing rails */}
-      <mesh position={[0, 0.7, 0.06]}>
-        <boxGeometry args={[len, 0.06, 0.22]} />
-        <meshStandardMaterial color="#3A0E1E" emissive="#7A2236" emissiveIntensity={0.55} toneMapped={false} />
+      <mesh position={[0, 0.4, 0.05]}>
+        <boxGeometry args={[len, 0.045, 0.18]} />
+        <meshStandardMaterial color="#3A0E1E" emissive="#9C2E48" emissiveIntensity={0.7} toneMapped={false} />
       </mesh>
-      <mesh position={[0, -0.7, 0.06]}>
-        <boxGeometry args={[len, 0.06, 0.22]} />
-        <meshStandardMaterial color="#3A0E1E" emissive="#7A2236" emissiveIntensity={0.55} toneMapped={false} />
+      <mesh position={[0, -0.4, 0.05]}>
+        <boxGeometry args={[len, 0.045, 0.18]} />
+        <meshStandardMaterial color="#3A0E1E" emissive="#9C2E48" emissiveIntensity={0.7} toneMapped={false} />
       </mesh>
     </group>
   );
@@ -110,18 +112,18 @@ function Portal({ position, hue }: { position: THREE.Vector3; hue: string }) {
   return (
     <group position={position}>
       <mesh ref={ringRef}>
-        <torusGeometry args={[1.05, 0.09, 16, 80]} />
-        <meshStandardMaterial color={hue} emissive={hue} emissiveIntensity={3} toneMapped={false} />
+        <torusGeometry args={[0.55, 0.05, 16, 64]} />
+        <meshStandardMaterial color={hue} emissive={hue} emissiveIntensity={3.5} toneMapped={false} />
       </mesh>
       <mesh ref={innerRef}>
-        <ringGeometry args={[0.62, 0.98, 56]} />
-        <meshBasicMaterial color="#6B1E30" transparent opacity={0.55} side={THREE.DoubleSide} toneMapped={false} />
+        <ringGeometry args={[0.32, 0.52, 48]} />
+        <meshBasicMaterial color="#6B1E30" transparent opacity={0.6} side={THREE.DoubleSide} toneMapped={false} />
       </mesh>
-      <mesh>
-        <circleGeometry args={[0.62, 48]} />
+      <mesh position={[0, 0, -0.01]}>
+        <circleGeometry args={[0.32, 40]} />
         <meshBasicMaterial color="#080205" />
       </mesh>
-      <pointLight color={hue} intensity={4} distance={7} decay={2} />
+      <pointLight color={hue} intensity={3.5} distance={5} decay={2} />
     </group>
   );
 }
@@ -172,16 +174,16 @@ function Coin({
   return (
     <group ref={ref}>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.42, 0.42, 0.10, 48]} />
-        <meshStandardMaterial color="#2A0810" metalness={0.75} roughness={0.32} />
+        <cylinderGeometry args={[0.36, 0.36, 0.10, 48]} />
+        <meshStandardMaterial color="#3A0E1E" metalness={0.85} roughness={0.28} emissive="#5C1A2A" emissiveIntensity={0.4} />
       </mesh>
       <mesh position={[0, 0, 0.052]}>
-        <circleGeometry args={[0.4, 48]} />
-        <meshStandardMaterial map={faceTex} metalness={0.45} roughness={0.4} emissive="#2A0810" emissiveIntensity={0.25} />
+        <circleGeometry args={[0.34, 48]} />
+        <meshStandardMaterial map={faceTex} metalness={0.5} roughness={0.35} emissive="#5C1A2A" emissiveIntensity={0.55} />
       </mesh>
       <mesh position={[0, 0, -0.052]} rotation={[0, Math.PI, 0]}>
-        <circleGeometry args={[0.4, 48]} />
-        <meshStandardMaterial map={faceTex} metalness={0.45} roughness={0.4} emissive="#2A0810" emissiveIntensity={0.25} />
+        <circleGeometry args={[0.34, 48]} />
+        <meshStandardMaterial map={faceTex} metalness={0.5} roughness={0.35} emissive="#5C1A2A" emissiveIntensity={0.55} />
       </mesh>
     </group>
   );
@@ -189,7 +191,7 @@ function Coin({
 
 function Scene() {
   const coins = useMemo(() => {
-    const N = 9;
+    const N = 12;
     return Array.from({ length: N }, (_, i) => ({
       type: COIN_TYPES[i % 3] as CoinType,
       offset: i / N,
@@ -198,11 +200,11 @@ function Scene() {
 
   return (
     <>
-      <fog attach="fog" args={["#080205", 9, 24]} />
-      <ambientLight intensity={0.3} color="#3A0E1E" />
-      <directionalLight position={[5, 8, 5]} intensity={0.55} color="#A23A52" />
-      <pointLight position={[-7, 4, 5]} intensity={1.4} color="#6B1E30" distance={22} decay={2} />
-      <pointLight position={[7, -4, 5]} intensity={1.0} color="#4A1426" distance={18} decay={2} />
+      <fog attach="fog" args={["#080205", 8, 18]} />
+      <ambientLight intensity={0.45} color="#5C1A2A" />
+      <directionalLight position={[3, 6, 5]} intensity={0.7} color="#C2566F" />
+      <pointLight position={[-5, 3, 4]} intensity={1.6} color="#7A2236" distance={18} decay={2} />
+      <pointLight position={[5, -3, 4]} intensity={1.2} color="#4A1426" distance={15} decay={2} />
 
       <Track from={UPPER_START} to={PORTAL_IN} />
       <Track from={PORTAL_OUT} to={LOWER_END} />
@@ -210,7 +212,7 @@ function Scene() {
       <Portal position={PORTAL_OUT} hue="#C2566F" />
 
       {coins.map((c, i) => (
-        <Coin key={i} type={c.type} offset={c.offset} speed={0.07} />
+        <Coin key={i} type={c.type} offset={c.offset} speed={0.08} />
       ))}
     </>
   );
@@ -242,7 +244,7 @@ export default function HeroScene() {
   return (
     <Canvas
       dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 10], fov: 42 }}
+      camera={{ position: [0, 0.3, 8.5], fov: 38 }}
       style={{ width: "100%", height: "100%", background: "#080205" }}
       gl={{ antialias: true, powerPreference: "high-performance", failIfMajorPerformanceCaveat: false }}
     >

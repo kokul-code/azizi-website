@@ -288,7 +288,7 @@ export default function Home() {
         >
           {/* 3D animated coin/portal scene with parallax */}
           <div className="absolute inset-0 z-0 overflow-hidden" style={{ background: "#080205" }}>
-            <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[130%] -top-[15%]">
+            <motion.div style={{ y: heroVideoY }} className="absolute inset-0 w-full h-[110%] -top-[5%]">
               <HeroScene />
             </motion.div>
             {/* Primary gradient scrim: top-to-bottom for readability */}
