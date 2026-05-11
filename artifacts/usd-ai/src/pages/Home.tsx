@@ -1142,7 +1142,7 @@ export default function Home() {
         </section>
 
         {/* ── FAQ SECTION ── */}
-        <section id="faq" className="relative overflow-hidden" style={{ background: "#3A0E1E" }}>
+        <section id="faq" className="relative overflow-hidden" style={{ background: "#1D0000" }}>
           {/* Split layout */}
           <div className="flex flex-col lg:flex-row min-h-[680px]">
 
@@ -1158,14 +1158,14 @@ export default function Home() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: "linear-gradient(to right, transparent 55%, #3A0E1E 100%)",
+                  background: "linear-gradient(to right, transparent 55%, #1D0000 100%)",
                 }}
               />
               {/* Gradient bottom */}
               <div
                 className="absolute inset-0"
                 style={{
-                  background: "linear-gradient(to top, #3A0E1E 0%, transparent 40%)",
+                  background: "linear-gradient(to top, #1D0000 0%, transparent 40%)",
                 }}
               />
               {/* Gold accent line on left edge */}
