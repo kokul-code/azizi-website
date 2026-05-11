@@ -47,7 +47,7 @@ export default function Footer() {
               <img
                 src="/logo.png"
                 alt="Azizi Global Group"
-                className="h-10 w-auto object-contain"
+                className="h-14 w-auto object-contain"
                 style={{ filter: "brightness(1.05)" }}
               />
             </Link>
