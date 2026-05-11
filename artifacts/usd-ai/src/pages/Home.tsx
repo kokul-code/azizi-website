@@ -274,7 +274,7 @@ export default function Home() {
             {/* Wine tint overlay — premium deep red over video */}
             <div
               className="absolute inset-0 z-[5] pointer-events-none"
-              style={{ background: "linear-gradient(135deg, rgba(90, 0, 10, 0.72) 0%, rgba(55, 0, 8, 0.62) 50%, rgba(29, 0, 0, 0.50) 100%)" }}
+              style={{ background: "linear-gradient(135deg, rgba(90, 0, 10, 0.84) 0%, rgba(55, 0, 8, 0.74) 50%, rgba(29, 0, 0, 0.62) 100%)" }}
             />
             {/* Top veil: ensures header/logo stays readable */}
             <div
