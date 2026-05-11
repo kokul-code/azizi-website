@@ -415,7 +415,7 @@ export default function Home() {
                 Redefining digital finance for a borderless world.
               </h2>
               <div className="lg:max-w-md pb-1">
-                <p className="text-white/55 leading-relaxed text-[16px]">
+                <p className="text-white/55 leading-relaxed text-[18px]">
                   Azizi Global Group Inc. is a next-generation blockchain finance company building infrastructure for decentralized capital markets — combining AI-driven credit models with on-chain transparency to deliver institutional-grade products accessible to everyone.
                 </p>
               </div>
@@ -453,7 +453,7 @@ export default function Home() {
               <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
                 A world where capital flows as freely as information.
               </h3>
-              <p className="text-white/60 text-[16px] leading-[1.9] max-w-lg">
+              <p className="text-white/60 text-[18px] leading-[1.9] max-w-lg">
                 We envision a global financial system where anyone — regardless of geography or legacy banking access — can participate in wealth creation through decentralized, transparent, and programmable money.
               </p>
               <div className="mt-9 flex items-center gap-3">
@@ -480,7 +480,7 @@ export default function Home() {
               <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6 leading-snug max-w-md">
                 Build the rails for on-chain capital markets that trust no intermediary.
               </h3>
-              <p className="text-white/60 text-[16px] leading-[1.9] max-w-lg">
+              <p className="text-white/60 text-[18px] leading-[1.9] max-w-lg">
                 Our mission is to deploy blockchain-native financial primitives — secured by cryptographic proofs, governed by smart contracts, powered by AI — replacing opacity with accountability and exclusion with open access.
               </p>
               <div className="mt-9 flex items-center gap-3">
@@ -524,7 +524,7 @@ export default function Home() {
                 <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-tight max-w-xl">
                   Infrastructure built for the next era of capital markets.
                 </h2>
-                <p className="text-white/55 text-[16px] leading-relaxed max-w-sm lg:text-right">
+                <p className="text-white/55 text-[18px] leading-relaxed max-w-sm lg:text-right">
                   Every layer of Azizi Global is engineered for institutional-grade security, transparency, and composability — from smart contract to settlement.
                 </p>
               </div>
@@ -663,7 +663,7 @@ export default function Home() {
                   {f.title}
                 </h3>
 
-                <p className="text-white/65 text-[16px] leading-[1.9] max-w-lg">
+                <p className="text-white/65 text-[18px] leading-[1.9] max-w-lg">
                   {f.body}
                 </p>
 
@@ -832,7 +832,7 @@ export default function Home() {
                         }}
                       />
                       <span
-                        className="text-[15px] transition-colors duration-200 font-medium"
+                        className="text-[18px] transition-colors duration-200 font-medium"
                         style={{ color: tokenActiveIdx === i ? "#ffffff" : "rgba(255,255,255,0.85)" }}
                       >
                         {item.name}
@@ -850,7 +850,7 @@ export default function Home() {
                     {/* Tokens */}
                     <div className="flex items-center justify-end">
                       <span
-                        className="text-[14px] font-mono transition-colors duration-200"
+                        className="text-[18px] font-mono transition-colors duration-200"
                         style={{ color: tokenActiveIdx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.65)" }}
                       >
                         <CountUp target={item.tokensNum} inView={tokenomicsInView} delay={i * 90} format={fmtTokens} />
@@ -868,11 +868,11 @@ export default function Home() {
                     background: "rgba(200,146,42,0.06)",
                   }}
                 >
-                  <span className="text-[15px] font-bold tracking-wide text-white">Total Supply</span>
+                  <span className="text-[18px] font-bold tracking-wide text-white">Total Supply</span>
                   <span className="font-sans font-bold text-[20px] text-center" style={{ color: "#C8922A" }}>
                     <CountUp target={100} inView={tokenomicsInView} delay={TOKENOMICS.length * 90} />%
                   </span>
-                  <span className="text-[14px] font-mono text-right text-white/85">
+                  <span className="text-[18px] font-mono text-right text-white/85">
                     <CountUp target={1000000000} inView={tokenomicsInView} delay={TOKENOMICS.length * 90} format={fmtTokens} />
                   </span>
                 </div>
@@ -1125,7 +1125,7 @@ export default function Home() {
                     {ROADMAP[roadmapActive].title}
                   </h3>
                   <p
-                    className="text-[15px] leading-[1.85]"
+                    className="text-[18px] leading-[1.85]"
                     style={{ color: "rgba(255,255,255,0.68)", maxWidth: "520px" }}
                   >
                     {ROADMAP[roadmapActive].body}
@@ -1208,7 +1208,7 @@ export default function Home() {
                         style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
                       >
                         <span
-                          className="font-sans font-semibold text-[15px] leading-snug transition-colors duration-200"
+                          className="font-sans font-semibold text-[18px] leading-snug transition-colors duration-200"
                           style={{ color: open ? "#C8922A" : "rgba(255,255,255,0.88)", letterSpacing: "0.01em" }}
                         >
                           {item.q}
@@ -1232,7 +1232,7 @@ export default function Home() {
                         style={{ maxHeight: open ? "200px" : "0px", opacity: open ? 1 : 0 }}
                       >
                         <p
-                          className="text-[14px] leading-[1.85] pb-6 pr-10"
+                          className="text-[18px] leading-[1.85] pb-6 pr-10"
                           style={{ color: "rgba(255,255,255,0.58)" }}
                         >
                           {item.a}
