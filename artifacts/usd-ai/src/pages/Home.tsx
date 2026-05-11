@@ -271,6 +271,11 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
             </motion.div>
+            {/* Wine tint overlay — premium deep red over video */}
+            <div
+              className="absolute inset-0 z-[5] pointer-events-none"
+              style={{ background: "linear-gradient(135deg, rgba(100, 0, 15, 0.42) 0%, rgba(60, 0, 8, 0.28) 50%, rgba(29, 0, 0, 0.18) 100%)" }}
+            />
             {/* Top veil: ensures header/logo stays readable */}
             <div
               className="absolute inset-x-0 top-0 z-10 pointer-events-none"
