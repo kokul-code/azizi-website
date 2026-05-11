@@ -55,7 +55,7 @@ export default function Header({ dark: _dark = false }: HeaderProps) {
           <img
             src="/logo.png"
             alt="Azizi Global Group"
-            className="h-7 w-auto object-contain"
+            className="h-10 w-auto object-contain"
             style={{
               filter:
                 "drop-shadow(0 1px 8px rgba(0,0,0,0.9)) drop-shadow(0 0px 3px rgba(0,0,0,0.8)) brightness(1.15) saturate(1.4)",
